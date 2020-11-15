@@ -7,10 +7,8 @@
     "dependencies": {
         "compression": "^1.7.4",
         "dotenv": "^8.2.0",
-        "express": "^4.17.1",
         "helmet": "^4.2.0",
         "jsforce": "^1.10.0",
-        "normalize.css": "^8.0.1",
         "ws": "^7.4.0"
     },
     "devDependencies": {
@@ -57,14 +55,12 @@
     },
     "repository": "sworkman/werewolf-player",
     "scripts": {
+        "start": "npm run build && node src/server/server.js",
         "build": "lwc-services build -m production",
         "build:development": "lwc-services build",
         "lint": "eslint ./src/**/*.js",
         "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
-        "serve": "run-p serve:client serve:api",
-        "serve:api": "node src/server/api.js",
-        "serve:client": "node scripts/server.js",
         "test:unit": "lwc-services test:unit",
         "test:unit:coverage": "lwc-services test:unit --coverage",
         "test:unit:debug": "lwc-services test:unit --debug",
