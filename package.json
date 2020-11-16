@@ -25,11 +25,6 @@
         "yarn": ">=1.9.4"
     },
     "homepage": "https://github.com/sworkman/werewolf-player",
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
     "keywords": [
         "lwc"
     ],
@@ -51,7 +46,7 @@
             "src/**/*.spec.js",
             "src/**/*.test.js"
         ],
-        "exec": "node ./src/server/server.js"
+        "exec": "node ./src/server/api.js"
     },
     "repository": "sworkman/werewolf-player",
     "scripts": {
