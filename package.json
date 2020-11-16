@@ -51,7 +51,7 @@
             "src/**/*.spec.js",
             "src/**/*.test.js"
         ],
-        "exec": "node ./src/server/api.js"
+        "exec": "node ./src/server/server.js"
     },
     "repository": "sworkman/werewolf-player",
     "scripts": {

@@ -4,9 +4,9 @@ const express = require('express'),
     Configuration = require('./utils/configuration.js'),
     WebSocketService = require('./utils/webSocketService.js'),
     QuizSessionRestResource = require('./rest/quiz-session.js'),
-    PlayerRestResource = require('./rest/player.js'),
-    AnswerRestResource = require('./rest/answer.js'),
-    ConfigurationRestResource = require('./rest/configuration.js');
+    PlayerRestResource = require('./rest/player.js');
+    // AnswerRestResource = require('./rest/answer.js'),
+    // ConfigurationRestResource = require('./rest/configuration.js');
 
 // Load and check config
 require('dotenv').config();
@@ -69,16 +69,16 @@ app.post('/api/players', (request, response) => {
 });
 
 // Setup Answer REST resources
-const answerRest = new AnswerRestResource(sfdc);
-app.post('/api/answers', (request, response) => {
-    answerRest.submitAnswer(request, response);
-});
+// const answerRest = new AnswerRestResource(sfdc);
+// app.post('/api/answers', (request, response) => {
+//     answerRest.submitAnswer(request, response);
+// });
 
 // Setup Configuration REST resources
-const configurationRest = new ConfigurationRestResource();
-app.get('/api/configuration', (request, response) => {
-    configurationRest.getConfiguration(request, response);
-});
+// const configurationRest = new ConfigurationRestResource();
+// app.get('/api/configuration', (request, response) => {
+//     configurationRest.getConfiguration(request, response);
+// });
 
 // HTTP and WebSocket Listen
 const PORT = process.env.PORT || 3002;
