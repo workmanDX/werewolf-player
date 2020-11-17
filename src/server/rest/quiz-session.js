@@ -16,9 +16,8 @@ module.exports = class QuizSessionRestResource {
      * @param {*} response
      */
     getSession(request, response) {
-        console.log('in getSession');
         const ns = Configuration.getSfNamespacePrefix();
-        const soql = `SELECT ${ns}Stage__c FROM ${ns}Game__c`;
+        const soql = `SELECT ${ns}Phase__c FROM ${ns}Quiz_Session__c`;
         this.sfdc.query(soql, (error, result) => {
             if (error) {
                 console.error('getSession', error);
@@ -29,8 +28,7 @@ module.exports = class QuizSessionRestResource {
                 response.status(404).json({ message });
             } else {
                 const record = result.records[0];
-                console.log('getSession record = ', record);
-                const phase = record[`${ns}Stage__c`];
+                const phase = record[`${ns}Phase__c`];
                 response.json({ phase });
             }
         });

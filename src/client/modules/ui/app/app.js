@@ -29,7 +29,6 @@ export default class App extends LightningElement {
 
     @wire(getCurrentSession)
     getCurrentSession({ error, data }) {
-        window.console.log('in getCurentSession', JSON.stringify(data));
         if (data) {
             this.session = data;
             if (!(this.isQuestionPhase || this.isQuestionResultsPhase)) {
@@ -69,7 +68,6 @@ export default class App extends LightningElement {
     }
 
     handleWsMessage(message) {
-        window.console.log('handleWSMessage = ', JSON.stringify(message));
         this.errorMessage = undefined;
         if (message.type === 'phaseChangeEvent') {
             this.session = message.data;
@@ -125,7 +123,7 @@ export default class App extends LightningElement {
 
     setPlayer(playerId) {
         this.playerId = playerId;
-        // this.updateLeaderboard();
+        this.updateLeaderboard();
     }
 
     updateLeaderboard() {

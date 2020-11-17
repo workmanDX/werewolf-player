@@ -15,7 +15,7 @@ module.exports = class PlayerRestResource {
         }
 
         const ns = Configuration.getSfNamespacePrefix();
-        const soql = `SELECT Id FROM ${ns}Game_Player__c WHERE Name__c='${nickname}'`;
+        const soql = `SELECT Id FROM ${ns}Quiz_Player__c WHERE Name='${nickname}'`;
         this.sfdc.query(soql, (error, result) => {
             if (error) {
                 console.error('isNicknameAvailable', error);
@@ -39,11 +39,11 @@ module.exports = class PlayerRestResource {
         }
 
         const ns = Configuration.getSfNamespacePrefix();
-        const playerRecord = { Name__c: nickname };
-        // playerRecord[`${ns}Email__c`] = email;
+        const playerRecord = { Name: nickname };
+        playerRecord[`${ns}Email__c`] = email;
 
         this.sfdc
-            .sobject(`${ns}Game_Player__c`)
+            .sobject(`${ns}Quiz_Player__c`)
             .insert(playerRecord, (error, result) => {
                 if (error || !result.success) {
                     if (
@@ -78,7 +78,7 @@ module.exports = class PlayerRestResource {
         }
 
         const ns = Configuration.getSfNamespacePrefix();
-        const soql = `SELECT ${ns}Score__c, ${ns}Ranking__c FROM ${ns}Game_Player__c WHERE Id='${playerId}'`;
+        const soql = `SELECT ${ns}Score__c, ${ns}Ranking__c FROM ${ns}Quiz_Player__c WHERE Id='${playerId}'`;
         this.sfdc.query(soql, (error, result) => {
             if (error) {
                 console.error('getPlayerLeaderboard', error);

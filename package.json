@@ -1,9 +1,10 @@
 {
-    "name": "werewolf-player",
-    "description": "My amazing LWC app",
-    "version": "0.0.1",
-    "author": "sworkman",
-    "bugs": "https://github.com/sworkman/werewolf-player/issues",
+    "name": "quiz-player-app",
+    "description": "Multiplayer quiz app built on Salesforce technology (player app)",
+    "version": "2.0.0",
+    "private": true,
+    "author": "pozil",
+    "bugs": "https://github.com/fostive/quiz-player-app/issues",
     "dependencies": {
         "dotenv": "^8.2.0",
         "jsforce": "^1.9.3",
@@ -13,19 +14,14 @@
     },
     "devDependencies": {
         "eslint": "^7.8.0",
-        "husky": "^4.3.0",
+        "husky": "^4.2.5",
         "lint-staged": "^10.2.13",
         "prettier": "^2.1.1"
     },
     "engines": {
         "node": ">=10.0.0"
     },
-    "homepage": "https://github.com/sworkman/werewolf-player",
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
+    "homepage": "https://github.com/fostive/quiz-player-app",
     "keywords": [
         "lwc"
     ],
@@ -38,7 +34,7 @@
             "eslint"
         ]
     },
-    "repository": "sworkman/werewolf-player",
+    "repository": "pozil/quiz",
     "scripts": {
         "start": "npm run build && node src/server/server.js",
         "build": "lwc-services build -m production",

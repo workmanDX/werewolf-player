@@ -5,7 +5,7 @@ module.exports = class Configuration {
             process.env.SF_PASSWORD &&
             process.env.SF_TOKEN &&
             process.env.SF_LOGIN_URL &&
-            process.env.GAME_API_KEY
+            process.env.QUIZ_API_KEY
         );
     }
 
@@ -30,7 +30,7 @@ module.exports = class Configuration {
     }
 
     static getQuizApiKey() {
-        return process.env.GAME_API_KEY;
+        return process.env.QUIZ_API_KEY;
     }
 
     static shouldCollectPlayerEmails() {

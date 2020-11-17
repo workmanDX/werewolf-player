@@ -6,7 +6,6 @@
             <!-- Unauthenticated -->
             <template if:false={isAuthenticated}>
                 <template if:true={isRegistrationPhase}>
-                    Registration form
                     <ui-registration-form
                         onregistered={handleRegistered}
                     ></ui-registration-form>

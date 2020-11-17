@@ -5,6 +5,7 @@
             <ui-input
                 label="Nickname"
                 onchange={handleNicknameChange}
+                readonly={isRegistering}
                 is-valid={isNicknameValid}
                 error={nicknameError}
                 max-length="20"
@@ -15,6 +16,7 @@
                 <ui-input
                     label="Email"
                     onchange={handleEmailChange}
+                    readonly={isRegistering}
                     is-valid={isEmailValid}
                     error={emailError}
                     autocomplete="email"
