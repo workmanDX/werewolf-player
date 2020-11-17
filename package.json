@@ -40,7 +40,7 @@
     },
     "repository": "sworkman/werewolf-player",
     "scripts": {
-        "start": "npm run build && node src/server/server.js",
+        "start": "npm run build",
         "build": "lwc-services build -m production",
         "build:development": "lwc-services build",
         "lint": "eslint ./src/**/*.js",
