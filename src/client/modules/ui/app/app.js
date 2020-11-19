@@ -150,23 +150,23 @@ export default class App extends LightningElement {
     }
 
     get isRegistrationPhase() {
-        return this.gameInfo.phase === STAGES.REGISTRATION;
+        return this.gameInfo.stage === STAGES.REGISTRATION;
     }
 
     get isPreQuestionPhase() {
-        return this.gameInfo.phase === STAGES.PRE_QUESTION;
+        return this.gameInfo.stage === STAGES.PRE_QUESTION;
     }
 
     get isQuestionPhase() {
-        return this.gameInfo.phase === STAGES.QUESTION;
+        return this.gameInfo.stage === STAGES.QUESTION;
     }
 
     get isQuestionResultsPhase() {
-        return this.gameInfo.phase === STAGES.QUESTION_RESULTS;
+        return this.gameInfo.stage === STAGES.QUESTION_RESULTS;
     }
 
     get isGameResultsPhase() {
-        return this.gameInfo.phase === STAGES.GAME_RESULTS;
+        return this.gameInfo.stage === STAGES.GAME_RESULTS;
     }
 
     get isCorrectAnswer() {
