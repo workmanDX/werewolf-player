@@ -29,7 +29,8 @@ module.exports = class QuizSessionRestResource {
             } else {
                 const record = result.records[0];
                 const stage = record[`${ns}Stage__c`];
-                response.json({ stage });
+                const gameId = record[`${ns}Id`];
+                response.json({ stage, gameId });
             }
         });
     }
