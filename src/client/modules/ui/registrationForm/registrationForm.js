@@ -7,6 +7,8 @@ import { isNicknameAvailable, registerPlayer } from 'services/player';
 const VALIDATION_DELAY = 500;
 
 export default class RegistrationForm extends LightningElement {
+    @wire gameId;
+    
     configuration;
 
     nickname = '';
