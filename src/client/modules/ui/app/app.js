@@ -5,7 +5,8 @@ import { getErrorMessage } from 'utils/error';
 import { getCookie, setCookie, clearCookie } from 'utils/cookies';
 import { WebSocketClient } from 'utils/webSocketClient';
 
-import { PHASES, getCurrentSession } from 'services/session';
+// import { PHASES, getCurrentSession } from 'services/session';
+import { STAGES, getGameInfo } from 'services/game';
 import { getPlayerLeaderboard } from 'services/player';
 import { submitAnswer } from 'services/answer';
 
@@ -15,7 +16,7 @@ const COOKIE_ANSWER = 'answer';
 
 export default class App extends LightningElement {
     nickname;
-    session;
+    gameInfo;
     errorMessage;
     playerLeaderboard = { score: '-', rank: '-' };
     showFooter = false;
@@ -27,10 +28,10 @@ export default class App extends LightningElement {
 
     PLAYER_APP_VERSION = '2.0.0';
 
-    @wire(getCurrentSession)
-    getCurrentSession({ error, data }) {
+    @wire(getGameInfo)
+    getGameInfo({ error, data }) {
         if (data) {
-            this.session = data;
+            this.gameInfo = data;
             if (!(this.isQuestionPhase || this.isQuestionResultsPhase)) {
                 clearCookie(COOKIE_ANSWER);
             }
@@ -70,19 +71,19 @@ export default class App extends LightningElement {
     handleWsMessage(message) {
         this.errorMessage = undefined;
         if (message.type === 'phaseChangeEvent') {
-            this.session = message.data;
+            this.gameInfo = message.data;
             // eslint-disable-next-line default-case
-            switch (this.session.phase) {
-                case PHASES.REGISTRATION:
+            switch (this.gameInfo.phase) {
+                case STAGES.REGISTRATION:
                     this.resetGame();
                     break;
-                case PHASES.QUESTION:
+                case STAGES.QUESTION:
                     // Clear last answer
                     clearCookie(COOKIE_ANSWER);
                     this.lastAnswer = undefined;
                     this.answerSaved = false;
                     break;
-                case PHASES.QUESTION_RESULTS:
+                case STAGES.QUESTION_RESULTS:
                     // Refresh leaderboard
                     this.updateLeaderboard();
                     break;
@@ -148,28 +149,28 @@ export default class App extends LightningElement {
     }
 
     get isRegistrationPhase() {
-        return this.session.phase === PHASES.REGISTRATION;
+        return this.gameInfo.phase === STAGES.REGISTRATION;
     }
 
     get isPreQuestionPhase() {
-        return this.session.phase === PHASES.PRE_QUESTION;
+        return this.gameInfo.phase === STAGES.PRE_QUESTION;
     }
 
     get isQuestionPhase() {
-        return this.session.phase === PHASES.QUESTION;
+        return this.gameInfo.phase === STAGES.QUESTION;
     }
 
     get isQuestionResultsPhase() {
-        return this.session.phase === PHASES.QUESTION_RESULTS;
+        return this.gameInfo.phase === STAGES.QUESTION_RESULTS;
     }
 
     get isGameResultsPhase() {
-        return this.session.phase === PHASES.GAME_RESULTS;
+        return this.gameInfo.phase === STAGES.GAME_RESULTS;
     }
 
     get isCorrectAnswer() {
         return (
-            this.lastAnswer && this.lastAnswer === this.session.correctAnswer
+            this.lastAnswer && this.lastAnswer === this.gameInfo.correctAnswer
         );
     }
 }

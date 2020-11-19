@@ -2,7 +2,7 @@
     <ui-header nickname={nickname}></ui-header>
 
     <div class="body">
-        <template if:true={session}>
+        <template if:true={gameInfo}>
             <!-- Unauthenticated -->
             <template if:false={isAuthenticated}>
                 <template if:true={isRegistrationPhase}>
@@ -34,7 +34,7 @@
                     <!-- Not yet answered -->
                     <template if:false={lastAnswer}>
                         <ui-question
-                            question={session.question}
+                            question={gameInfo.question}
                             onanswer={handleAnswer}
                         ></ui-question>
                     </template>
@@ -70,8 +70,8 @@
                             <template if:false={isCorrectAnswer}>
                                 <h1>
                                     The correct answer was
-                                    <span data-answer={session.correctAnswer}
-                                        >{session.correctAnswer}</span
+                                    <span data-answer={gameInfo.correctAnswer}
+                                        >{gameInfo.correctAnswer}</span
                                     >
                                 </h1>
                             </template>

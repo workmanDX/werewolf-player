@@ -8,6 +8,8 @@ const express = require('express'),
     AnswerRestResource = require('./rest/answer.js'),
     ConfigurationRestResource = require('./rest/configuration.js');
 
+    gameInfoRestResource = require('./rest/game-info.js');
+
 // Load and check config
 require('dotenv').config();
 if (!Configuration.isValid()) {
@@ -43,6 +45,16 @@ sfdc.login(
 ).then(() => {
     console.log('Connected to Salesforce');
 });
+
+// Setup Game info REST resources
+const gameInfoRest = new gameInfoRestResource(sfdc, wss);
+app.get('/api/game-info', (request, response) => {
+    gameInfoRest.getGameInfo(request, response);
+});
+// app.put('/api/game-info', (request, response) => {
+//     quizSessionRest.updateSession(request, response);
+// });
+
 
 // Setup Quiz Session REST resources
 const quizSessionRest = new QuizSessionRestResource(sfdc, wss);
