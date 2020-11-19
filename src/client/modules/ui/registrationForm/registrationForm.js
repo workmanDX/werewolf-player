@@ -1,4 +1,4 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, api } from 'lwc';
 import { getErrorMessage } from 'utils/error';
 
 import { getConfiguration } from 'services/configuration';
@@ -7,7 +7,7 @@ import { isNicknameAvailable, registerPlayer } from 'services/player';
 const VALIDATION_DELAY = 500;
 
 export default class RegistrationForm extends LightningElement {
-    @wire gameId;
+    @api gameId;
     
     configuration;
 
