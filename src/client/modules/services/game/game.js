@@ -2,7 +2,7 @@ import { register, ValueChangedEvent } from '@lwc/wire-service';
 import { fetchJson } from 'utils/fetch';
 
 export const STAGES = Object.freeze({
-    REGISTRATION: 'Registration',
+    REGISTRATION: 'Registration1',
     PRE_QUESTION: 'Dealing',
     QUESTION: 'Question',
     QUESTION_RESULTS: 'QuestionResults',
