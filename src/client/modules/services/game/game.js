@@ -5,6 +5,8 @@ export const STAGES = Object.freeze({
     REGISTRATION: 'Registration',
     DEALING: 'Dealing',
     WEREWOLF: 'Werewolf',
+    PRE_QUESTION: 'Dealing',
+    QUESTION: 'Question',
     QUESTION_RESULTS: 'QuestionResults',
     GAME_RESULTS: 'GameResults'
 });
