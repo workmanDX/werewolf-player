@@ -1,5 +1,5 @@
 import { LightningElement, api, wire } from 'lwc';
-import { getPlayerStats } from 'services/player';
+// import { getPlayerStats } from 'services/player';
 import { getErrorMessage } from 'utils/error';
 
 export default class Winner extends LightningElement {
