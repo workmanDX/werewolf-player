@@ -1,4 +1,4 @@
-import { register, ValueChangedEvent } from 'wire-service';
+import { register, ValueChangedEvent } from 'lwc/wire-service';
 import { fetchJson } from 'utils/fetch';
 
 export const STAGES = Object.freeze({
