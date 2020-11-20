@@ -39,8 +39,6 @@ module.exports = class PlayerRestResource {
         }
 
         const playerRecord = { Name__c: nickname, Game__c: gameId };
-        // playerRecord[`Game__c`] = gameId;
-
         this.sfdc
             .sobject(`Game_Player__c`)
             .insert(playerRecord, (error, result) => {

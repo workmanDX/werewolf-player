@@ -3,8 +3,8 @@ import { fetchJson } from 'utils/fetch';
 
 export const STAGES = Object.freeze({
     REGISTRATION: 'Registration',
-    PRE_QUESTION: 'Dealing',
-    QUESTION: 'Question',
+    DEALING: 'Dealing',
+    WEREWOLF: 'Werewolf',
     QUESTION_RESULTS: 'QuestionResults',
     GAME_RESULTS: 'GameResults'
 });

@@ -153,12 +153,12 @@ export default class App extends LightningElement {
         return this.gameInfo.stage === STAGES.REGISTRATION;
     }
 
-    get isPreQuestionPhase() {
-        return this.gameInfo.stage === STAGES.PRE_QUESTION;
+    get isDealingPhase() {
+        return this.gameInfo.stage === STAGES.DEALING;
     }
 
-    get isQuestionPhase() {
-        return this.gameInfo.stage === STAGES.QUESTION;
+    get isWerewolfPhase() {
+        return this.gameInfo.stage === STAGES.WEREWOLF;
     }
 
     get isQuestionResultsPhase() {
