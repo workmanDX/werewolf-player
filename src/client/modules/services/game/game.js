@@ -1,4 +1,4 @@
-import { WireAdapter, ValueChangedEvent } from '@lwc/wire-service';
+import { register, ValueChangedEvent } from '@lwc/wire-service';
 import { fetchJson } from 'utils/fetch';
 
 export const STAGES = Object.freeze({
@@ -37,7 +37,7 @@ function getData(config, observer) {
         });
 }
 
-WireAdapter(getGameInfo, (eventTarget) => {
+register(getGameInfo, (eventTarget) => {
     let config;
     eventTarget.dispatchEvent(
         new ValueChangedEvent({ data: undefined, error: undefined })
