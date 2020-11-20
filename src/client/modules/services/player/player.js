@@ -32,6 +32,20 @@ export function getPlayerLeaderboard(config) {
 }
 
 /**
+ * Gets player's stats
+ * @param {*} config
+ */
+export function getPlayerStats(config) {
+    return new Promise((resolve, reject) => {
+        const observer = {
+            next: (data) => resolve(data),
+            error: (error) => reject(error)
+        };
+        getPlayerStatsData(config, observer);
+    });
+}
+
+/**
  * Registers a player
  * @param {string} nickname
  * @param {string} email
