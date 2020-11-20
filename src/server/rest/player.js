@@ -38,8 +38,8 @@ module.exports = class PlayerRestResource {
             return;
         }
 
-        const playerRecord = { Name: nickname };
-        playerRecord[`Game__c`] = gameId;
+        const playerRecord = { Name__c: nickname };
+        // playerRecord[`Game__c`] = gameId;
 
         this.sfdc
             .sobject(`Game_Player__c`)
@@ -56,7 +56,7 @@ module.exports = class PlayerRestResource {
                             message: `Nickname '${nickname}' is already in use.`
                         });
                     } else {
-                        console.error('registerPlayer ', error);
+                        window.console.log('registerPlayer ', error);
                         response
                             .status(500)
                             .json({ message: 'Failed to register player.' });
