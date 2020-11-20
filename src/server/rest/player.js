@@ -15,7 +15,7 @@ module.exports = class PlayerRestResource {
         }
 
         const ns = Configuration.getSfNamespacePrefix();
-        const soql = `SELECT Id FROM ${ns}Quiz_Player__c WHERE Name='${nickname}'`;
+        const soql = `SELECT Id FROM ${ns}Game_Player__c WHERE Name__c='${nickname}'`;
         this.sfdc.query(soql, (error, result) => {
             if (error) {
                 console.error('isNicknameAvailable', error);
@@ -30,7 +30,7 @@ module.exports = class PlayerRestResource {
     }
 
     registerPlayer(request, response) {
-        const { nickname, email } = request.body;
+        const { nickname, gameId } = request.body;
         if (!nickname) {
             response
                 .status(400)
@@ -40,10 +40,10 @@ module.exports = class PlayerRestResource {
 
         const ns = Configuration.getSfNamespacePrefix();
         const playerRecord = { Name: nickname };
-        playerRecord[`${ns}Email__c`] = email;
+        playerRecord[`${ns}Game__c`] = gameId;
 
         this.sfdc
-            .sobject(`${ns}Quiz_Player__c`)
+            .sobject(`${ns}Game_Player__c`)
             .insert(playerRecord, (error, result) => {
                 if (error || !result.success) {
                     if (

@@ -32,27 +32,13 @@ export function getPlayerLeaderboard(config) {
 }
 
 /**
- * Gets player's stats
- * @param {*} config
- */
-export function getPlayerStats(config) {
-    return new Promise((resolve, reject) => {
-        const observer = {
-            next: (data) => resolve(data),
-            error: (error) => reject(error)
-        };
-        getPlayerStatsData(config, observer);
-    });
-}
-
-/**
  * Registers a player
  * @param {string} nickname
  * @param {string} email
  * @returns {Promise<*>} Promise holding the Player record
  */
-export function registerPlayer(nickname, email) {
-    const userInfo = { nickname, email };
+export function registerPlayer(nickname, gameId) {
+    const userInfo = { nickname, gameId };
     return fetch(PLAYERS_REST_URL, {
         method: 'post',
         headers: {
