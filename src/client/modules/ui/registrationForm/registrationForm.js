@@ -16,10 +16,6 @@ export default class RegistrationForm extends LightningElement {
     isNicknameValid;
     nicknameError;
 
-    email = '';
-    isEmailValid;
-    emailError;
-
     isLoading = false;
     isRegistering = false;
     formError = '';
@@ -76,23 +72,6 @@ export default class RegistrationForm extends LightningElement {
         }, VALIDATION_DELAY);
     }
 
-    handleEmailChange(event) {
-        this.email = event.detail.value;
-        this.emailError = null;
-        if (this.email.trim() === '') {
-            this.isEmailValid = false;
-            this.emailError = 'Email is required';
-        } else {
-            this.isEmailValid = new RegExp(
-                /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/,
-                'i'
-            ).test(this.email);
-            if (this.isEmailValid === false) {
-                this.emailError = 'Invalid email format';
-            }
-        }
-    }
-
     handleSubmit(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -103,7 +82,8 @@ export default class RegistrationForm extends LightningElement {
         this.isLoading = true;
         this.isRegistering = true;
         const nickname = this.nickname.trim();
-        registerPlayer(nickname, this.email)
+        // registerPlayer(nickname, this.email)
+        registerPlayer(nickname)
             .then((result) => {
                 this.dispatchEvent(
                     new CustomEvent('registered', {
@@ -128,14 +108,7 @@ export default class RegistrationForm extends LightningElement {
         return (
             this.nickname.trim() === '' ||
             !this.isNicknameValid ||
-            (this.shouldCollectPlayerEmails && !this.isEmailValid) ||
             this.isLoading
-        );
-    }
-
-    get shouldCollectPlayerEmails() {
-        return (
-            this.configuration && this.configuration.shouldCollectPlayerEmails
         );
     }
 }
