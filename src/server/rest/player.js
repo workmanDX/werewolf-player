@@ -38,12 +38,11 @@ module.exports = class PlayerRestResource {
             return;
         }
 
-        const ns = Configuration.getSfNamespacePrefix();
         const playerRecord = { Name: nickname };
-        playerRecord[`${ns}Game__c`] = gameId;
+        playerRecord[`Game__c`] = gameId;
 
         this.sfdc
-            .sobject(`${ns}Game_Player__c`)
+            .sobject(`Game_Player__c`)
             .insert(playerRecord, (error, result) => {
                 if (error || !result.success) {
                     if (
