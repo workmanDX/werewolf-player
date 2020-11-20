@@ -35,68 +35,68 @@ module.exports = class QuizSessionRestResource {
         });
     }
 
-    // /**
-    //  * Updates current quiz session
-    //  * @param {*} request
-    //  * @param {*} response
-    //  */
-    // updateSession(request, response) {
-    //     // Check API key header
-    //     const apiKey = request.get('Api-Key');
-    //     if (!apiKey) {
-    //         response.status(400).json({ message: 'Missing Quiz API Key.' });
-    //         return;
-    //     }
-    //     if (apiKey !== Configuration.getQuizApiKey()) {
-    //         response.status(403).json({ message: 'Invalid Quiz API Key.' });
-    //         return;
-    //     }
-    //     // Check parameters
-    //     const { phase } = request.body;
-    //     if (!phase) {
-    //         response
-    //             .status(400)
-    //             .json({ message: 'Missing Phase__c parameter.' });
-    //         return;
-    //     }
-    //     // Broadcast phase change via WSS
-    //     const phaseChangeEvent = {
-    //         type: 'phaseChangeEvent',
-    //         data: {
-    //             phase
-    //         }
-    //     };
+    /**
+     * Updates current quiz session
+     * @param {*} request
+     * @param {*} response
+     */
+    updateSession(request, response) {
+        // Check API key header
+        const apiKey = request.get('Api-Key');
+        if (!apiKey) {
+            response.status(400).json({ message: 'Missing Game API Key.' });
+            return;
+        }
+        if (apiKey !== Configuration.getQuizApiKey()) {
+            response.status(403).json({ message: 'Invalid Game API Key.' });
+            return;
+        }
+        // Check parameters
+        const { phase } = request.body;
+        if (!phase) {
+            response
+                .status(400)
+                .json({ message: 'Missing Stage parameter.' });
+            return;
+        }
+        // Broadcast phase change via WSS
+        const phaseChangeEvent = {
+            type: 'phaseChangeEvent',
+            data: {
+                phase
+            }
+        };
 
-    //     // Get question label when phase is Question
-    //     if (phase === 'Question') {
-    //         this.getQuestion()
-    //             .then((question) => {
-    //                 phaseChangeEvent.data.question = question;
-    //                 this.wss.broadcast(phaseChangeEvent);
-    //                 response.sendStatus(200);
-    //             })
-    //             .catch((error) => {
-    //                 console.error('getQuestion', error);
-    //                 response.status(500).json(error);
-    //             });
-    //     }
-    //     // Send correct answer when phase is QuestionResults
-    //     else if (phase === 'QuestionResults') {
-    //         this.getCorrectAnwer()
-    //             .then((correctAnswer) => {
-    //                 phaseChangeEvent.data.correctAnswer = correctAnswer;
-    //                 this.wss.broadcast(phaseChangeEvent);
-    //                 response.sendStatus(200);
-    //             })
-    //             .catch((error) => {
-    //                 console.error('getCorrectAnwer', error);
-    //                 response.status(500).json(error);
-    //             });
-    //     } else {
-    //         this.wss.broadcast(phaseChangeEvent);
-    //         response.sendStatus(200);
-    //     }
-    // }
+        // Get question label when phase is Question
+        if (phase === 'Question') {
+            this.getQuestion()
+                .then((question) => {
+                    phaseChangeEvent.data.question = question;
+                    this.wss.broadcast(phaseChangeEvent);
+                    response.sendStatus(200);
+                })
+                .catch((error) => {
+                    console.error('getQuestion', error);
+                    response.status(500).json(error);
+                });
+        }
+        // Send correct answer when phase is QuestionResults
+        else if (phase === 'QuestionResults') {
+            this.getCorrectAnwer()
+                .then((correctAnswer) => {
+                    phaseChangeEvent.data.correctAnswer = correctAnswer;
+                    this.wss.broadcast(phaseChangeEvent);
+                    response.sendStatus(200);
+                })
+                .catch((error) => {
+                    console.error('getCorrectAnwer', error);
+                    response.status(500).json(error);
+                });
+        } else {
+            this.wss.broadcast(phaseChangeEvent);
+            response.sendStatus(200);
+        }
+    }
 
     // /**
     //  * Gets the correct answer to the current question

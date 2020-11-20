@@ -51,9 +51,9 @@ const gameInfoRest = new gameInfoRestResource(sfdc, wss);
 app.get('/api/game-info', (request, response) => {
     gameInfoRest.getGameInfo(request, response);
 });
-// app.put('/api/game-info', (request, response) => {
-//     quizSessionRest.updateSession(request, response);
-// });
+app.put('/api/game-info', (request, response) => {
+    gameInfoRest.updateSession(request, response);
+});
 
 
 // Setup Quiz Session REST resources
