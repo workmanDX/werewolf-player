@@ -6,9 +6,9 @@ const express = require('express'),
     QuizSessionRestResource = require('./rest/quiz-session.js'),
     PlayerRestResource = require('./rest/player.js'),
     AnswerRestResource = require('./rest/answer.js'),
-    ConfigurationRestResource = require('./rest/configuration.js');
+    ConfigurationRestResource = require('./rest/configuration.js'),
 
-    gameInfoRestResource = require('./rest/game-info.js');
+    GameInfoRestResource = require('./rest/game-info.js');
 
 // Load and check config
 require('dotenv').config();
@@ -47,7 +47,7 @@ sfdc.login(
 });
 
 // Setup Game info REST resources
-const gameInfoRest = new gameInfoRestResource(sfdc, wss);
+const gameInfoRest = new GameInfoRestResource(sfdc, wss);
 app.get('/api/game-info', (request, response) => {
     gameInfoRest.getGameInfo(request, response);
 });
