@@ -7,7 +7,7 @@ import { WebSocketClient } from 'utils/webSocketClient';
 
 // import { PHASES, getCurrentSession } from 'services/session';
 import { STAGES, getGameInfo } from 'services/game';
-import { getPlayerLeaderboard } from 'services/player';
+// import { getPlayerLeaderboard } from 'services/player';
 import { submitAnswer } from 'services/answer';
 
 const COOKIE_PLAYER_NICKNAME = 'nickname';
@@ -125,7 +125,7 @@ export default class App extends LightningElement {
 
     setPlayer(playerId) {
         this.playerId = playerId;
-        this.updateLeaderboard();
+        // this.updateLeaderboard();
     }
 
     updateLeaderboard() {
