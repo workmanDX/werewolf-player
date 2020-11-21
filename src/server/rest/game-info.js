@@ -51,7 +51,6 @@ module.exports = class QuizSessionRestResource {
             response.status(403).json({ message: 'Invalid Game API Key.' });
             return;
         }
-        window.console.log('request.body = ', JSON.stringify(request.body));
         // Check parameters
         const { stage } = request.body;
         if (!stage) {

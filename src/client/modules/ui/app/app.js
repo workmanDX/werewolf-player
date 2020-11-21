@@ -70,11 +70,12 @@ export default class App extends LightningElement {
     }
 
     handleWsMessage(message) {
+        window.console.log('handleWsMessage = ', JSON.stringify(message));
         this.errorMessage = undefined;
         if (message.type === 'phaseChangeEvent') {
             this.gameInfo = message.data;
             // eslint-disable-next-line default-case
-            switch (this.gameInfo.phase) {
+            switch (this.gameInfo.stage) {
                 case STAGES.REGISTRATION:
                     this.resetGame();
                     break;
