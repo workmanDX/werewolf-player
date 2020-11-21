@@ -52,8 +52,8 @@ module.exports = class QuizSessionRestResource {
             return;
         }
         // Check parameters
-        const { phase } = request.body;
-        if (!phase) {
+        const { stage } = request.body;
+        if (!stage) {
             response
                 .status(400)
                 .json({ message: 'Missing Stage parameter.' });
@@ -63,7 +63,7 @@ module.exports = class QuizSessionRestResource {
         const phaseChangeEvent = {
             type: 'phaseChangeEvent',
             data: {
-                phase
+                stage
             }
         };
 
