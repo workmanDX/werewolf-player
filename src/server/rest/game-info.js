@@ -68,7 +68,7 @@ module.exports = class QuizSessionRestResource {
         };
 
         // Get question label when phase is Question
-        if (phase === 'Question') {
+        if (stage === 'Question') {
             this.getQuestion()
                 .then((question) => {
                     phaseChangeEvent.data.question = question;
@@ -81,7 +81,7 @@ module.exports = class QuizSessionRestResource {
                 });
         }
         // Send correct answer when phase is QuestionResults
-        else if (phase === 'QuestionResults') {
+        else if (stage === 'QuestionResults') {
             this.getCorrectAnwer()
                 .then((correctAnswer) => {
                     phaseChangeEvent.data.correctAnswer = correctAnswer;
