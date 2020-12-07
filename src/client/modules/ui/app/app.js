@@ -158,9 +158,20 @@ export default class App extends LightningElement {
         return this.gameInfo.stage === STAGES.DEALING;
     }
 
+    get isPlayGamePhase() {
+        return this.gameInfo.stage === STAGES.GAME_PLAY;
+    }
+
+    get isVotingPhase() {
+        return this.gameInfo.stage === STAGES.VOTING;
+    }
+
     get isWerewolfPhase() {
         return this.gameInfo.stage === STAGES.WEREWOLF;
     }
+
+
+    /*********** Quiz Related - to delete later after all references are removed********/
 
     get isPreQuestionPhase() {
         return this.gameInfo.stage === STAGES.PRE_QUESTION;

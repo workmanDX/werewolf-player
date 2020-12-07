@@ -4,6 +4,9 @@ import { fetchJson } from 'utils/fetch';
 export const STAGES = Object.freeze({
     REGISTRATION: 'Registration',
     DEALING: 'Dealing',
+    READY: 'Ready',
+    GAME_PLAY: 'PlayGame',
+    VOTING: 'Voting',
     WEREWOLF: 'Werewolf',
     PRE_QUESTION: 'Dealing',
     QUESTION: 'Question',

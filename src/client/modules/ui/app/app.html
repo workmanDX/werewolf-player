@@ -20,13 +20,13 @@
             <template if:true={isAuthenticated}>
                 <!-- Registration -->
                 <template if:true={isRegistrationPhase}>
-                    <h1>Waiting for host to start game...</h1>
+                    <h1>Wait for card...</h1>
                     <ui-spinner></ui-spinner>
                 </template>
 
                 <!-- Dealing -->
-                <template if:true={isDealingPhase}>
-                    <h1>Wait for card...</h1>
+                <template if:true={isReadyPhase}>
+                    <h1>Ready Stage</h1>
                     <ui-spinner></ui-spinner>
                 </template>
 
