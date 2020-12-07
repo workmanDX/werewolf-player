@@ -151,7 +151,7 @@ export default class App extends LightningElement {
     }
 
     get isRegistrationPhase() {
-        return this.gameInfo.stage === STAGES.REGISTRATION;
+        return (this.gameInfo.stage === STAGES.REGISTRATION || this.gameInfo.stage === STAGES.CHARACTER_SELECTION);
     }
 
     get isDealingPhase() {
