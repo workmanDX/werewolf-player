@@ -150,12 +150,12 @@ export default class App extends LightningElement {
         return this.nickname !== '';
     }
 
-    get isRegistrationPhase() {
-        return (this.gameInfo.stage === STAGES.REGISTRATION || this.gameInfo.stage === STAGES.CHARACTER_SELECTION);
+    get isRegistrationStage() {
+        return (this.gameInfo.stage === STAGES.REGISTRATION || this.gameInfo.stage === STAGES.CHARACTER_SELECTION || this.gameInfo.stage === STAGES.DEALING);
     }
 
-    get isDealingPhase() {
-        return this.gameInfo.stage === STAGES.DEALING;
+    get isReadyStage() {
+        return this.gameInfo.stage === STAGES.READY
     }
 
     get isPlayGamePhase() {

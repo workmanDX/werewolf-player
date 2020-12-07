@@ -5,13 +5,13 @@
         <template if:true={gameInfo}>
             <!-- Unauthenticated -->
             <template if:false={isAuthenticated}>
-                <template if:true={isRegistrationPhase}>
+                <template if:true={isRegistrationStage}>
                     <ui-registration-form
                         game-id={gameInfo.gameId}
                         onregistered={handleRegistered}
                     ></ui-registration-form>
                 </template>
-                <template if:false={isRegistrationPhase}>
+                <template if:false={isRegistrationStage}>
                     <h1>Sorry, registrations are closed.</h1>
                 </template>
             </template>
@@ -19,13 +19,13 @@
             <!-- Authenticated -->
             <template if:true={isAuthenticated}>
                 <!-- Registration -->
-                <template if:true={isRegistrationPhase}>
+                <template if:true={isRegistrationStage}>
                     <h1>Wait for card...</h1>
                     <ui-spinner></ui-spinner>
                 </template>
 
                 <!-- Dealing -->
-                <template if:true={isReadyPhase}>
+                <template if:true={isReadyStage}>
                     <h1>Ready Stage</h1>
                     <ui-spinner></ui-spinner>
                 </template>
