@@ -116,7 +116,6 @@ module.exports = class QuizSessionRestResource {
             return;
         }
         // Check parameters
-        window.console.log("request body = ", request.body);
         const { stage } = request.body;
         if (!stage) {
             response
