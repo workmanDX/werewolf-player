@@ -73,6 +73,7 @@ export default class App extends LightningElement {
 
     handleWsMessage(message) {
         window.console.log('handleWsMessage = ', JSON.stringify(message));
+        window.console.log('handleWsMessage data = ', JSON.stringify(message.data));
         this.errorMessage = undefined;
         if (message.type === 'phaseChangeEvent') {
             this.gameInfo = message.data;
