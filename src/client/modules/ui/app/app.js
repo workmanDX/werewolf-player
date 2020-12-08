@@ -75,7 +75,7 @@ export default class App extends LightningElement {
         window.console.log('handleWsMessage = ', JSON.stringify(message));
         window.console.log('handleWsMessage data.stage = ', JSON.stringify(message.data.stage));
         window.console.log('handleWsMessage data.info = ', JSON.stringify(message.data.info));
-        window.console.log('handleWsMessage data.info.stage = ', JSON.stringify(message.data.info.stage));
+        window.console.log('handleWsMessage data.info.stage = ', JSON.stringify(message.data.info[stage]));
         window.console.log('handleWsMessage data.playerMap = ', JSON.stringify(message.data.playerMap));
         this.errorMessage = undefined;
         if (message.type === 'phaseChangeEvent') {
