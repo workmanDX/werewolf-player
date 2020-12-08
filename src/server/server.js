@@ -47,7 +47,7 @@ sfdc.login(
 });
 
 // Setup Game info REST resources
-const gameInfoRest = new QuizSessionRestResource(sfdc, wss);
+const gameInfoRest = new GameInfoRestResource(sfdc, wss);
 app.get('/api/game-info', (request, response) => {
     gameInfoRest.getGameInfo(request, response);
 });
