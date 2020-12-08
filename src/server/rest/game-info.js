@@ -131,32 +131,32 @@ module.exports = class QuizSessionRestResource {
             }
         };
 
-        // Get question label when phase is Question
-        if (stage === 'Question') {
-            this.getQuestion()
-                .then((question) => {
-                    phaseChangeEvent.data.question = question;
-                    this.wss.broadcast(phaseChangeEvent);
-                    response.sendStatus(200);
-                })
-                .catch((error) => {
-                    console.error('getQuestion', error);
-                    response.status(500).json(error);
-                });
-        }
-        // Send correct answer when phase is QuestionResults
-        else if (stage === 'QuestionResults') {
-            this.getCorrectAnwer()
-                .then((correctAnswer) => {
-                    phaseChangeEvent.data.correctAnswer = correctAnswer;
-                    this.wss.broadcast(phaseChangeEvent);
-                    response.sendStatus(200);
-                })
-                .catch((error) => {
-                    console.error('getCorrectAnwer', error);
-                    response.status(500).json(error);
-                });
-        } else {
+        // // Get question label when phase is Question
+        // if (stage === 'Question') {
+        //     this.getQuestion()
+        //         .then((question) => {
+        //             phaseChangeEvent.data.question = question;
+        //             this.wss.broadcast(phaseChangeEvent);
+        //             response.sendStatus(200);
+        //         })
+        //         .catch((error) => {
+        //             console.error('getQuestion', error);
+        //             response.status(500).json(error);
+        //         });
+        // }
+        // // Send correct answer when phase is QuestionResults
+        // else if (stage === 'QuestionResults') {
+        //     this.getCorrectAnwer()
+        //         .then((correctAnswer) => {
+        //             phaseChangeEvent.data.correctAnswer = correctAnswer;
+        //             this.wss.broadcast(phaseChangeEvent);
+        //             response.sendStatus(200);
+        //         })
+        //         .catch((error) => {
+        //             console.error('getCorrectAnwer', error);
+        //             response.status(500).json(error);
+        //         });
+        // } else {
             this.wss.broadcast(phaseChangeEvent);
             response.sendStatus(200);
         }
