@@ -73,11 +73,11 @@ export default class App extends LightningElement {
 
     handleWsMessage(message) {
         window.console.log('handleWsMessage = ', JSON.stringify(message));
-        window.console.log('handleWsMessage data.payload.stage = ', JSON.stringify(message.data.stage));
-        window.console.log('handleWsMessage data.payload.info = ', JSON.stringify(message.data.info));
+        // window.console.log('handleWsMessage data.payload.stage = ', JSON.stringify(message.data.stage));
+        // window.console.log('handleWsMessage data.payload.info = ', JSON.stringify(message.data.info));
         this.errorMessage = undefined;
         if (message.type === 'phaseChangeEvent') {
-            this.gameInfo.stage = message.data.payload.stage;
+            this.gameInfo = message.data;
             // eslint-disable-next-line default-case
             switch (this.gameInfo.stage) {
                 case STAGES.REGISTRATION:
