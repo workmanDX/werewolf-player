@@ -116,7 +116,7 @@ module.exports = class QuizSessionRestResource {
         }
         // Check parameters
         // const { stage } = request.body;
-        const { payload } = request.body;
+        const payload = request.body;
         if (!payload) {
             response
                 .status(400)
