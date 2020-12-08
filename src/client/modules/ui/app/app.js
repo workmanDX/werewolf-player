@@ -26,6 +26,8 @@ export default class App extends LightningElement {
     pingTimeout;
     ws;
 
+    character;
+
     PLAYER_APP_VERSION = '2.0.0';
 
     @wire(getGameInfo)
@@ -155,7 +157,7 @@ export default class App extends LightningElement {
     }
 
     get isReadyStage() {
-        return this.gameInfo.stage === STAGES.READY
+        return (this.gameInfo.stage === STAGES.READY && this.character != undefined && this.character != null);
     }
 
     get isPlayGamePhase() {

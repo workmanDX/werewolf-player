@@ -36,6 +36,70 @@ module.exports = class QuizSessionRestResource {
     }
 
     /**
+     * Updates current game and player
+     * @param {*} request
+     * @param {*} response
+     */
+    updateGame(request, response) {
+        // Check API key header
+        const apiKey = request.get('Api-Key');
+        if (!apiKey) {
+            response.status(400).json({ message: 'Missing Game API Key.' });
+            return;
+        }
+        if (apiKey !== Configuration.getQuizApiKey()) {
+            response.status(403).json({ message: 'Invalid Game API Key.' });
+            return;
+        }
+        // Check parameters
+        window.console.log("request body = ", request.body);
+        const { stage } = request.body;
+        if (!stage) {
+            response
+                .status(400)
+                .json({ message: 'Missing Stage parameter.' });
+            return;
+        }
+        // Broadcast phase change via WSS
+        const phaseChangeEvent = {
+            type: 'phaseChangeEvent',
+            data: {
+                stage
+            }
+        };
+
+        // Get question label when phase is Question
+        if (stage === 'Question') {
+            this.getQuestion()
+                .then((question) => {
+                    phaseChangeEvent.data.question = question;
+                    this.wss.broadcast(phaseChangeEvent);
+                    response.sendStatus(200);
+                })
+                .catch((error) => {
+                    console.error('getQuestion', error);
+                    response.status(500).json(error);
+                });
+        }
+        // Send correct answer when phase is QuestionResults
+        else if (stage === 'QuestionResults') {
+            this.getCorrectAnwer()
+                .then((correctAnswer) => {
+                    phaseChangeEvent.data.correctAnswer = correctAnswer;
+                    this.wss.broadcast(phaseChangeEvent);
+                    response.sendStatus(200);
+                })
+                .catch((error) => {
+                    console.error('getCorrectAnwer', error);
+                    response.status(500).json(error);
+                });
+        } else {
+            this.wss.broadcast(phaseChangeEvent);
+            response.sendStatus(200);
+        }
+    }
+
+    /**
      * Updates current quiz session
      * @param {*} request
      * @param {*} response
@@ -52,6 +116,7 @@ module.exports = class QuizSessionRestResource {
             return;
         }
         // Check parameters
+        window.console.log("request body = ", request.body);
         const { stage } = request.body;
         if (!stage) {
             response
