@@ -52,7 +52,7 @@ app.get('/api/game-info', (request, response) => {
     gameInfoRest.getGameInfo(request, response);
 });
 app.put('/api/game-info', (request, response) => {
-    gameInfoRest.updateSession(request, response);
+    gameInfoRest.updateGame(request, response);
 });
 
 
