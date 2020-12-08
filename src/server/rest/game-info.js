@@ -159,7 +159,7 @@ module.exports = class QuizSessionRestResource {
         // } else {
             this.wss.broadcast(phaseChangeEvent);
             response.sendStatus(200);
-        }
+        // }
     }
 
     // /**
