@@ -117,10 +117,10 @@ module.exports = class QuizSessionRestResource {
         // Check parameters
         // const { stage } = request.body;
         const { payload } = request.body;
-        if (!stage) {
+        if (!payload) {
             response
                 .status(400)
-                .json({ message: 'Missing Stage parameter.' });
+                .json({ message: 'Missing payload parameter.' });
             return;
         }
         // Broadcast phase change via WSS
