@@ -96,7 +96,7 @@ export default class App extends LightningElement {
                 case STAGES.REGISTRATION:
                     this.resetGame();
                     break;
-                case STAGES.CHARACTER_SELECTION:
+                case STAGES.READY:
                     this.playerList = message.data.players;
                     this.checkAction();
                     break;
