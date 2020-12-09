@@ -106,7 +106,7 @@ export default class App extends LightningElement {
     checkAction(){
         if(this.playerList[this.nickname]){
             this.player = this.playerList[this.nickname];
-            this.showLogsJson('checkAction: ', player);
+            this.showLogsJson('checkAction: ', this.player);
         }
     }
 
@@ -172,8 +172,8 @@ export default class App extends LightningElement {
     }
 
     get isReadyStage() {
-        // return (this.gameInfo.stage === STAGES.READY && this.player != undefined && this.player != null);
-        return (this.gameInfo.stage === STAGES.READY);
+        return (this.gameInfo.stage === STAGES.READY && this.player != undefined && this.player != null);
+        // return (this.gameInfo.stage === STAGES.READY);
     }
 
     get isPlayGamePhase() {
