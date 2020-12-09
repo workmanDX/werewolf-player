@@ -25,9 +25,9 @@ export default class App extends LightningElement {
     playerId;
     pingTimeout;
     ws;
+    
     playerList = {};
-
-    character;
+    player;
 
     PLAYER_APP_VERSION = '2.0.0';
 
@@ -94,17 +94,18 @@ export default class App extends LightningElement {
                 case STAGES.REGISTRATION:
                     this.resetGame();
                     break;
-                default:
+                case STAGES.CHARACTER_SELECTION:
                     this.playerList = message.data.players;
                     this.checkAction();
                     break;
+                default:
             }
         }
     }
 
     checkAction(){
         if(this.playerList[this.nickname]){
-            let player = this.playerList[this.nickname];
+            this.player = this.playerList[this.nickname];
             this.showLogsJson('checkAction: ', player);
         }
     }
@@ -171,7 +172,7 @@ export default class App extends LightningElement {
     }
 
     get isReadyStage() {
-        return (this.gameInfo.stage === STAGES.READY && this.character != undefined && this.character != null);
+        return (this.gameInfo.stage === STAGES.READY && this.player != undefined && this.player != null);
     }
 
     get isPlayGamePhase() {
