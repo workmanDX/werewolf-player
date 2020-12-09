@@ -95,7 +95,7 @@ export default class App extends LightningElement {
                     this.resetGame();
                     break;
                 default:
-                    this.playerList = message.data.players();
+                    this.playerList = message.data.players;
                     this.checkAction();
                     break;
             }
