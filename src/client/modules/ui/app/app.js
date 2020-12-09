@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 
 import { getErrorMessage } from 'utils/error';
 import { getCookie, setCookie, clearCookie } from 'utils/cookies';
@@ -27,7 +27,7 @@ export default class App extends LightningElement {
     ws;
     
     playerList = {};
-    player;
+    @track player;
 
     tempCard = "resources/images/characters/werewolf.jpg";
 
