@@ -25,15 +25,24 @@ export default class App extends LightningElement {
     playerId;
     pingTimeout;
     ws;
+    playerList = {};
 
     character;
 
     PLAYER_APP_VERSION = '2.0.0';
 
+    showLogs(message){
+        window.console.log('playerApp: ', message);
+    }
+
+    showLogsJson(message, obj){
+        window.console.log('playerApp: ', message, ': ', JSON.stringify(obj));
+    }
+
     @wire(getGameInfo)
     getGameInfo({ error, data }) {
         if (data) {
-            window.console.log('gameInfo = ', data);
+            this.showLogs('gameInfo = '+ data);
             this.gameInfo = data;
             if (!(this.isQuestionPhase || this.isQuestionResultsPhase)) {
                 clearCookie(COOKIE_ANSWER);
@@ -72,33 +81,31 @@ export default class App extends LightningElement {
     }
 
     handleWsMessage(message) {
-        window.console.log('handleWsMessage = ', JSON.stringify(message));
-        window.console.log('handleWsMessage data.stage = ', JSON.stringify(message.data.stage));
-        window.console.log('handleWsMessage data.info = ', JSON.stringify(message.data.info));
-        window.console.log('handleWsMessage data.playerMap = ', JSON.stringify(message.data.players));
-        window.console.log('handleWsMessage data.info.stage = ', JSON.stringify(message.data.info.stage));
+        this.showLogs('handleWsMessage = '+ JSON.stringify(message));
+        this.showLogs('handleWsMessage data.stage = '+ JSON.stringify(message.data.stage));
+        this.showLogs('handleWsMessage data.info = '+ JSON.stringify(message.data.info));
+        this.showLogs('handleWsMessage data.playerMap = '+ JSON.stringify(message.data.players));
+        this.showLogs('handleWsMessage data.info.stage = '+ JSON.stringify(message.data.info.stage));
         this.errorMessage = undefined;
         if (message.type === 'phaseChangeEvent') {
             this.gameInfo = message.data.info;
             // eslint-disable-next-line default-case
             switch (this.gameInfo.stage) {
-                case STAGES.CHARACTER_SELECTION:
-                    window.console.log('character selection');
-                    break;
                 case STAGES.REGISTRATION:
                     this.resetGame();
                     break;
-                case STAGES.QUESTION:
-                    // Clear last answer
-                    clearCookie(COOKIE_ANSWER);
-                    this.lastAnswer = undefined;
-                    this.answerSaved = false;
-                    break;
-                case STAGES.QUESTION_RESULTS:
-                    // Refresh leaderboard
-                    this.updateLeaderboard();
+                default:
+                    this.playerList = message.data.players();
+                    this.checkAction();
                     break;
             }
+        }
+    }
+
+    checkAction(){
+        if(this.playerList[this.nickname]){
+            let player = this.playerList[this.nickname];
+            this.showLogsJson('checkAction: ', player);
         }
     }
 
