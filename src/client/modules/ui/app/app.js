@@ -29,6 +29,8 @@ export default class App extends LightningElement {
     playerList = {};
     player;
 
+    tempCard = "resources/images/characters/werewolf.jpg";
+
     PLAYER_APP_VERSION = '2.0.0';
 
     showLogs(message){
