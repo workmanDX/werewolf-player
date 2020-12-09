@@ -172,7 +172,8 @@ export default class App extends LightningElement {
     }
 
     get isReadyStage() {
-        return (this.gameInfo.stage === STAGES.READY && this.player != undefined && this.player != null);
+        // return (this.gameInfo.stage === STAGES.READY && this.player != undefined && this.player != null);
+        return (this.gameInfo.stage === STAGES.READY);
     }
 
     get isPlayGamePhase() {
