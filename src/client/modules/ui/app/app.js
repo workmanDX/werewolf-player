@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-// import LightningElementWithSLDS from '../../../lib/lightningElementWithSLDS.js';
 import {LightningElement, wire, track } from 'lwc';
 
 import { getErrorMessage } from 'utils/error';
