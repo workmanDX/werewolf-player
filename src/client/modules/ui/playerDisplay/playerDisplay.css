@@ -5,6 +5,8 @@ img {
     margin:auto;
     padding: 2px;
     display: block;
+    width: 100%;
+    height: auto;
 }
 
 h2 {
