@@ -34,23 +34,23 @@ export default class PlayerDisplay extends LightningElementWithSLDS {
 
     get imageWidth(){
         let width = 120
-        if(this.formFactor === 'Small'){
-            width = 75;
-        } 
-        else if(this.formFactor === 'Medium'){
-            width = 90;
-        }
+        // if(this.formFactor === 'Small'){
+        //     width = 75;
+        // } 
+        // else if(this.formFactor === 'Medium'){
+        //     width = 90;
+        // }
         return width;
     }
 
     get imageHeight(){
         let height = 150;
-        if(this.formFactor === 'Small'){
-            height = 94;
-        } 
-        else if(this.formFactor === 'Medium'){
-            height = 113;
-        }
+        // if(this.formFactor === 'Small'){
+        //     height = 94;
+        // } 
+        // else if(this.formFactor === 'Medium'){
+        //     height = 113;
+        // }
         return height;       
     } 
 }
