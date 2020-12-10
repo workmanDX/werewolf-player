@@ -4,7 +4,7 @@
     background-color: white;
     margin:auto;
     padding: 2px;
-    display: flex;
+    display: block;
 }
 
 h2 {
