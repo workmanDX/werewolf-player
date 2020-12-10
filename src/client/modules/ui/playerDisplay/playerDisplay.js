@@ -1,9 +1,9 @@
-// import LightningElementWithSLDS from '../../../lib/lightningElementWithSLDS.js';
+import LightningElementWithSLDS from '../../../lib/lightningElementWithSLDS.js';
 import { LightningElement, track, api } from 'lwc';
 // import FORM_FACTOR  from '@salesforce/client/formFactor'
 
-// export default class PlayerDisplay extends LightningElementWithSLDS {
-export default class PlayerDisplay extends LightningElement {
+export default class PlayerDisplay extends LightningElementWithSLDS {
+// export default class PlayerDisplay extends LightningElement {
     // @api playerId;
     @api player;
     @api cardBack;
@@ -27,8 +27,8 @@ export default class PlayerDisplay extends LightningElement {
 
     handleFlipCard(){
         if(this.player.herokuOriginalImage != undefined && this.player.herokuOriginalImage != null){
-            this.cardImage = this.showDescription ?  this.player.herokuOriginalImage : this.cardBack;
             this.showDescription = !this.showDescription;
+            this.cardImage = this.showDescription ?  this.player.herokuOriginalImage : this.cardBack;
         }
     }
 
