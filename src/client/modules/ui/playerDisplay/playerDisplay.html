@@ -10,22 +10,16 @@
   1.0    5/19/2020   steven.workman@logmein.com     Initial Version
 -->
 <template>
-    <!-- <template if:true={displayInfo}> -->
-        <!-- {playerInfo.NickName__c} -->
-        <!-- <ui-card> -->
-        <div>
-            <div class="demo-only demo-only--sizing slds-grid slds-wrap">
-                <div class="container">
-                    <img src={cardImage} alt={player.name} width={imageWidth} height={imageHeight} onclick={handleFlipCard}>
-                    <!-- <img src={player.herokuOriginalImage} alt="player card image" style="width:120px;height:150px;"/> -->
-                </div>
-            </div>
-            <div class="slds-text-align_center slds-m-around_x-small">
-                <template if:true={showDescription}>
-                    {player.description}
-                </template>
+    <div>
+        <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+            <div class="container">
+                <img src={cardImage} alt={player.name} width={imageWidth} height={imageHeight} onclick={handleFlipCard}>
             </div>
         </div>
-        <!-- </ui-card> -->
-    <!-- </template> -->
+        <div class="slds-text-align_center slds-m-around_x-small">
+            <template if:true={showDescription}>
+                {player.description}
+            </template>
+        </div>
+    </div>
 </template>

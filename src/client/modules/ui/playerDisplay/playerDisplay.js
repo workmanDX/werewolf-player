@@ -26,8 +26,8 @@ export default class PlayerDisplay extends LightningElement {
     }
 
     handleFlipCard(){
-        if(this.player.herokuOriginalImage != undefined && this.playerInfo.herokuOriginalImage != null){
-            this.cardImage = this.showDescription ?  this.playerInfo.herokuOriginalImage : this.cardBack;
+        if(this.player.herokuOriginalImage != undefined && this.player.herokuOriginalImage != null){
+            this.cardImage = this.showDescription ?  this.player.herokuOriginalImage : this.cardBack;
             this.showDescription = !this.showDescription;
         }
     }
