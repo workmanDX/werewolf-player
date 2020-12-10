@@ -13,6 +13,14 @@ export default class PlayerDisplay extends LightningElement {
     @track showDescription = false;
     formFactor = 'Large';
 
+    showLogs(message){
+        window.console.log('playerApp: ', message);
+    }
+
+    showLogsJson(message, obj){
+        window.console.log('playerApp: ', message, ': ', JSON.stringify(obj));
+    }
+
     connectedCallback(){
         this.cardImage = this.cardBack;
     }
