@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import LightningElementWithSLDS from '../../../lib/lightningElementWithSLDS.js';
-import { wire, track } from 'lwc';
+// import LightningElementWithSLDS from '../../../lib/lightningElementWithSLDS.js';
+import {LightningElement, wire, track } from 'lwc';
 
 import { getErrorMessage } from 'utils/error';
 import { getCookie, setCookie, clearCookie } from 'utils/cookies';
@@ -15,7 +15,7 @@ const COOKIE_PLAYER_NICKNAME = 'nickname';
 const COOKIE_PLAYER_ID = 'playerId';
 const COOKIE_ANSWER = 'answer';
 
-export default class App extends LightningElementWithSLDS {
+export default class App extends LightningElement {
     nickname;
     gameInfo;
     errorMessage;
