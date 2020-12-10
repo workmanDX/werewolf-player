@@ -33,7 +33,7 @@ export default class PlayerDisplay extends LightningElementWithSLDS {
     }
 
     get imageWidth(){
-        let width = 120
+        let width = 150
         // if(this.formFactor === 'Small'){
         //     width = 75;
         // } 
