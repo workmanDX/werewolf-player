@@ -32,6 +32,10 @@
                             player={player}
                             card-back={gameInfo.herokuCardBack}
                         ></ui-player-display>
+
+                        <template if:true={showAction}>
+                            <ui-player-action player={player} player-list={playerList} card-back={gameInfo.herokuCardBack}></ui-player-action>
+                        </template>
                     </div>
                 </template>
 

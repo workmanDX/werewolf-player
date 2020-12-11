@@ -28,6 +28,7 @@ export default class App extends LightningElement {
     
     playerList = {};
     @track player;
+    @track showAction = false;
 
     tempCard = "resources/images/characters/werewolf.jpg";
 
@@ -115,6 +116,7 @@ export default class App extends LightningElement {
             this.showLogsJson('checkAction: ', this.player);
             if(this.gameInfo.action === this.player.actionName){
                 this.showLogs('showAction');
+                this.showAction = true;
             }
         }
     }
