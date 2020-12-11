@@ -109,6 +109,9 @@ export default class App extends LightningElement {
         if(this.playerList[this.nickname]){
             this.player = this.playerList[this.nickname];
             this.showLogsJson('checkAction: ', this.player);
+            if(this.gameInfo.action === this.player.actionName){
+                window.showLogs('showAction');
+            }
         }
     }
 
