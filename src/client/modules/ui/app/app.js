@@ -100,6 +100,10 @@ export default class App extends LightningElement {
                     this.playerList = message.data.players;
                     this.checkAction();
                     break;
+                case STAGES.GAME_PLAY:
+                    this.playerList = message.data.players;
+                    this.checkAction();
+                    break;
                 default:
             }
         }
@@ -176,8 +180,8 @@ export default class App extends LightningElement {
         return (this.gameInfo.stage === STAGES.REGISTRATION || this.gameInfo.stage === STAGES.CHARACTER_SELECTION || this.gameInfo.stage === STAGES.DEALING);
     }
 
-    get isReadyStage() {
-        return (this.gameInfo.stage === STAGES.READY && this.player != undefined && this.player != null);
+    get showGame() {
+        return ((this.gameInfo.stage === STAGES.READY || this.isPlayGamePhase) && this.player != undefined && this.player != null);
         // return (this.gameInfo.stage === STAGES.READY);
     }
 
