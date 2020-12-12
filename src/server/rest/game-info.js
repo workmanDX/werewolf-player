@@ -53,8 +53,9 @@ module.exports = class QuizSessionRestResource {
         }
         // Check parameters
         const { stage } = request.body;
-        const { info } = request.body;
-        const { players } = request.body;
+        // const { info } = request.body;
+        // const { players } = request.body;
+        const { body } = request;
         if (!stage) {
             response
                 .status(400)
@@ -65,7 +66,7 @@ module.exports = class QuizSessionRestResource {
         const phaseChangeEvent = {
             type: 'phaseChangeEvent',
             data: {
-                stage, info, players
+                body
             }
         };
 
