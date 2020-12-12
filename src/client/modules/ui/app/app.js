@@ -95,7 +95,7 @@ export default class App extends LightningElement {
         this.errorMessage = undefined;
         this.showAction = false;
         if (message.type === 'phaseChangeEvent') {
-            this.gameInfo = message.data.info;
+            this.gameInfo = message.data.body.info;
             // eslint-disable-next-line default-case
             switch (this.gameInfo.stage) {
                 case STAGES.REGISTRATION:
