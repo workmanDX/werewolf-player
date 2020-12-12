@@ -32,17 +32,18 @@
                             player={player}
                             card-back={gameInfo.herokuCardBack}
                         ></ui-player-display>
-
-                        <template if:true={showAction}>
-                            <ui-player-action player={player} player-list={playerList} card-back={gameInfo.herokuCardBack}></ui-player-action>
-                        </template>
                     </div>
                 </template>
 
-                <!-- Werewolf -->
-                <template if:true={isWerewolfPhase}>
-                    <h1>Werewolf Turn</h1>
-                    <ui-spinner></ui-spinner>
+                <!-- showAction -->
+                <template if:true={showAction}>
+                    <div class="player">
+                        <ui-player-action 
+                            player={player} 
+                            player-list={playerList} 
+                            card-back={gameInfo.herokuCardBack}>
+                        </ui-player-action>
+                    </div>
                 </template>
 
                 <!-- Question -->

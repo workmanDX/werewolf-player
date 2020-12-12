@@ -27,6 +27,9 @@ export default class App extends LightningElement {
     ws;
     
     playerList = {};
+    playersForAction = {};
+    centerPlayersForAction = {};
+    actionInfo;
     @track player;
     @track showAction = false;
 
@@ -90,6 +93,7 @@ export default class App extends LightningElement {
         this.showLogs('handleWsMessage data.playerMap = '+ JSON.stringify(message.data.players));
         this.showLogs('handleWsMessage data.info.stage = '+ JSON.stringify(message.data.info.stage));
         this.errorMessage = undefined;
+        this.showAction = false;
         if (message.type === 'phaseChangeEvent') {
             this.gameInfo = message.data.info;
             // eslint-disable-next-line default-case
@@ -103,6 +107,12 @@ export default class App extends LightningElement {
                     break;
                 case STAGES.GAME_PLAY:
                     this.playerList = message.data.players;
+                    this.playersForAction = message.data.actionInfo.players;
+                    this.centerPlayersForAction = message.data.actionInfo.centerPlayers;
+                    this.actionInfo = message.data.actionInfo;
+                    this.showLogsJson('gamePlay actionInfo = ',  this.actionInfo);
+                    this.showLogsJson('gamePlay playersForAction = ',  this.playersForAction);
+                    this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
                     this.checkAction();
                     break;
                 default:
@@ -183,7 +193,7 @@ export default class App extends LightningElement {
     }
 
     get showGame() {
-        return ((this.gameInfo.stage === STAGES.READY || this.isPlayGamePhase) && this.player != undefined && this.player != null);
+        return ((this.gameInfo.stage === STAGES.READY || this.isPlayGamePhase) && this.player != undefined && this.player != null && !this.showAction);
         // return (this.gameInfo.stage === STAGES.READY);
     }
 

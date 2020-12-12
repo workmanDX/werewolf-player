@@ -30,16 +30,12 @@ export default class TheGame extends LightningElement {
     @api playerInfo;
     @api gameStatus
 
-    @api cardBack;
-    @api player;
-    @api playerList={};
-
     //action and model variables
     @api actions = {};
     @api actionCount = 0;
     @api inModal = false;
     @track allowedClicks;
-    @track showAction = false;
+    
     @track disableReveal;
 
     
@@ -48,6 +44,17 @@ export default class TheGame extends LightningElement {
     @track unAssignedCards = [];
     @track disableUnassigned = true;
     @track troubleMakerCount;
+
+    @api cardBack;
+    @api player;
+    @api playerList={};
+    @api centerCards = {};
+    @track showAction = false;
+    @track action;
+
+    showLogs(message){
+        window.console.log('playerAction2: ', message);
+    }
 
     get isStatusDone(){
         return this.gameStatus === 'Done' ? true : false;
@@ -63,43 +70,16 @@ export default class TheGame extends LightningElement {
     
     connectedCallback() {
         this.showLogs('connectedCallback');
+        this.action = this.player.action;
+        // this.prepActionVars();
         this.showAction = true;
-        // // this.showLogs('actions: ' + this.actions);
-        // if(this.gameId != undefined){
-        //     getGameInfo({gameId : this.gameId})
-        //     .then(result =>{
-        //         this.showLogs('fetchGameInfo: Players info = ' + JSON.stringify(result.players));
-        //         this.showLogs('fetchGameInfo: cards = ' + JSON.stringify(result.cards));
-        //         // this.showLogs('fetchGameInfo: Players');
-        //         // this.showLogs('fetchGameInfo: cards');
-        //         if (result) {
-        //             this.gameInfo = result.players;
-        //             this.unAssignedCards = result.cards;
-        //         }
-        //     })
-        //     .then(result =>{
-        //         this.prepActionVars();
-        //     })
-        //     .then(result =>{
-        //         this.openModal = true;
-        //     })
-        //     .catch(error => {
-        //         this.showLogs('fetchGameInfo-------error-------------'+error);
-        //         window.console.log(error);
-        //     })
-        //     .finally(() => {
-        //         // this.loading = false;
-        //     });
-        // }
     }
 
-    showLogs(message){
-        window.console.log('playerAction2: ', message);
-    }
+
 
     // prepActionVars(){
     //     this.showLogs('prepActionVars');
-    //     switch(this.gameStatus){
+    //     switch(this.action){
     //         case 'Doppelganger':
     //             this.actions.showPlayers = true;
     //             this.actions.showUnassigned = false;
@@ -110,7 +90,7 @@ export default class TheGame extends LightningElement {
     //             this.actions.showUnassigned = false;
     //             this.actions.allowFlip = false;
     //             for(let i = 0; i < 3; i++){
-    //                 if(this.unAssignedCards[i].Original_Card_Name__c === 'Werewolf'){
+    //                 if(this.centerCards[i].action === 'Werewolf'){
     //                     this.actions.showUnassigned = true;
     //                     this.actions.allowFlip = true;
     //                 }
