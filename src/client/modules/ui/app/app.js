@@ -89,7 +89,7 @@ export default class App extends LightningElement {
 
     handleWsMessage(message) {
         this.showLogs('handleWsMessage = '+ JSON.stringify(message));
-        // this.showLogs('handleWsMessage data.stage = '+ JSON.stringify(message.data.stage));
+        this.showLogs('handleWsMessage message.data.body.info = '+ JSON.stringify(message.data.body.info));
         // this.showLogs('handleWsMessage data.info = '+ JSON.stringify(message.data.info));        
         // this.showLogs('handleWsMessage data.info.stage = '+ JSON.stringify(message.data.info.stage));
         this.errorMessage = undefined;
@@ -104,10 +104,11 @@ export default class App extends LightningElement {
                 case STAGES.READY:
                     this.showLogs('STAGES.READY');
                     this.playerList = message.data.body.players;
-                    this.checkAction();
+                    this.updatePlayer();
                     break;
                 case STAGES.GAME_PLAY:
                     this.showLogs('STAGES.GAME_PLAY');
+                    this.showLogs('handleWsMessage message.data.body.info.action = '+ JSON.stringify(message.data.body.info.action));
                     // this.messageData = message.data;
                     // this.checkAction();
                     break;
@@ -132,6 +133,12 @@ export default class App extends LightningElement {
             //     this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
                 this.showAction = true;
             }
+        }
+    }
+
+    updatePlayer(){
+        if(this.playerList[this.nickname]){
+            this.player = this.playerList[this.nickname];
         }
     }
 
