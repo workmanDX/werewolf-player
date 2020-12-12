@@ -89,9 +89,9 @@ export default class App extends LightningElement {
 
     handleWsMessage(message) {
         this.showLogs('handleWsMessage = '+ JSON.stringify(message));
-        this.showLogs('handleWsMessage data.stage = '+ JSON.stringify(message.data.stage));
-        this.showLogs('handleWsMessage data.info = '+ JSON.stringify(message.data.info));        
-        this.showLogs('handleWsMessage data.info.stage = '+ JSON.stringify(message.data.info.stage));
+        // this.showLogs('handleWsMessage data.stage = '+ JSON.stringify(message.data.stage));
+        // this.showLogs('handleWsMessage data.info = '+ JSON.stringify(message.data.info));        
+        // this.showLogs('handleWsMessage data.info.stage = '+ JSON.stringify(message.data.info.stage));
         this.errorMessage = undefined;
         this.showAction = false;
         if (message.type === 'phaseChangeEvent') {
@@ -103,7 +103,6 @@ export default class App extends LightningElement {
                     break;
                 case STAGES.READY:
                     this.showLogs('STAGES.READY');
-                    this.showLogs('handleWsMessage data.playerMap = '+ JSON.stringify(message.data.players));
                     this.playerList = message.data.players;
                     this.checkAction();
                     break;
@@ -121,7 +120,7 @@ export default class App extends LightningElement {
         if(this.playerList[this.nickname]){
             this.player = this.playerList[this.nickname];
             this.showLogsJson('checkAction: ', this.player);
-            // if(this.gameInfo.action === this.player.actionName){
+            if(this.gameInfo.action === this.player.actionName){
             //     this.showLogs('showAction');
             //     this.showLogs('checkAction messageData.actionInfo = '+ JSON.stringify(this.messageData.actionInfo));
             //     this.actionInfo = this.messageData.actionInfo;
@@ -131,8 +130,8 @@ export default class App extends LightningElement {
             //     this.showLogsJson('gamePlay actionInfo = ',  this.actionInfo);
             //     this.showLogsJson('gamePlay playersForAction = ',  this.playersForAction);
             //     this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
-            //     this.showAction = true;
-            // }
+                this.showAction = true;
+            }
         }
     }
 
