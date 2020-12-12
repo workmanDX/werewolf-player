@@ -103,8 +103,8 @@ export default class App extends LightningElement {
                     break;
                 case STAGES.READY:
                     this.showLogs('STAGES.READY');
-                    // this.playerList = message.data.players;
-                    // this.checkAction();
+                    this.playerList = message.data.body.players;
+                    this.checkAction();
                     break;
                 case STAGES.GAME_PLAY:
                     this.showLogs('STAGES.GAME_PLAY');
