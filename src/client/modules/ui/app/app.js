@@ -121,19 +121,18 @@ export default class App extends LightningElement {
         if(this.playerList[this.nickname]){
             this.player = this.playerList[this.nickname];
             this.showLogsJson('checkAction: ', this.player);
-            if(this.gameInfo.action === this.player.actionName){
-                this.showLogs('showAction');
-                this.showLogs('checkAction messageData.actionInfo = '+ JSON.stringify(this.messageData.actionInfo));
-                this.actionInfo = this.messageData.actionInfo;
-                // this.playerList = message.data.players;
-                this.playersForAction = this.messageData.actionInfo.players;
-                this.centerPlayersForAction = this.messageData.actionInfo.centerPlayers;
+            // if(this.gameInfo.action === this.player.actionName){
+            //     this.showLogs('showAction');
+            //     this.showLogs('checkAction messageData.actionInfo = '+ JSON.stringify(this.messageData.actionInfo));
+            //     this.actionInfo = this.messageData.actionInfo;
+            //     this.playersForAction = this.messageData.actionInfo.players;
+            //     this.centerPlayersForAction = this.messageData.actionInfo.centerPlayers;
                 
-                this.showLogsJson('gamePlay actionInfo = ',  this.actionInfo);
-                this.showLogsJson('gamePlay playersForAction = ',  this.playersForAction);
-                this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
-                this.showAction = true;
-            }
+            //     this.showLogsJson('gamePlay actionInfo = ',  this.actionInfo);
+            //     this.showLogsJson('gamePlay playersForAction = ',  this.playersForAction);
+            //     this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
+            //     this.showAction = true;
+            // }
         }
     }
 
