@@ -30,6 +30,7 @@ export default class App extends LightningElement {
     playersForAction = {};
     centerPlayersForAction = {};
     actionInfo;
+    messageData = {};
     @track player;
     @track showAction = false;
 
@@ -108,14 +109,7 @@ export default class App extends LightningElement {
                     break;
                 case STAGES.GAME_PLAY:
                     this.showLogs('STAGES.GAME_PLAY');
-                    this.showLogs('handleWsMessage data.playerMap = '+ JSON.stringify(message.data.players));
-                    this.playerList = message.data.players;
-                    this.playersForAction = message.data.actionInfo.players;
-                    this.centerPlayersForAction = message.data.actionInfo.centerPlayers;
-                    this.actionInfo = message.data.actionInfo;
-                    this.showLogsJson('gamePlay actionInfo = ',  this.actionInfo);
-                    this.showLogsJson('gamePlay playersForAction = ',  this.playersForAction);
-                    this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
+                    this.messageData = message.data;
                     this.checkAction();
                     break;
                 default:
@@ -129,6 +123,15 @@ export default class App extends LightningElement {
             this.showLogsJson('checkAction: ', this.player);
             if(this.gameInfo.action === this.player.actionName){
                 this.showLogs('showAction');
+                this.showLogs('checkAction messageData.actionInfo = '+ JSON.stringify(this.messageData.actionInfo));
+                this.actionInfo = this.messageData.actionInfo;
+                // this.playerList = message.data.players;
+                this.playersForAction = this.messageData.actionInfo.players;
+                this.centerPlayersForAction = this.messageData.actionInfo.centerPlayers;
+                
+                this.showLogsJson('gamePlay actionInfo = ',  this.actionInfo);
+                this.showLogsJson('gamePlay playersForAction = ',  this.playersForAction);
+                this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
                 this.showAction = true;
             }
         }
