@@ -110,18 +110,19 @@ export default class App extends LightningElement {
                 case STAGES.GAME_PLAY:
                     this.showLogs('STAGES.GAME_PLAY');
                     this.showLogs('handleWsMessage message.data.body.info.action = '+ JSON.stringify(message.data.body.info.action));
-                    this.action = message.data.body.info.action;
+                    this.actionName = message.data.body.info.action;
                     // this.messageData = message.data;
-                    this.checkAction();
+                    this.checkAction(message.data.body.info);
                     break;
                 default:
             }
         }
     }
 
-    checkAction(){
+    checkAction(actionInfo){
         this.showLogsJson('checkAction: ', this.player);
         if(this.actionName === this.player.actionName){
+            this.showLogsJson('checkAction actionInfo.actionInfo.players = ', actionInfo.actionInfo.players);
             
             //     this.showLogs('showAction');
             //     this.showLogs('checkAction messageData.actionInfo = '+ JSON.stringify(this.messageData.actionInfo));
