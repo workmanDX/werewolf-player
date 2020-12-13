@@ -31,6 +31,7 @@ export default class App extends LightningElement {
     centerPlayersForAction = {};
     actionInfo;
     messageData = {};
+    actionName;
     @track player;
     @track showAction = false;
 
@@ -109,8 +110,9 @@ export default class App extends LightningElement {
                 case STAGES.GAME_PLAY:
                     this.showLogs('STAGES.GAME_PLAY');
                     this.showLogs('handleWsMessage message.data.body.info.action = '+ JSON.stringify(message.data.body.info.action));
+                    this.action = message.data.body.info.action;
                     // this.messageData = message.data;
-                    // this.checkAction();
+                    this.checkAction();
                     break;
                 default:
             }
@@ -118,10 +120,8 @@ export default class App extends LightningElement {
     }
 
     checkAction(){
-        if(this.playerList[this.nickname]){
-            this.player = this.playerList[this.nickname];
+        if(this.actionName === this.player.actionName){
             this.showLogsJson('checkAction: ', this.player);
-            if(this.gameInfo.action === this.player.actionName){
             //     this.showLogs('showAction');
             //     this.showLogs('checkAction messageData.actionInfo = '+ JSON.stringify(this.messageData.actionInfo));
             //     this.actionInfo = this.messageData.actionInfo;
@@ -131,8 +131,7 @@ export default class App extends LightningElement {
             //     this.showLogsJson('gamePlay actionInfo = ',  this.actionInfo);
             //     this.showLogsJson('gamePlay playersForAction = ',  this.playersForAction);
             //     this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
-                this.showAction = true;
-            }
+            this.showAction = true;
         }
     }
 
