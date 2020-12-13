@@ -27,8 +27,8 @@ export default class App extends LightningElement {
     ws;
     
     playerList = {};
-    playersForAction;
-    centerPlayersForAction;
+    playersForAction = [];
+    centerPlayersForAction = [];
     actionInfo;
     messageData = {};
     actionName;
@@ -129,18 +129,18 @@ export default class App extends LightningElement {
             let playerList = actionInfo[this.nickname].players;
             for(var key in playerList){
                 this.showLogsJson('playerList: ' + key, playerList[key]);
-                playersForAction.push(playerList[key]);
+                this.playersForAction.push(playerList[key]);
             }
             if(actionInfo[this.nickname].centerPlayers != undefined){
                 let centerPlayers = actionInfo[this.nickname].centerPlayers;
                 for(var key in centerPlayers){
                     this.showLogsJson('centerList: ' + key, centerPlayers[key]);
-                    centerPlayersForAction.push(centerPlayers[key]);
+                    this.centerPlayersForAction.push(centerPlayers[key]);
                 }
             }
 
-            this.showLogsJson('playersForAction = ', playersForAction);
-            this.showLogsJson('centerPlayersForAction = ', centerPlayersForAction);
+            this.showLogsJson('playersForAction = ', this.playersForAction);
+            this.showLogsJson('centerPlayersForAction = ', this.centerPlayersForAction);
             
             // for()
             
