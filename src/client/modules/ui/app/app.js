@@ -121,6 +121,7 @@ export default class App extends LightningElement {
 
     checkAction(actionInfo){
         this.showLogsJson('checkAction: ', this.player);
+        this.showLogsJson('checkAction actionInfo: ', actionInfo);
         if(this.actionName === this.player.actionName){
             this.showLogsJson('checkAction actionInfo.players = ', actionInfo.players);
             
