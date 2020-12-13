@@ -125,9 +125,14 @@ export default class App extends LightningElement {
         if(this.actionName === this.player.actionName){
             this.showLogsJson('checkAction actionInfo for ' + this.nickname, actionInfo[this.nickname]);
             let playerList = actionInfo[this.nickname].players;
-            this.showLogs('playerList length = ' + playerList.length);
-            let centerPlayers = actionInfo[this.nickname].centerPlayers;
-            this.showLogs('centerPlayerList length = ' + centerPlayers.length);
+            for(var key in playerList){
+                this.showLogsJson('playerList: ' + key, playerList[key]);
+            }
+            if(actionInfo[this.nickname].centerPlayers != undefined){
+                let centerPlayers = actionInfo[this.nickname].centerPlayers;
+                this.showLogsJson('centerList: ' + key, centerPlayers[key]);
+            }
+            
             // for()
             
             //     this.showLogs('showAction');
