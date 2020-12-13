@@ -27,8 +27,8 @@ export default class App extends LightningElement {
     ws;
     
     playerList = {};
-    playersForAction = {};
-    centerPlayersForAction = {};
+    playersForAction;
+    centerPlayersForAction;
     actionInfo;
     messageData = {};
     actionName;
