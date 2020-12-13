@@ -89,7 +89,7 @@ export default class App extends LightningElement {
     }
 
     handleWsMessage(message) {
-        this.showLogs('handleWsMessage = '+ JSON.stringify(message));
+        // this.showLogs('handleWsMessage = '+ JSON.stringify(message));
         this.showLogs('handleWsMessage message.data.body.info = '+ JSON.stringify(message.data.body.info));
         // this.showLogs('handleWsMessage data.info = '+ JSON.stringify(message.data.info));        
         // this.showLogs('handleWsMessage data.info.stage = '+ JSON.stringify(message.data.info.stage));
@@ -121,9 +121,14 @@ export default class App extends LightningElement {
 
     checkAction(actionInfo){
         this.showLogsJson('checkAction: ', this.player);
-        this.showLogsJson('checkAction actionInfo: ', actionInfo);
+        // this.showLogsJson('checkAction actionInfo: ', actionInfo);
         if(this.actionName === this.player.actionName){
             this.showLogsJson('checkAction actionInfo for ' + this.nickname, actionInfo[this.nickname]);
+            let playerList = actionInfo[this.nickname].players;
+            this.showLogs('playerList length = ' + playerList.length);
+            let centerPlayers = actionInfo[this.nickname].centerPlayers;
+            this.showLogs('centerPlayerList length = ' + centerPlayers.length);
+            // for()
             
             //     this.showLogs('showAction');
             //     this.showLogs('checkAction messageData.actionInfo = '+ JSON.stringify(this.messageData.actionInfo));
