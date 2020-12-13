@@ -122,23 +122,25 @@ export default class App extends LightningElement {
     checkAction(actionInfo){
         this.showLogsJson('checkAction: ', this.player);
         // this.showLogsJson('checkAction actionInfo: ', actionInfo);
+        let playersForAction = [];
+        let centerPlayersForAction = []
         if(this.actionName === this.player.actionName){
             this.showLogsJson('checkAction actionInfo for ' + this.nickname, actionInfo[this.nickname]);
             let playerList = actionInfo[this.nickname].players;
             for(var key in playerList){
                 this.showLogsJson('playerList: ' + key, playerList[key]);
-                this.playersForAction.push(playerList[key]);
+                playersForAction.push(playerList[key]);
             }
             if(actionInfo[this.nickname].centerPlayers != undefined){
                 let centerPlayers = actionInfo[this.nickname].centerPlayers;
                 for(var key in centerPlayers){
                     this.showLogsJson('centerList: ' + key, centerPlayers[key]);
-                    this.centerPlayersForAction.push(centerPlayers[key]);
+                    centerPlayersForAction.push(centerPlayers[key]);
                 }
             }
 
-            this.showLogsJson('playersForAction = ', this.playersForAction);
-            this.showLogsJson('centerPlayersForAction = ', this.centerPlayersForAction);
+            this.showLogsJson('playersForAction = ', playersForAction);
+            this.showLogsJson('centerPlayersForAction = ', centerPlayersForAction);
             
             // for()
             
