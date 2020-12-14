@@ -213,7 +213,7 @@ export default class CardDisplay extends LightningElement {
             case 'Seer':
                 this.showLogs('cardDisplay: check action - seer - allowFlip = ' + this.card.allowFlip);
                 let actionCountMax = this.centerPlayerAction ? this.centerPlayerActionCountMax : this.actionCountMax;
-                if(this.card.allowFlip && this.actionCount < actionCountMax);
+                if(this.card.allowFlip && this.actionCount < actionCountMax){
                     this.handleFlipCard();
                     isValid = true;
                 }
