@@ -5,12 +5,14 @@ export default class CardDisplay extends LightningElement {
     @api card;
     @api cardBack;
     @api actionCountMax;
+    @api actionName;
     @api actionCount;
+
     get actionCount() {
         return this._actionCount;
     }
     set actionCount(value) {
-        this.showLogs('actionCount udated: ' + value);
+        this.showLogs('actionCount updated: ' + value);
         this.setAttribute('actions', value);
         this._actionCount = value;
         // this.handleActionsChange();
@@ -181,7 +183,7 @@ export default class CardDisplay extends LightningElement {
     checkAction(){
         this.showLogs('cardDisplay: in checkAction');
         let isValid = false;
-        switch(this.gameStatus){
+        switch(this.actionName){
             // case 'Doppelganger':
             //     if(this.actions.allowFlip){
             //         this.eventDetails.doppelSelection = this.card;
