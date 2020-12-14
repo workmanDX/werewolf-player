@@ -242,8 +242,8 @@ export default class TheGame extends LightningElement {
 
     handleCardClick(event){
         let detail = event.detail;
-        this.showLogs('handleCardClick event actionName = ', this.actionInfo.actionName);
-        this.showLogsJson('handleCardClick event: ' + event.detail.cardInfo);
+        this.showLogs('handleCardClick event actionName = ' +  this.actionInfo.actionName);
+        this.showLogsJson('handleCardClick event: ', event.detail.cardInfo);
         // let status = event.detail.status;
         // window.console.log('cardClickDetail = ', JSON.stringify(detail.cardInfo));
         // window.console.log('cardClick gameStatus = ', status);
