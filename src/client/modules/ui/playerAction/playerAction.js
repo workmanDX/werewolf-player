@@ -55,7 +55,7 @@ export default class TheGame extends LightningElement {
     @track centerPlayersForAction = [];
 
     showLogs(message){
-        window.console.log('playerAction2: ', message);
+        window.console.log('playerAction: ', message);
     }
 
     get isStatusDone(){
@@ -74,13 +74,13 @@ export default class TheGame extends LightningElement {
         this.showLogs('connectedCallback');
         this.showAction = true;
 
-        let playerList = actionInfo[this.nickname].players;
+        let playerList = this.actionInfo.players;
         for(var key in playerList){
             this.showLogsJson('playerList: ' + key, playerList[key]);
             this.playersForAction.push(playerList[key]);
         }
-        if(actionInfo[this.nickname].centerPlayers != undefined){
-            let centerPlayers = actionInfo[this.nickname].centerPlayers;
+        if(this.actionInfo.centerPlayers != undefined){
+            let centerPlayers = this.actionInfo.centerPlayers;
             for(var key in centerPlayers){
                 this.showLogsJson('centerList: ' + key, centerPlayers[key]);
                 this.centerPlayersForAction.push(centerPlayers[key]);
