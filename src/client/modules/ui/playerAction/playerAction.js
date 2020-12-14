@@ -78,6 +78,7 @@ export default class TheGame extends LightningElement {
         this.showLogs('connectedCallback');
         this.showAction = true;
         this.showLogsJson('connectedCallback: actionInfo = ', this.actionInfo);
+        this.showLogsJson('connectedCallback: actionInfo.actionName = ', this.actionInfo.actionName);
 
         let playerList = this.actionInfo.players;
         for(var key in playerList){
