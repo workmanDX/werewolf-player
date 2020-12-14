@@ -238,9 +238,9 @@ export default class CardDisplay extends LightningElement {
     //                 isValid = true;
     //             }
     //             break;            
-    //         default:
-    //             this.showLogs('cardDisplay: do nothing');
-    //     }
+            default:
+                this.showLogs('cardDisplay: do nothing');
+        }
         return isValid;
     }    
 
