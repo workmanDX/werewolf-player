@@ -10,8 +10,6 @@ import { STAGES, getGameInfo } from 'services/game';
 // import { getPlayerLeaderboard } from 'services/player';
 import { submitAnswer } from 'services/answer';
 
-import FORM_FACTOR  from '@salesforce/client/formFactor'
-
 const COOKIE_PLAYER_NICKNAME = 'nickname';
 const COOKIE_PLAYER_ID = 'playerId';
 const COOKIE_ANSWER = 'answer';
@@ -67,8 +65,6 @@ export default class App extends LightningElement {
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
         const playerId = getCookie(COOKIE_PLAYER_ID);
 
-        this.showLogs('formfactor = ' + FORM_FACTOR);
-        
         if (playerId) {
             this.setPlayer(playerId);
         }
