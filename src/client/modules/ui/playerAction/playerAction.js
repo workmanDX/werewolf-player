@@ -293,7 +293,7 @@ export default class TheGame extends LightningElement {
 
     handleWerewolfAction(detail){
         this.showLogs('handleWerewolfAction actionCount = ' + this.actionInfo.actionCount);
-        this.actionInfo.actionCount = this.actionInfo.actionCount + 1;
+        this.actionInfo.actionCount = parseInt(this.actionInfo.actionCount + 1);
     }
 
     // handleDoppelgangerAction(detail){
