@@ -58,6 +58,10 @@ export default class TheGame extends LightningElement {
         window.console.log('playerAction: ', message);
     }
 
+    showLogsJson(message, obj){
+        window.console.log('playerApp: ', message, ': ', JSON.stringify(obj));
+    }
+
     get isStatusDone(){
         return this.gameStatus === 'Done' ? true : false;
     }
