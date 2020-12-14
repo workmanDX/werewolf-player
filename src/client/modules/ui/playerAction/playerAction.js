@@ -59,7 +59,7 @@ export default class TheGame extends LightningElement {
     }
 
     showLogsJson(message, obj){
-        window.console.log('playerApp: ', message, ': ', JSON.stringify(obj));
+        window.console.log('playerAction: ', message, ': ', JSON.stringify(obj));
     }
 
     get isStatusDone(){
@@ -240,7 +240,8 @@ export default class TheGame extends LightningElement {
 
     handleCardClick(event){
         let detail = event.detail;
-        this.showLogsJson('handleCardClick event: ' + event.detail);
+        this.showLogs('handleCardClick event actionName = ', this.actionInfo.actionName);
+        this.showLogsJson('handleCardClick event: ' + event.detail.cardInfo);
         // let status = event.detail.status;
         // window.console.log('cardClickDetail = ', JSON.stringify(detail.cardInfo));
         // window.console.log('cardClick gameStatus = ', status);
