@@ -126,6 +126,7 @@ export default class App extends LightningElement {
             this.actionInfo = actionInfo[this.nickname];
             this.actionInfo.actionCount = parseInt(this.actionInfo.actionCount);
             this.actionInfo.actionCountMax = parseInt(this.actionInfo.actionCountMax);
+            this.actionInfo.centerPlayerActionCountMax = parseInt(this.actionInfo.centerPlayerActionCountMax);
             this.showAction = true;
         }
     }
