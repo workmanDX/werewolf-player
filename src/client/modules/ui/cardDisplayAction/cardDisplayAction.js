@@ -34,7 +34,11 @@ export default class CardDisplay extends LightningElement {
 
     connectedCallback(){
         this.isSelected = false;
-        this.cardImage = this.cardBack;
+        if(this.card.showCharacter){
+            this.cardImage = this.card.characterImage;
+        } else {
+            this.cardImage = this.cardBack;
+        }
         // window.console.log('cardImage = ', this.cardImage);
         // if(this.isInModal){
         //     this.showLogs('cardDisplay: ', this.card.NickName__c + ': original name = ' + this.card.Original_Card_Name__c);
@@ -146,7 +150,7 @@ export default class CardDisplay extends LightningElement {
     // }
 
     handleFlipCard(){
-        this.cardImage = (this.cardImage === this.cardBack) ?  this.characterImage : this.cardBack;
+        this.cardImage = (this.cardImage === this.cardBack) ?  this.card.characterImage : this.cardBack;
     }
 
     // handleRevealCard(info){
