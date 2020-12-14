@@ -193,8 +193,13 @@ export default class CardDisplay extends LightningElement {
     }
 
     checkAction(){
-        this.showLogs('cardDisplay: in checkAction');
+        this.showLogs('in checkAction');
         let isValid = false;
+
+        this.showLogs('this.card.allowFlip ' + this.card.allowFlip);
+        this.showLogs('this.actionCount ' + this.actionCount);
+        this.showLogs('this.centerPlayerActionCountMax ' + this.centerPlayerActionCountMax);
+        
         switch(this.actionName){
             // case 'Doppelganger':
             //     if(this.actions.allowFlip){
@@ -211,7 +216,7 @@ export default class CardDisplay extends LightningElement {
                 }
                 break;
             case 'Seer':
-                this.showLogs('cardDisplay: check action - seer - allowFlip = ' + this.card.allowFlip);
+                this.showLogs('check action - seer - allowFlip = ' + this.card.allowFlip);
                 let actionCountMax = this.centerPlayerAction ? this.centerPlayerActionCountMax : this.actionCountMax;
                 if(this.card.allowFlip && this.actionCount < actionCountMax){
                     this.handleFlipCard();
