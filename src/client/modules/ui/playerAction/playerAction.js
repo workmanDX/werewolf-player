@@ -238,24 +238,25 @@ export default class TheGame extends LightningElement {
     //     //swap robber with the selected card
     // // }
 
-    // handleCardClick(event){
-    //     let detail = event.detail;
-    //     let status = event.detail.status;
-    //     // window.console.log('cardClickDetail = ', JSON.stringify(detail.cardInfo));
-    //     // window.console.log('cardClick gameStatus = ', status);
-    //     switch(status){
-    //         case 'Doppelganger':
-    //             // window.console.log('doppelganger action');
-    //             // window.console.log('doppelganger card = ', JSON.stringify(detail.doppelganger.Game_Activities__r[0]));
-    //             this.actions.allowFlip = false;
-    //             // if(detail.doppelganger.Game_Activities__r){
-    //             //     this.createDoppelgangerAction(detail.doppelganger.Game_Activities__r[0]);
-    //             // }
-    //             this.handleDoppelgangerAction(detail);
-    //             break;
-    //         case 'Werewolf':
-    //             this.handleWerewolfAction(detail);
-    //             break;
+    handleCardClick(event){
+        let detail = event.detail;
+        this.showLogsJson('handleCardClick event: ' + event.detail);
+        // let status = event.detail.status;
+        // window.console.log('cardClickDetail = ', JSON.stringify(detail.cardInfo));
+        // window.console.log('cardClick gameStatus = ', status);
+        switch(this.actionInfo.actionName){
+            // case 'Doppelganger':
+                // window.console.log('doppelganger action');
+                // window.console.log('doppelganger card = ', JSON.stringify(detail.doppelganger.Game_Activities__r[0]));
+                // this.actions.allowFlip = false;
+                // if(detail.doppelganger.Game_Activities__r){
+                //     this.createDoppelgangerAction(detail.doppelganger.Game_Activities__r[0]);
+                // }
+                // this.handleDoppelgangerAction(detail);
+                // break;
+            case 'Werewolf':
+                this.handleWerewolfAction(detail);
+                break;
     //         case 'Seer':
     //             this.handleSeerAction(detail);
     //             break;
@@ -272,8 +273,8 @@ export default class TheGame extends LightningElement {
     //             this.handleVoteAction(detail);
     //         default:
     //             window.console.log('handleCardClick: do nothing');
-    //     }
-    // }
+        }
+    }
 
     // handleSeerAction(detail){
     //     // window.console.log('in handleSeerAction');
@@ -287,9 +288,9 @@ export default class TheGame extends LightningElement {
     //     // window.console.log('seerUnassignedChosen: ', this.actions.seerUnassignedChosen);
     // }
 
-    // handleWerewolfAction(detail){
-    //     this.actions.allowFlip = false;
-    // }
+    handleWerewolfAction(detail){
+        this.actionCount ++;
+    }
 
     // handleDoppelgangerAction(detail){
     //     this.actions.doppelSelection = detail.doppelSelection;

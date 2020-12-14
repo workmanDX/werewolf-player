@@ -24,6 +24,12 @@ h1 {
     margin: auto;
 }
 
+.action {
+    max-width: 66%;
+    margin: auto;
+    text-align: center;
+}
+
 .error {
     color: red;
 }

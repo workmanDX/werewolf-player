@@ -4,11 +4,13 @@ import { LightningElement, track, api } from 'lwc';
 export default class CardDisplay extends LightningElement {
     @api card;
     @api cardBack;
+    @api actionCountMax;
     @api actionCount;
     get actionCount() {
         return this._actionCount;
     }
     set actionCount(value) {
+        this.showLogs('actionCount udated: ' + value);
         this.setAttribute('actions', value);
         this._actionCount = value;
         // this.handleActionsChange();
@@ -161,42 +163,39 @@ export default class CardDisplay extends LightningElement {
     // }
 
     handleCardClick(){
-        this.handleFlipCard();
-        // if(this.cardImage != this.cardBack){
-        //     this.handleFlipCard();
-        // } else {
-        //     if(this.isInModal){
-        //         this.showLogs('handleCardClick: ' + this.gameStatus + ' event');
-                
-        //         if(this.checkAction()){
-        //             this.fireEvent();
-        //         }
-        //         // this.checkAction()
-        //         // .then(
+        if(this.cardImage != this.cardBack){
+            this.handleFlipCard();
+        } else {
+            this.showLogs('handleCardClick: event');
+            
+            if(this.checkAction()){
+                this.fireEvent();
+            }
+                // this.checkAction()
+                // .then(
                     
-        //         // );
-        //     }
-        // }
+                // );
+        }
     }
 
-    // checkAction(){
-    //     this.showLogs('cardDisplay: in checkAction');
-    //     let isValid = false;
-    //     switch(this.gameStatus){
-    //         case 'Doppelganger':
-    //             if(this.actions.allowFlip){
-    //                 this.eventDetails.doppelSelection = this.card;
-    //                 this.handleFlipCard();
-    //                 isValid = true;
-    //             }
-    //             // this.handleDoppelgangerAction();
-    //             break;
-    //         case 'Werewolf':
-    //             if(this.actions.allowFlip && this.card.Unassigned__c){
-    //                 this.handleFlipCard();
-    //                 isValid = true;
-    //             }
-    //             break;
+    checkAction(){
+        this.showLogs('cardDisplay: in checkAction');
+        let isValid = false;
+        switch(this.gameStatus){
+            // case 'Doppelganger':
+            //     if(this.actions.allowFlip){
+            //         this.eventDetails.doppelSelection = this.card;
+            //         this.handleFlipCard();
+            //         isValid = true;
+            //     }
+                // this.handleDoppelgangerAction();
+                // break;
+            case 'Werewolf':
+                if(this.card.allowFlip && this.actionCount < this.actionCountMax){
+                    this.handleFlipCard();
+                    isValid = true;
+                }
+                break;
     //         case 'Seer':
     //             this.showLogs('cardDisplay: check action - seer - allowFlip = ' + this.actions.allowFlip);
     //             if(this.actions.allowFlip )
@@ -242,26 +241,20 @@ export default class CardDisplay extends LightningElement {
     //         default:
     //             this.showLogs('cardDisplay: do nothing');
     //     }
-    //     return isValid;
-    // }    
+        return isValid;
+    }    
 
-    // fireEvent(){
-    //     this.showLogs('cardDisplay: afterCheckAction');
-    //     this.eventDetails.cardInfo = this.card;
-    //     this.eventDetails.status = this.gameStatus;
-    //     //  = {
-    //     //     cardInfo:this.card
-    //     //     ,status:this.gameStatus
-    //     // };
+    fireEvent(){
+        this.showLogs('cardDisplay: fireEvent');
+        this.eventDetails.cardInfo = this.card;
 
-    //     // let eventDetails = {playerId:this.inModalRecord.Id};    
-    //     const event = new CustomEvent('cardselected', {
-    //         // detail contains only primitives
-    //         detail: this.eventDetails
-    //     });        
-    //     // Fire the event from c-gameSetup
-    //     this.dispatchEvent(event);
-    // }
+        const event = new CustomEvent('cardselected', {
+            // detail contains only primitives
+            detail: this.eventDetails
+        });        
+        // Fire the event from c-gameSetup
+        this.dispatchEvent(event);
+    }
 
     // handleStatusChange(){
     //     // this.eventDetails = {};
