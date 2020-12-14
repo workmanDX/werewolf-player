@@ -47,10 +47,12 @@ export default class TheGame extends LightningElement {
 
     @api cardBack;
     @api player;
-    @api playerList={};
-    @api centerCards = {};
+    @api actionInfo;
+
     @track showAction = false;
-    @track action;
+
+    @track playersForAction = [];
+    @track centerPlayersForAction = [];
 
     showLogs(message){
         window.console.log('playerAction2: ', message);
@@ -70,9 +72,23 @@ export default class TheGame extends LightningElement {
     
     connectedCallback() {
         this.showLogs('connectedCallback');
-        this.action = this.player.action;
-        // this.prepActionVars();
         this.showAction = true;
+
+        let playerList = actionInfo[this.nickname].players;
+        for(var key in playerList){
+            this.showLogsJson('playerList: ' + key, playerList[key]);
+            this.playersForAction.push(playerList[key]);
+        }
+        if(actionInfo[this.nickname].centerPlayers != undefined){
+            let centerPlayers = actionInfo[this.nickname].centerPlayers;
+            for(var key in centerPlayers){
+                this.showLogsJson('centerList: ' + key, centerPlayers[key]);
+                this.centerPlayersForAction.push(centerPlayers[key]);
+            }
+        }
+
+        this.showLogsJson('playersForAction = ', this.playersForAction);
+        this.showLogsJson('centerPlayersForAction = ', this.centerPlayersForAction);
     }
 
 

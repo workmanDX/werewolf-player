@@ -27,8 +27,6 @@ export default class App extends LightningElement {
     ws;
     
     playerList = {};
-    playersForAction = [];
-    centerPlayersForAction = [];
     actionInfo;
     messageData = {};
     actionName;
@@ -122,37 +120,9 @@ export default class App extends LightningElement {
     checkAction(actionInfo){
         this.showLogsJson('checkAction: ', this.player);
         // this.showLogsJson('checkAction actionInfo: ', actionInfo);
-        let playersForAction = [];
-        let centerPlayersForAction = []
         if(this.actionName === this.player.actionName){
             this.showLogsJson('checkAction actionInfo for ' + this.nickname, actionInfo[this.nickname]);
-            let playerList = actionInfo[this.nickname].players;
-            for(var key in playerList){
-                this.showLogsJson('playerList: ' + key, playerList[key]);
-                this.playersForAction.push(playerList[key]);
-            }
-            if(actionInfo[this.nickname].centerPlayers != undefined){
-                let centerPlayers = actionInfo[this.nickname].centerPlayers;
-                for(var key in centerPlayers){
-                    this.showLogsJson('centerList: ' + key, centerPlayers[key]);
-                    this.centerPlayersForAction.push(centerPlayers[key]);
-                }
-            }
-
-            this.showLogsJson('playersForAction = ', this.playersForAction);
-            this.showLogsJson('centerPlayersForAction = ', this.centerPlayersForAction);
-            
-            // for()
-            
-            //     this.showLogs('showAction');
-            //     this.showLogs('checkAction messageData.actionInfo = '+ JSON.stringify(this.messageData.actionInfo));
-            //     this.actionInfo = this.messageData.actionInfo;
-            //     this.playersForAction = this.messageData.actionInfo.players;
-            //     this.centerPlayersForAction = this.messageData.actionInfo.centerPlayers;
-                
-            //     this.showLogsJson('gamePlay actionInfo = ',  this.actionInfo);
-            //     this.showLogsJson('gamePlay playersForAction = ',  this.playersForAction);
-            //     this.showLogsJson('gamePlay centerPlayersForAction = ',  this.centerPlayersForAction);
+            this.actionInfo = actionInfo[this.nickname];
             this.showAction = true;
         }
     }
