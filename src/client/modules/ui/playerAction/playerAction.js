@@ -50,6 +50,7 @@ export default class TheGame extends LightningElement {
     @api actionInfo;
 
     @track showAction = false;
+    @track actionCount = 0;
 
     @track playersForAction = [];
     @track centerPlayersForAction = [];
@@ -79,6 +80,7 @@ export default class TheGame extends LightningElement {
         this.showAction = true;
         this.showLogsJson('connectedCallback: actionInfo = ', this.actionInfo);
         this.showLogsJson('connectedCallback: actionInfo.actionName = ', this.actionInfo.actionName);
+        this.actionCount = this.actionInfo.actionCount;
 
         let playerList = this.actionInfo.players;
         for(var key in playerList){
@@ -293,7 +295,7 @@ export default class TheGame extends LightningElement {
 
     handleWerewolfAction(detail){
         this.showLogs('handleWerewolfAction actionCount = ' + this.actionInfo.actionCount);
-        this.actionInfo.actionCount = parseInt(this.actionInfo.actionCount + 1);
+        this.actionCount ++;;
     }
 
     // handleDoppelgangerAction(detail){
