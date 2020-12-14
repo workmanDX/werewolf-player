@@ -51,7 +51,6 @@ export default class TheGame extends LightningElement {
 
     @track showAction = false;
     @track actionCount = 0;
-
     @track playersForAction = [];
     @track centerPlayersForAction = [];
 
