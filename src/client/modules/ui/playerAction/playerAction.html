@@ -16,8 +16,13 @@
             <template if:true={centerPlayersForAction}>                                
                 <div class="playercontainer">
                     <template for:each={centerPlayersForAction} for:item="card">
-                        {card.name}
-                        <!-- <c-card-display-action key={card.Id} card={card} is-in-modal=true game-status={gameStatus} actions={actions} action-count={actionCount} player-info={playerInfo} oncardselected={handleCardClick} card-back={cardBack}></c-card-display-action> -->
+                        <ui-card-display-action 
+                            key={card.name} 
+                            card={card} 
+                            card-back={cardBack}
+                            action-count={actionInfo.actionCount}
+                            oncardselected={handleCardClick}
+                        ></c-card-display-action>
                     </template>
 
                 </div>
@@ -25,8 +30,13 @@
             <template if:true={playersForAction}>    
                 <div class="playercontainer">
                     <template for:each={playersForAction} for:item="card">
-                        {card.name}
-                        <!-- <c-card-display-action key={card.Id} card={card} is-in-modal=true game-status={gameStatus} actions={actions} action-count={actionCount} player-info={playerInfo} oncardselected={handleCardClick} card-back={cardBack}></c-card-display-action> -->
+                        <ui-card-display-action 
+                            key={card.name}
+                            card={card} 
+                            card-back={cardBack}
+                            action-count={actionInfo.actionCount}
+                            oncardselected={handleCardClick}
+                        ></c-card-display-action>
                     </template>
                 </div>
             </template>
