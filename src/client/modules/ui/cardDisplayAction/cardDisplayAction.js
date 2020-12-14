@@ -5,8 +5,10 @@ export default class CardDisplay extends LightningElement {
     @api card;
     @api cardBack;
     @api actionCountMax;
+    @api centerPlayerActionCountMax;
     @api actionName;
     @api actionCount;
+    @api centerPlayerAction
 
     get actionCount() {
         return this._actionCount;
@@ -16,6 +18,15 @@ export default class CardDisplay extends LightningElement {
         this.setAttribute('actions', value);
         this._actionCount = value;
         // this.handleActionsChange();
+    }
+
+    get centerPlayerAction() {
+        return this._centerPlayerAction;
+    }
+    set centerPlayerAction(value) {
+        this.showLogs('centerPlayerAction updated: ' + value);
+        this.setAttribute('actions', value);
+        this._centerPlayerAction = value;
     }
 
     @api
@@ -30,6 +41,7 @@ export default class CardDisplay extends LightningElement {
 
     @track cardImage;
     @track _actionCount;
+    @track _centerPlayerAction;
     @track isSelected;
     @track revealCard = false;
 
@@ -193,21 +205,19 @@ export default class CardDisplay extends LightningElement {
                 // this.handleDoppelgangerAction();
                 // break;
             case 'Werewolf':
-                if(this.card.allowFlip && this.actionCount < this.actionCountMax){
+                if(this.card.allowFlip && this.actionCount < this.centerPlayerActionCountMax){
                     this.handleFlipCard();
                     isValid = true;
                 }
                 break;
-    //         case 'Seer':
-    //             this.showLogs('cardDisplay: check action - seer - allowFlip = ' + this.actions.allowFlip);
-    //             if(this.actions.allowFlip )
-    //                 if((this.actions.seerUnassignedChosen < 2 && this.card.Unassigned__c) || 
-    //                     (this.actions.seerUnassignedChosen == 0 &&!this.card.Unassigned__c)){
-    //                 this.eventDetails.seer = this.card;
-    //                 this.handleFlipCard();
-    //                 isValid = true;
-    //             }
-    //             break;
+            case 'Seer':
+                this.showLogs('cardDisplay: check action - seer - allowFlip = ' + this.card.allowFlip);
+                let actionCountMax = this.centerPlayerAction ? this.centerPlayerActionCountMax : this.actionCountMax;
+                if(this.card.allowFlip && this.actionCount < actionCountMax);
+                    this.handleFlipCard();
+                    isValid = true;
+                }
+                break;
     //         case 'Robber':
     //             if(!this.card.Unassigned__c && this.actions.allowFlip){
     //                 this.eventDetails.robberSelectOne = this.card;

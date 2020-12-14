@@ -4,7 +4,7 @@
   @Author             : steven.workman@logmein.com
   @Group              : 
   @Last Modified By   : steven.workman@logmein.com
-  @Last Modified On   : 12-13-2020
+  @Last Modified On   : 12-14-2020
   @Modification Log   : 
   Ver       Date            Author      		    Modification
   1.0    5/20/2020   steven.workman@logmein.com     Initial Version
@@ -21,8 +21,9 @@
                             card={card} 
                             card-back={cardBack}
                             action-count={actionCount}
-                            action-count-max={actionInfo.actionCountMax}
+                            action-count-max={actionInfo.centerPlayerActionCountMax}
                             action-name={actionInfo.actionName}
+                            center-player-action={centerPlayerAction}
                             oncardselected={handleCardClick}
                         ></ui-card-display-action>
                     </template>
@@ -39,6 +40,7 @@
                             action-count={actionCount}
                             action-count-max={actionInfo.actionCountMax}
                             action-name={actionInfo.actionName}
+                            center-player-action={centerPlayerAction}
                             oncardselected={handleCardClick}
                         ></ui-card-display-action>
                     </template>

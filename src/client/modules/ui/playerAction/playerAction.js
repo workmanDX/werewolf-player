@@ -32,7 +32,7 @@ export default class TheGame extends LightningElement {
 
     //action and model variables
     @api actions = {};
-    @api actionCount = 0;
+    // @api actionCount = 0;
     @api inModal = false;
     @track allowedClicks;
     
@@ -53,6 +53,7 @@ export default class TheGame extends LightningElement {
     @track actionCount = 0;
     @track playersForAction = [];
     @track centerPlayersForAction = [];
+    @track centerPlayerAction = false;
 
     showLogs(message){
         window.console.log('playerAction: ', message);
@@ -294,6 +295,9 @@ export default class TheGame extends LightningElement {
 
     handleWerewolfAction(detail){
         this.showLogs('handleWerewolfAction actionCount = ' + this.actionInfo.actionCount);
+        if(detail.cardInfo.centerPlayer){
+            this.centerPlayerAction = true;
+        }
         this.actionCount ++;;
     }
 
