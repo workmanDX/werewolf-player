@@ -40,8 +40,9 @@
                     <div class="action">
                         <ui-player-action 
                             action-info={actionInfo}
-                            card-back={gameInfo.herokuCardBack}>
-                        </ui-player-action>
+                            card-back={gameInfo.herokuCardBack}
+                            oncardswap={handleCardSwap}
+                        ></ui-player-action>
                     </div>
                 </template>
 

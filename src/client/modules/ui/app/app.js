@@ -137,6 +137,12 @@ export default class App extends LightningElement {
         }
     }
 
+    handleCardSwap(event){
+        let detail = event.detail;
+        this.showLogsJson('handleCardSwap card1 = ', detail.card1);
+        this.showLogsJson('handleCardSwap card2 = ', detail.card2);
+    }
+
     handleRegistered(event) {
         const { nickname, playerId } = event.detail;
 

@@ -265,9 +265,9 @@ export default class TheGame extends LightningElement {
             case 'Seer':
                 this.handleSeerAction(detail);
                 break;
-    //         case 'Robber':
-    //             this.handleRobberAction(detail);
-    //             break;
+            case 'Robber':
+                this.handleRobberAction(detail);
+                break;
     //         case 'Troublemaker':
     //             this.handleTroublemakerAction(detail);
     //             break;
@@ -282,6 +282,7 @@ export default class TheGame extends LightningElement {
     }
 
     handleWerewolfAction(detail){
+        this.showLogs('in handleWerewolfAction');
         this.showLogs('handleWerewolfAction actionCount = ' + this.actionInfo.actionCount);
         if(detail.cardInfo.centerPlayer){
             this.centerPlayerAction = true;
@@ -291,25 +292,19 @@ export default class TheGame extends LightningElement {
 
     handleSeerAction(detail){
         this.showLogs('in handleSeerAction');
-        this.showLogs('handleWerewolfAction actionCount = ' + this.actionInfo.actionCount);
+        this.showLogs('handleSeerAction actionCount = ' + this.actionInfo.actionCount);
         if(detail.cardInfo.centerPlayer){
             this.centerPlayerAction = true;
         }
         this.actionCount ++;
     }
 
-    // handleDoppelgangerAction(detail){
-    //     this.actions.doppelSelection = detail.doppelSelection;
-    //     this.actions.allowFlip = false;
-    // }
-
-    // handleRobberAction(detail){
-    //     // window.console.log('in handleRobberAction');
-    //     // window.console.log('detail.robberSelectOne: ',detail.robberSelectOne);
-    //     this.actions.robberSelectOne = detail.robberSelectOne;
-    //     this.actions.allowFlip = false;
-    //     // window.console.log('this.actions.robberSelectOne: ',this.actions.robberSelectOne);
-    // }
+    handleRobberAction(detail){
+        this.showLogs('in handleRobberAction');
+        this.showLogs('handleRobberAction actionCount = ' + this.actionInfo.actionCount);
+        this.actionCount ++;
+        this.handleRobberUpdate(detail);
+    }
 
     // handleDrunkAction(detail){
     //     // window.console.log('in handleDrunkAction');
@@ -360,6 +355,11 @@ export default class TheGame extends LightningElement {
     //     // voteSelectOne
     // }
 
+        // handleDoppelgangerAction(detail){
+    //     this.actions.doppelSelection = detail.doppelSelection;
+    //     this.actions.allowFlip = false;
+    // }
+
     // handleDoppelganger(){
     //     this.showLogs('Doppelganger Selected card = ' + JSON.stringify(this.actions.doppelSelection));
     //     this.gameStatus = this.actions.doppelSelection.Final_Card_Name__c;
@@ -380,9 +380,23 @@ export default class TheGame extends LightningElement {
     //     updateCardSwap({player1 : this.playerInfo, player2 : this.actions.drunkSelectOne});
     // }
 
-    // handleRobberUpdate(){
-    //     updateCardSwap({player1 : this.playerInfo, player2 : this.actions.robberSelectOne});
-    // }
+    handleRobberUpdate(cardInfo){
+        updateCardSwap({card1 : this.player, player2 : cardInfo});
+        this.fireEvent(cardInfo);
+    }
+
+    fireEvent(cardInfo){
+        this.showLogs('cardDisplay: fireEvent');
+        this.eventDetails.card1 = this.card;
+        this.eventDetails.card2 = cardInfo;
+
+        const event = new CustomEvent('cardswap', {
+            // detail contains only primitives
+            detail: this.eventDetails
+        });        
+        // Fire the event from c-gameSetup
+        this.dispatchEvent(event);
+    }
 
     // handleTroublemakerUpdate(){
     //     let players = [];
