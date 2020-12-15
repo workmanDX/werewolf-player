@@ -262,9 +262,9 @@ export default class TheGame extends LightningElement {
             case 'Werewolf':
                 this.handleWerewolfAction(detail);
                 break;
-    //         case 'Seer':
-    //             this.handleSeerAction(detail);
-    //             break;
+            case 'Seer':
+                this.handleSeerAction(detail);
+                break;
     //         case 'Robber':
     //             this.handleRobberAction(detail);
     //             break;
@@ -281,24 +281,21 @@ export default class TheGame extends LightningElement {
         }
     }
 
-    // handleSeerAction(detail){
-    //     // window.console.log('in handleSeerAction');
-    //     // window.console.log('detail.seer.Unassigned__c: ', detail.seer.Unassigned__c);
-    //     //determine if assigned card was selected and change allowFlip for all other cards.
-    //     if(!detail.seer.Unassigned__c || this.actions.seerUnassignedChosen == 2){
-    //         this.actions.allowFlip = false;
-    //     } else{
-    //         this.actions.seerUnassignedChosen ++;
-    //     }
-    //     // window.console.log('seerUnassignedChosen: ', this.actions.seerUnassignedChosen);
-    // }
-
     handleWerewolfAction(detail){
         this.showLogs('handleWerewolfAction actionCount = ' + this.actionInfo.actionCount);
         if(detail.cardInfo.centerPlayer){
             this.centerPlayerAction = true;
         }
         this.actionCount ++;;
+    }
+
+    handleSeerAction(detail){
+        this.showLogslog('in handleSeerAction');
+        this.showLogs('handleWerewolfAction actionCount = ' + this.actionInfo.actionCount);
+        if(detail.cardInfo.centerPlayer){
+            this.centerPlayerAction = true;
+        }
+        this.actionCount ++;
     }
 
     // handleDoppelgangerAction(detail){
