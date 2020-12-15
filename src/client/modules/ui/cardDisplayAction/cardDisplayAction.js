@@ -51,7 +51,7 @@ export default class CardDisplay extends LightningElement {
     connectedCallback(){
         this.isSelected = false;
         if(this.card.showCharacter){
-            this.cardImage = this.card.characterImage;
+            this.cardImage = this.characterImage;
         } else {
             this.cardImage = this.cardBack;
         }
@@ -90,6 +90,14 @@ export default class CardDisplay extends LightningElement {
 
     showLogs(message){
         window.console.log('cardDisplayActions: ', message);
+    }
+
+    get characterImage(){
+        let character = this.card.characterImage;
+        if(this.actionName === 'Insomniac' || this.actionName === 'Done'){
+            character = this.card.finalCharacterImage;
+        }
+        return character;
     }
 
     get imageWidth(){
@@ -166,7 +174,7 @@ export default class CardDisplay extends LightningElement {
     // }
 
     handleFlipCard(){
-        this.cardImage = (this.cardImage === this.cardBack) ?  this.card.characterImage : this.cardBack;
+        this.cardImage = (this.cardImage === this.cardBack) ?  this.characterImage : this.cardBack;
     }
 
     // handleRevealCard(info){
