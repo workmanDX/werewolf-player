@@ -290,7 +290,7 @@ export default class TheGame extends LightningElement {
     }
 
     handleSeerAction(detail){
-        this.showLogslog('in handleSeerAction');
+        this.showLogs('in handleSeerAction');
         this.showLogs('handleWerewolfAction actionCount = ' + this.actionInfo.actionCount);
         if(detail.cardInfo.centerPlayer){
             this.centerPlayerAction = true;
