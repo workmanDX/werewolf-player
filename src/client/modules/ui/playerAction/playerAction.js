@@ -381,18 +381,18 @@ export default class TheGame extends LightningElement {
     // }
 
     handleRobberUpdate(cardInfo){
+        let eventDetails = {card1 : this.card, card2 : cardInfo};
         // updateCardSwap({card1 : this.player, player2 : cardInfo});
-        this.fireEvent(cardInfo);
+        this.fireEvent(eventDetails);
     }
 
-    fireEvent(cardInfo){
+    fireEvent(deventDetails){
         this.showLogs('cardDisplay: fireEvent');
-        this.eventDetails.card1 = this.card;
-        this.eventDetails.card2 = cardInfo;
+        this.eventDetails = eventDetails;
 
         const event = new CustomEvent('cardswap', {
             // detail contains only primitives
-            detail: this.eventDetails
+            detail: eventDetails
         });        
         // Fire the event from c-gameSetup
         this.dispatchEvent(event);
