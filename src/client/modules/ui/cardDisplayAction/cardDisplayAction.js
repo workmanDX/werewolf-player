@@ -92,7 +92,7 @@ export default class CardDisplay extends LightningElement {
         window.console.log('cardDisplayActions: ', message);
     }
 
-    get characterImage(){
+    characterImage(){
         let character = this.card.characterImage;
         if(this.actionName === 'Insomniac' || this.actionName === 'Done'){
             character = this.card.finalCharacterImage;
@@ -174,7 +174,7 @@ export default class CardDisplay extends LightningElement {
     // }
 
     handleFlipCard(){
-        this.cardImage = (this.cardImage === this.cardBack) ?  characterImage : this.cardBack;
+        this.cardImage = (this.cardImage === this.cardBack) ?  this.characterImage : this.cardBack;
     }
 
     // handleRevealCard(info){
