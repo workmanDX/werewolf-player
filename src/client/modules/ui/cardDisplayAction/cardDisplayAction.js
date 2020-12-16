@@ -174,7 +174,7 @@ export default class CardDisplay extends LightningElement {
     // }
 
     handleFlipCard(){
-        this.cardImage = (this.cardImage === this.cardBack) ?  this.characterImage : this.cardBack;
+        this.cardImage = (this.cardImage === this.cardBack) ?  characterImage : this.cardBack;
     }
 
     // handleRevealCard(info){
