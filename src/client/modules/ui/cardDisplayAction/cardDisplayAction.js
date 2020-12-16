@@ -39,7 +39,8 @@ export default class CardDisplay extends LightningElement {
         this.handleStatusChange();
     }
 
-    @track cardImage;
+    // @track cardImage;
+    @track showBackImage = true;
     @track _actionCount;
     @track _centerPlayerAction;
     @track isSelected;
@@ -50,11 +51,11 @@ export default class CardDisplay extends LightningElement {
 
     connectedCallback(){
         this.isSelected = false;
-        if(this.card.showCharacter){
-            this.cardImage = this.characterImage;
-        } else {
-            this.cardImage = this.cardBack;
-        }
+        // if(this.card.showCharacter){
+        //     this.cardImage = this.characterImage;
+        // } else {
+        //     this.cardImage = this.cardBack;
+        // }
         // window.console.log('cardImage = ', this.cardImage);
         // if(this.isInModal){
         //     this.showLogs('cardDisplay: ', this.card.NickName__c + ': original name = ' + this.card.Original_Card_Name__c);
@@ -92,12 +93,23 @@ export default class CardDisplay extends LightningElement {
         window.console.log('cardDisplayActions: ', message);
     }
 
-    characterImage(){
-        let character = this.card.characterImage;
-        if(this.actionName === 'Insomniac' || this.actionName === 'Done'){
-            character = this.card.finalCharacterImage;
+    // characterImage(){
+    //     let character = this.card.characterImage;
+    //     if(this.actionName === 'Insomniac' || this.actionName === 'Done'){
+    //         character = this.card.finalCharacterImage;
+    //     }
+    //     return character;
+    // }
+
+    get cardImage(){
+        let cImage = this.cardBack;
+        if(this.card.showCharacter || !this.showBackImage){
+            cImage = this.characterImage;
         }
-        return character;
+        if(this.actionName === 'Insomniac' || this.actionName === 'Done'){
+            cImage = this.card.finalCharacterImage;
+        }
+        return cImage;
     }
 
     get imageWidth(){
@@ -174,7 +186,8 @@ export default class CardDisplay extends LightningElement {
     // }
 
     handleFlipCard(){
-        this.cardImage = (this.cardImage === this.cardBack) ?  this.characterImage : this.cardBack;
+        // this.cardImage = (this.cardImage === this.cardBack) ?  this.characterImage : this.cardBack;
+        this.showBackImage = !this.showBackImage;
     }
 
     // handleRevealCard(info){
