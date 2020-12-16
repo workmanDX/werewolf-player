@@ -386,9 +386,9 @@ export default class TheGame extends LightningElement {
         this.fireEvent(eventDetails);
     }
 
-    fireEvent(deventDetails){
+    fireEvent(eventDetails){
         this.showLogs('cardDisplay: fireEvent');
-        this.eventDetails = eventDetails;
+        // this.eventDetails = eventDetails;
 
         const event = new CustomEvent('cardswap', {
             // detail contains only primitives
