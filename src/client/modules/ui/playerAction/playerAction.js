@@ -381,7 +381,7 @@ export default class TheGame extends LightningElement {
     // }
 
     handleRobberUpdate(cardInfo){
-        let eventDetails = {card1 : this.card, card2 : cardInfo};
+        let eventDetails = {card1 : this.player, card2 : cardInfo};
         // updateCardSwap({card1 : this.player, player2 : cardInfo});
         this.fireEvent(eventDetails);
     }
