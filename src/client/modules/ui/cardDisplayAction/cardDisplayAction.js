@@ -104,7 +104,7 @@ export default class CardDisplay extends LightningElement {
     get cardImage(){
         let cImage = this.cardBack;
         if(this.card.showCharacter || !this.showBackImage){
-            cImage = this.characterImage;
+            cImage = this.card.characterImage;
         }
         if(this.actionName === 'Insomniac' || this.actionName === 'Done'){
             cImage = this.card.finalCharacterImage;
@@ -246,7 +246,7 @@ export default class CardDisplay extends LightningElement {
                 break;
             case 'Robber':
                 this.showLogs('checkAction Robber');
-                if(this.card.allowFlip && this.actionCount < this.ActionCountMax){
+                if(this.card.allowFlip && this.actionCount < this.actionCountMax){
                     this.handleFlipCard();
                     isValid = true;
                 }
