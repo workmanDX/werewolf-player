@@ -251,16 +251,13 @@ export default class CardDisplay extends LightningElement {
                     isValid = true;
                 }
                 break;
-    //         case 'Troublemaker':
-    //             this.showLogs('cardDisplay: this.actions.allowSelection: ' + this.actions.allowSelection);
-    //             if(!this.card.Unassigned__c){
-    //                 if(this.card.IsSelected__c || (!this.card.IsSelected__c && this.actions.allowSelection)){
-    //                     isValid = true;
-    //                 } else {
-    //                     this.showLogs('cardDisplay: not selected or allow selection = false')
-    //                 }
-    //             }
-    //             break;
+            case 'Troublemaker':
+                this.showLogs('checkAction Troublemaker');
+                if(this.card.allowFlip && this.actionCount < this.actionCountMax){
+                    this.handleFlipCard();
+                    isValid = true;
+                }
+                break;
     //         case 'Drunk':
     //             if(this.card.Unassigned__c){
     //                 if(this.card.IsSelected__c || (!this.card.IsSelected__c && this.actions.allowSelection)){

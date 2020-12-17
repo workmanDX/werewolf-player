@@ -268,9 +268,9 @@ export default class TheGame extends LightningElement {
             case 'Robber':
                 this.handleRobberAction(detail);
                 break;
-    //         case 'Troublemaker':
-    //             this.handleTroublemakerAction(detail);
-    //             break;
+            case 'Troublemaker':
+                this.handleTroublemakerAction(detail);
+                break;
     //         case 'Drunk':
     //             this.handleDrunkAction(detail);
     //             break;
@@ -306,6 +306,17 @@ export default class TheGame extends LightningElement {
         this.handleRobberUpdate(detail.cardInfo);
     }
 
+    troublemakerSelections = [];
+
+    handleTroublemakerAction(detail){
+        this.showLogs('handleTroublemakerAction');
+        this.troublemakerSelections.push(detail.cardInfo);
+        this.actionCount ++;
+        if(this.actionCount == 2){
+            this.handleTroublemakerUpdate();
+        }
+    }
+
     // handleDrunkAction(detail){
     //     // window.console.log('in handleDrunkAction');
     //     // window.console.log('detail.drunkSelectOne: ', detail.drunkSelectOne);
@@ -316,32 +327,6 @@ export default class TheGame extends LightningElement {
     //     }
     //     this.actionCount ++;
     //     // window.console.log('this.actions.drunkSelectOne: ',this.actions.drunkSelectOne);
-    // }
-
-    // handleTroublemakerAction(detail){
-    //     // window.console.log('in handleTroublemakerAction');
-    //     detail.cardInfo.IsSelected__c = !detail.cardInfo.IsSelected__c;
-
-    //     this.troubleMakerSelectedCount(detail);
-    // }
-
-    // troubleMakerSelectedCount(detail){      
-    //     let selectedCount = 0;
-    //     this.actions.allowSelection = true;
-    //     this.gameInfo.forEach(function(currentPlayer) {                
-    //         if(detail.cardInfo.Id === currentPlayer.Id){
-    //             currentPlayer.IsSelected__c = detail.cardInfo.IsSelected__c;
-    //         }
-    //         if(currentPlayer.IsSelected__c){
-    //             selectedCount++;
-    //         }
-    //     }); 
-
-    //     // window.console.log('selectedCount = ', selectedCount);
-    //     if(selectedCount >= 2){
-    //         this.actions.allowSelection = false;
-    //     }        
-    //     this.actionCount = selectedCount;
     // }
 
     // handleVoteAction(detail){
@@ -386,6 +371,11 @@ export default class TheGame extends LightningElement {
         this.fireEvent(eventDetails);
     }
 
+    handleTroublemakerUpdate(){
+
+        fireEvent({player1 : this.troublemakerSelections[0], player2 : this.troublemakerSelections[1]});
+    }
+
     fireEvent(eventDetails){
         this.showLogsJson('fireEvent: ' , eventDetails);
         this.eventDetails = eventDetails;
@@ -397,19 +387,6 @@ export default class TheGame extends LightningElement {
         // Fire the event from c-gameSetup
         this.dispatchEvent(event);
     }
-
-    // handleTroublemakerUpdate(){
-    //     let players = [];
-    //     this.gameInfo.forEach(function(currentPlayer) {                
-    //         if(currentPlayer.IsSelected__c){
-    //             players.push(currentPlayer);
-    //         }
-    //     }); 
-
-    //     // window.console.log('in handleTroublemakerUpdate: ', players);
-
-    //     updateCardSwap({player1 : players[0], player2 : players[1]});
-    // }
 
     // handleVoteUpdate(){
     //     this.showLogs('in handleVoteUpdate');
