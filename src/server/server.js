@@ -55,6 +55,12 @@ app.put('/api/game-info', (request, response) => {
     gameInfoRest.updateGame(request, response);
 });
 
+// Setup cardSwap REST resources
+const cardSwapRest = new AnswerRestResource(sfdc);
+app.post('/api/game-info', (request, response) => {
+    gameInfoRest.cardSwap(request, response);
+});
+
 
 // Setup Quiz Session REST resources
 const quizSessionRest = new QuizSessionRestResource(sfdc, wss);

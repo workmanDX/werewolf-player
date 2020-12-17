@@ -6,7 +6,7 @@ import { getCookie, setCookie, clearCookie } from 'utils/cookies';
 import { WebSocketClient } from 'utils/webSocketClient';
 
 // import { PHASES, getCurrentSession } from 'services/session';
-import { STAGES, getGameInfo } from 'services/game';
+import { STAGES, getGameInfo, cardSwap } from 'services/game';
 // import { getPlayerLeaderboard } from 'services/player';
 import { submitAnswer } from 'services/answer';
 
@@ -140,7 +140,11 @@ export default class App extends LightningElement {
     handleCardSwap(event){
         let detail = event.detail;
         this.showLogsJson('handleCardSwap card1 = ', detail.card1);
-        this.showLogsJson('handleCardSwap card2 = ', detail.card2);
+        if(event.detail.card2 != undefined){
+            //swap these two
+        } else {
+            //pass both Id's to SF to handle the swapping
+        }
     }
 
     handleRegistered(event) {

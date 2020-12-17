@@ -1,6 +1,8 @@
 import { register, ValueChangedEvent } from '@lwc/wire-service';
 import { fetchJson } from 'utils/fetch';
 
+const CARD_SWAP_URL = '/api/game-info';
+
 export const STAGES = Object.freeze({
     REGISTRATION: 'Registration',
     CHARACTER_SELECTION: 'SelectCharacters',
@@ -22,6 +24,26 @@ export function getGameInfo(config) {
             error: (error) => reject(error)
         };
         getData(config, observer);
+    });
+}
+
+/**
+ * passes 2 player Ids to have their final cards swapped
+ * @param {string} player1Id
+ * @param {string} player2Id
+ * @returns {Promise<*>} Promise holding the Answer record
+ */
+export function cardSwap(player1Id, player2Id){
+    const cardSwapData ={
+        player1Id,
+        player2Id
+    };
+    return fetch(CARD_SWAP_URL, {
+        method: 'post',
+        headers: {
+            'content-Type': 'application/json'
+        },
+        body: JSON.stringify(cardSwapData)
     });
 }
 

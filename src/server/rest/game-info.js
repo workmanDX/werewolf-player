@@ -101,6 +101,32 @@ module.exports = class QuizSessionRestResource {
         // }
     }
 
+
+    /**
+     * Updates players with new final cards
+     * @param {*} request
+     * @param {*} response
+     */
+    cardSwap(request, response) {
+        // Check API key header
+        const { player1Id, player2Id } = request.body;
+        if (!(player1Id && player2Id)) {
+            response.status(400).json({ message: 'Missing parameter.' });
+            return;
+        }
+
+        const ns = Configuration.getSfNamespacePath();
+        this.sfdc.apex.post(`/game/cardSwap`, request.body, (error) => {
+            if (error) {
+                response.status(500).json({ message: error.message });
+            } else {
+                response.sendStatus(200);
+            }
+        });
+    }
+
+
+
     /**
      * Updates current quiz session
      * @param {*} request
