@@ -93,7 +93,7 @@ export default class CardDisplay extends LightningElement {
 
     get displayClass(){
         let dClass = "cardimage";
-        if(isSelected){
+        if(this.isSelected){
             dClass += " selected";
         }
 
@@ -159,6 +159,7 @@ export default class CardDisplay extends LightningElement {
                 this.showLogs('checkAction Troublemaker');
                 if(this.actionCount < this.actionCountMax){
                     isValid = true;
+                    this.isSelected = true;
                 }
                 break;
     //         case 'Drunk':
