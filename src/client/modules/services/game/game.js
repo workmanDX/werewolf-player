@@ -33,10 +33,11 @@ export function getGameInfo(config) {
  * @param {string} player2Id
  * @returns {Promise<*>} Promise holding the Answer record
  */
-export function cardSwap(player1Id, player2Id){
+export function cardSwap(player1Id, player2Id, actionId){
     const cardSwapData ={
         player1Id,
-        player2Id
+        player2Id,
+        actionId
     };
     return fetch(CARD_SWAP_URL, {
         method: 'post',

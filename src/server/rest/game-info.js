@@ -110,8 +110,8 @@ module.exports = class QuizSessionRestResource {
     cardSwap(request, response) {
         // Check API key header
         console.log('requestBody - ' + request.body);
-        const { player1Id, player2Id } = request.body;
-        if (!(player1Id && player2Id)) {
+        const { player1Id, player2Id, actionId } = request.body;
+        if (!(player1Id && player2Id && actionId)) {
             response.status(400).json({ message: 'Missing parameter.' });
             return;
         }
