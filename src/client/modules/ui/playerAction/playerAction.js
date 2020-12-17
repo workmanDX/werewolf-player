@@ -303,7 +303,7 @@ export default class TheGame extends LightningElement {
         this.showLogs('in handleRobberAction');
         this.showLogs('handleRobberAction actionCount = ' + this.actionInfo.actionCount);
         this.actionCount ++;
-        this.handleRobberUpdate(detail);
+        this.handleRobberUpdate(detail.cardInfo);
     }
 
     // handleDrunkAction(detail){
@@ -381,13 +381,13 @@ export default class TheGame extends LightningElement {
     // }
 
     handleRobberUpdate(cardInfo){
-        let eventDetails = {player1: this.cardInfo};
+        let eventDetails = {player1: cardInfo};
         // updateCardSwap({card1 : this.player, player2 : cardInfo});
         this.fireEvent(eventDetails);
     }
 
     fireEvent(eventDetails){
-        this.showLogs('cardDisplay: fireEvent');
+        this.showLogsJson('fireEvent: ' , eventDetails);
         this.eventDetails = eventDetails;
 
         const event = new CustomEvent('cardswap', {
