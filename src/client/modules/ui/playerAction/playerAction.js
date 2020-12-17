@@ -317,17 +317,11 @@ export default class TheGame extends LightningElement {
         }
     }
 
-    // handleDrunkAction(detail){
-    //     // window.console.log('in handleDrunkAction');
-    //     // window.console.log('detail.drunkSelectOne: ', detail.drunkSelectOne);
-    //     if(this.actions.drunkSelectOne && this.actions.drunkSelectOne.Id === detail.drunkSelectOne.Id){
-    //         this.actions.drunkSelectOne = null;
-    //     } else {
-    //         this.actions.drunkSelectOne = detail.drunkSelectOne;
-    //     }
-    //     this.actionCount ++;
-    //     // window.console.log('this.actions.drunkSelectOne: ',this.actions.drunkSelectOne);
-    // }
+    handleDrunkAction(detail){
+        this.showLogs('handleDrunkAction');
+        this.actionCount ++;
+        this.handleDrunkUpdate(detail.cardInfo);
+    }
 
     // handleVoteAction(detail){
     //     if(this.actions.voteSelectOne && this.actions.voteSelectOne.Id === detail.cardInfo.Id){
@@ -361,18 +355,15 @@ export default class TheGame extends LightningElement {
     //     //Send action and updated player info to gamePlay2
     // }
 
-    // handleDrunkUpdate(){
-    //     updateCardSwap({player1 : this.playerInfo, player2 : this.actions.drunkSelectOne});
-    // }
+    handleDrunkUpdate(cardInfo){
+        this.fireEvent({player1: cardInfo});
+    }
 
     handleRobberUpdate(cardInfo){
-        let eventDetails = {player1: cardInfo};
-        // updateCardSwap({card1 : this.player, player2 : cardInfo});
-        this.fireEvent(eventDetails);
+        this.fireEvent({player1: cardInfo});
     }
 
     handleTroublemakerUpdate(){
-
         this.fireEvent({player1 : this.troublemakerSelections[0], player2 : this.troublemakerSelections[1]});
     }
 
@@ -418,6 +409,4 @@ export default class TheGame extends LightningElement {
     //     });
 
     // }
-
- 
 }

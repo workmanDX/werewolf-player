@@ -162,16 +162,13 @@ export default class CardDisplay extends LightningElement {
                     this.isSelected = true;
                 }
                 break;
-    //         case 'Drunk':
-    //             if(this.card.Unassigned__c){
-    //                 if(this.card.IsSelected__c || (!this.card.IsSelected__c && this.actions.allowSelection)){
-    //                     this.eventDetails.drunkSelectOne = this.card;
-    //                     isValid = true;
-    //                 } else {
-    //                     this.showLogs('cardDisplay: not selected or allow selection = false')
-    //                 }
-    //             }
-    //         break;
+            case 'Drunk':
+                this.showLogs('checkAction Drunk');
+                if(this.actionCount < this.centerPlayerActionCountMax){
+                    isValid = true;
+                    this.isSelected = true;
+                }
+                break;
     //         case 'Done':
     //             if((this.card.IsSelected__c || (!this.card.IsSelected__c && this.actions.allowSelection)) && this.card.Id != this.playerInfo.Id){
     //                 isValid = true;
