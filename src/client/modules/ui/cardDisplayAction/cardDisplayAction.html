@@ -4,7 +4,7 @@
   @Author             : steven.workman@logmein.com
   @Group              : 
   @Last Modified By   : steven.workman@logmein.com
-  @Last Modified On   : 12-13-2020
+  @Last Modified On   : 12-17-2020
   @Modification Log   : 
   Ver       Date            Author      		    Modification
   1.0    5/20/2020   steven.workman@logmein.com     Initial Version
@@ -15,10 +15,7 @@
         <br/>
         {card.name}
     </div>
-    <template if:true={isSelected}>
-        <img class="cardimage selected" src={cardImage} alt={card.name} width={imageWidth} height={imageHeight} onclick={handleCardClick}>
-    </template>
-    <template if:false={isSelected}>
-        <img class="cardimage" src={cardImage} alt={card.name} width={imageWidth} height={imageHeight} onclick={handleCardClick}>
+    <template>
+        <img class={displayClass} src={cardImage} alt={card.name} width={imageWidth} height={imageHeight} onclick={handleCardClick}>
     </template>
 </template>

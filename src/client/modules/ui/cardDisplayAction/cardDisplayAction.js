@@ -9,6 +9,7 @@ export default class CardDisplay extends LightningElement {
     @api actionName;
     @api actionCount;
     @api centerPlayerAction
+    @track isSelected = false;
 
     get actionCount() {
         return this._actionCount;
@@ -51,55 +52,11 @@ export default class CardDisplay extends LightningElement {
 
     connectedCallback(){
         this.isSelected = false;
-        // if(this.card.showCharacter){
-        //     this.cardImage = this.characterImage;
-        // } else {
-        //     this.cardImage = this.cardBack;
-        // }
-        // window.console.log('cardImage = ', this.cardImage);
-        // if(this.isInModal){
-        //     this.showLogs('cardDisplay: ', this.card.NickName__c + ': original name = ' + this.card.Original_Card_Name__c);
-        //     if(this.card.Game_Activities__r){
-        //         this.showLogs('cardDisplay: activity name = ' + this.card.Game_Activities__r[0].Card_Name__c);
-        //     }
-        //     if(!this.card.Unassigned__c && (this.gameStatus === 'Werewolf' || this.gameStatus === 'Minion')
-        //         && this.playerInfo.Game_Activities__r
-        //         && (this.playerInfo.Game_Activities__r[0].Card_Name__c === 'Werewolf' || this.playerInfo.Game_Activities__r[0].Card_Name__c === 'Minion')
-        //         && this.card.Game_Activities__r
-        //         && this.card.Game_Activities__r[0].Card_Name__c === 'Werewolf'){
-        //             this.cardImage = this.werewolfImage;
-        //     }
-        //     if(!this.card.Unassigned__c && this.gameStatus === 'Mason'
-        //         && this.playerInfo.Game_Activities__r
-        //         && this.playerInfo.Game_Activities__r[0].Card_Name__c === 'Mason'
-        //         && this.card.Game_Activities__r
-        //         && this.card.Game_Activities__r[0].Card_Name__c === 'Mason'){
-        //             this.cardImage = this.masonImage;
-        //     }
-        //     if(this.gameStatus === 'Insomniac' && this.playerInfo.Game_Activities__r[0].Card_Name__c === 'Insomniac'){
-        //         this.showLogs('cardDisplay: final Name = ', this.playerInfo.Final_Card_Name__c);
-        //         this.cardImage = this.playerInfo.Final_Game_Card__r.Card__r.URL__c;
-        //     }
-        // } else {
-        //     if(this.card && this.card.Game__c){
-        //         let topic = '/topic/P-'+ this.card.Game__c;
-        //         this.showLogs('cardDisplay: topic = ', topic);
-        //         this.handleSubscribe(topic);
-        //     }
-        // }
     }
 
     showLogs(message){
         window.console.log('cardDisplayActions: ', message);
     }
-
-    // characterImage(){
-    //     let character = this.card.characterImage;
-    //     if(this.actionName === 'Insomniac' || this.actionName === 'Done'){
-    //         character = this.card.finalCharacterImage;
-    //     }
-    //     return character;
-    // }
 
     get cardImage(){
         let cImage = this.cardBack;
@@ -132,70 +89,21 @@ export default class CardDisplay extends LightningElement {
             height = 100;
         }
         return height;       
-    }    
+    }
 
-    // handleActionsChange(){
-    //     this.showLogs('cardDisplay: in cardDisplay handleActionsChange');
-    //     if(this.isInModal){
-    //         if(!this.card.unassigned__c && this.gameStatus === 'Doppelganger'){
-    //             this.isSelected = true;
-    //             this.showLogs('cardDisplay: '+ this.card.NickName__c + ': adding css class');
-    //         }
-    //         if(!this.card.Unassigned__c && this.gameStatus === 'Robber'){
-    //             if(this.actions.robberSelectOne && this.actions.robberSelectOne.Id === this.card.Id){
-    //                 this.isSelected = true;
-    //                 this.showLogs('cardDisplay: '+ this.card.NickName__c + ': adding css class');
-    //             }
-    //             else {
-    //                 this.isSelected = false;
-    //             }
-    //         }
-    //         if(!this.card.Unassigned__c && this.gameStatus === 'Troublemaker'){
-    //             this.showLogs('cardDisplay: this.actions.allowSelection = ' + this.actions.allowSelection);
-    //             if(this.card.IsSelected__c){
-    //                 this.isSelected = true;
-    //                 this.showLogs('cardDisplay: ' + this.card.NickName__c + ': adding css class');
-    //             }
-    //             else {
-    //                 this.isSelected = false;
-    //             }
-    //         }
-    //         if(this.card.Unassigned__c && this.gameStatus === 'Drunk'){
-    //             if(this.actions.drunkSelectOne && this.actions.drunkSelectOne.Id === this.card.Id){
-    //                 this.isSelected = true;
-    //                 this.showLogs('cardDisplay: ' + this.card.NickName__c + ': adding css class');
-    //             }
-    //             else {
-    //                 this.isSelected = false;
-    //             }
-    //         }
-    //         if(!this.card.Unassigned__c && this.gameStatus === 'Done'){
-    //             if(this.actions.voteSelectOne && this.actions.voteSelectOne.Id === this.card.Id){
-    //                 this.isSelected = true;
-    //                 this.showLogs('cardDisplay: '+ this.card.NickName__c + ': adding css class');
-    //             }
-    //             else {
-    //                 this.isSelected = false;
-    //             }
-    //         }
-    //         if(!this.card.Unassigned__c && this.card.Reveal__c){
-    //             this.showLogs('cardDisplay: reveal card: ' + this.card.Reveal__c, ' : ' + this.card.Final_Card_Name__c );
-    //             this.revealCard = true;
-    //         }
-    //     }
-    // }
+    get displayClass(){
+        let dClass = "cardimage";
+        if(isSelected){
+            dClass += " selected";
+        }
+
+        return dClass;
+    }
 
     handleFlipCard(){
-        // this.cardImage = (this.cardImage === this.cardBack) ?  this.characterImage : this.cardBack;
         this.showBackImage = !this.showBackImage;
     }
 
-    // handleRevealCard(info){
-    //     if(info.Id === this.card.Id){
-    //         this.showLogs('cardDisplay: in handleRevealCard');
-    //         this.cardImage = info.Final_Card_Image__c;
-    //     }
-    // }
 
     handleCardClick(){
         if(this.cardImage != this.cardBack){
@@ -206,10 +114,6 @@ export default class CardDisplay extends LightningElement {
             if(this.checkAction()){
                 this.fireEvent();
             }
-                // this.checkAction()
-                // .then(
-                    
-                // );
         }
     }
 
@@ -253,8 +157,7 @@ export default class CardDisplay extends LightningElement {
                 break;
             case 'Troublemaker':
                 this.showLogs('checkAction Troublemaker');
-                if(this.card.allowFlip && this.actionCount < this.actionCountMax){
-                    this.handleFlipCard();
+                if(this.actionCount < this.actionCountMax){
                     isValid = true;
                 }
                 break;
