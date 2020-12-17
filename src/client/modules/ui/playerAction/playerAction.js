@@ -373,7 +373,7 @@ export default class TheGame extends LightningElement {
 
     handleTroublemakerUpdate(){
 
-        fireEvent({player1 : this.troublemakerSelections[0], player2 : this.troublemakerSelections[1]});
+        this.fireEvent({player1 : this.troublemakerSelections[0], player2 : this.troublemakerSelections[1]});
     }
 
     fireEvent(eventDetails){
