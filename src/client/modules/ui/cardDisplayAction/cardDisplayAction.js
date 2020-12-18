@@ -169,11 +169,13 @@ export default class CardDisplay extends LightningElement {
                     this.isSelected = true;
                 }
                 break;
-    //         case 'Done':
-    //             if((this.card.IsSelected__c || (!this.card.IsSelected__c && this.actions.allowSelection)) && this.card.Id != this.playerInfo.Id){
-    //                 isValid = true;
-    //             }
-    //             break;            
+            case 'Voting':
+                this.showLogs('checkAction Voting');
+                if(this.actionCount < this.actionCountMax){
+                    isValid = true;
+                    this.isSelected = true;
+                }
+                break;          
             default:
                 this.showLogs('cardDisplay: do nothing');
         }

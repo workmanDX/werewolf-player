@@ -274,8 +274,8 @@ export default class TheGame extends LightningElement {
             case 'Drunk':
                 this.handleDrunkAction(detail);
                 break;
-    //         case 'Done':
-    //             this.handleVoteAction(detail);
+            case 'Voting':
+                this.handleVoteAction(detail);
     //         default:
     //             window.console.log('handleCardClick: do nothing');
         }
@@ -323,16 +323,11 @@ export default class TheGame extends LightningElement {
         this.handleDrunkUpdate(detail.cardInfo);
     }
 
-    // handleVoteAction(detail){
-    //     if(this.actions.voteSelectOne && this.actions.voteSelectOne.Id === detail.cardInfo.Id){
-    //         this.actions.voteSelectOne = null;
-    //     } else {
-    //         this.actions.voteSelectOne = detail.cardInfo;
-    //     }
-    //     this.actionCount ++;
-    //     // detail.cardInfo.IsSelected__c = !detail.cardInfo.IsSelected__c;
-    //     // voteSelectOne
-    // }
+    handleVoteAction(detail){
+        this.showLogs('handleVoteAction');
+        this.actionCount ++;
+        this.handleVoteUpdate(detail.cardInfo);
+    }
 
         // handleDoppelgangerAction(detail){
     //     this.actions.doppelSelection = detail.doppelSelection;
@@ -360,6 +355,10 @@ export default class TheGame extends LightningElement {
     }
 
     handleRobberUpdate(cardInfo){
+        this.fireEvent({player1: cardInfo});
+    }
+
+    handleVoteUpdate(cardInfo){
         this.fireEvent({player1: cardInfo});
     }
 

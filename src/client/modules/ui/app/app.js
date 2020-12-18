@@ -141,6 +141,7 @@ export default class App extends LightningElement {
         let detail = event.detail;
         this.showLogs('handleCardSwap player1.Id = ' + detail.player1.playerId);
         this.showLogs('handleCardSwap this.player.id = ' + this.playerId);
+        this.showLogs('handleCardSwap this.actionInfo.id = ' + this.actionInfo.id);
         if(detail.player2 != undefined){
             cardSwap(detail.player1.playerId, detail.player2.playerId, this.actionInfo.id);
         } else {
