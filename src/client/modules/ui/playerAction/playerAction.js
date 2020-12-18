@@ -271,9 +271,9 @@ export default class TheGame extends LightningElement {
             case 'Troublemaker':
                 this.handleTroublemakerAction(detail);
                 break;
-    //         case 'Drunk':
-    //             this.handleDrunkAction(detail);
-    //             break;
+            case 'Drunk':
+                this.handleDrunkAction(detail);
+                break;
     //         case 'Done':
     //             this.handleVoteAction(detail);
     //         default:
