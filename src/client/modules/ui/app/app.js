@@ -113,6 +113,13 @@ export default class App extends LightningElement {
                     // this.messageData = message.data;
                     this.checkAction(message.data.body.actionInfo);
                     break;
+                case STAGES.VOTING:
+                    this.showLogs('STAGES.VOTING');
+                    this.showLogs('handleWsMessage message.data.body.info.action = '+ JSON.stringify(message.data.body.info.action));
+                    this.actionName = message.data.body.info.action;
+                    // this.messageData = message.data;
+                    this.checkAction(message.data.body.actionInfo);
+                    break;
                 default:
             }
         }
