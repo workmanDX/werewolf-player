@@ -9,10 +9,30 @@
     display: flex;    
 }
 
-/* .cardimage:hover {
-    background-color: gray;
-    opacity: .75;
-} */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .cardimage {max-width: 60px;}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .cardimage {max-width: 60px;}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .cardimage {max-width: 80px;}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .cardimage {max-width: 80px;}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .cardimage {max-width: 120px;}
+}
 
 .selected {
     background-color: blue;
