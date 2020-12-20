@@ -83,22 +83,40 @@ export default class TheGame extends LightningElement {
         this.actionCount = this.actionInfo.actionCount;
 
         let playerList = this.actionInfo.players;
-        for(var key in playerList){
-            this.showLogsJson('playerList: ' + key, playerList[key]);
-            this.playersForAction.push(playerList[key]);
-        }
+        this.playersForAction = this.sortPlayersForAction(playerList);
         if(this.actionInfo.centerPlayers != undefined){
             let centerPlayers = this.actionInfo.centerPlayers;
-            for(var key in centerPlayers){
-                this.showLogsJson('centerList: ' + key, centerPlayers[key]);
-                this.centerPlayersForAction.push(centerPlayers[key]);
-            }
+            this.centerPlayersForAction = this.sortPlayersForAction(centerPlayers);
         }
+
+        // if(this.actionInfo.centerPlayers != undefined){
+        //     let centerPlayers = this.actionInfo.centerPlayers;
+        //     for(var key in centerPlayers){
+        //         this.showLogsJson('centerList: ' + key, centerPlayers[key]);
+        //         this.centerPlayersForAction.push(centerPlayers[key]);
+        //     }
+        // }
 
         this.showLogsJson('playersForAction = ', this.playersForAction);
         this.showLogsJson('centerPlayersForAction = ', this.centerPlayersForAction);
     }
 
+    sortPlayersForAction(playerList){
+        let newList = [];
+
+        for(var key in playerList){
+            this.showLogsJson('playerList: ' + key, playerList[key]);
+            newList.push(playerList[key]);
+        }
+
+        newList.sort(function(a, b){
+            if(a.playerId < b.playerId) { return -1; }
+            if(a.playerId > b.playerId) { return 1; }
+            return 0;
+        })
+
+        return newList;
+    }
 
 
     // prepActionVars(){
