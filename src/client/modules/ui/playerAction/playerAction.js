@@ -54,6 +54,7 @@ export default class TheGame extends LightningElement {
     @track playersForAction = [];
     @track centerPlayersForAction = [];
     @track centerPlayerAction = false;
+    @track showCenterPlayers = false;
 
     showLogs(message){
         window.console.log('playerAction: ', message);
@@ -87,6 +88,7 @@ export default class TheGame extends LightningElement {
         if(this.actionInfo.centerPlayers != undefined){
             let centerPlayers = this.actionInfo.centerPlayers;
             this.centerPlayersForAction = this.sortPlayersForAction(centerPlayers);
+            this.showCenterPlayers = true;
         }
 
         // if(this.actionInfo.centerPlayers != undefined){

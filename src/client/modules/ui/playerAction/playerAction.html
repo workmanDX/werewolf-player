@@ -13,7 +13,7 @@
     <!-- ********Modal Start*************** -->
     <template if:true={showAction}>
         <div>
-            <template if:true={centerPlayersForAction}>                                
+            <template if:true={showCenterPlayers}>                                
                 <div class="centerPlayercontainer">
                     <template for:each={centerPlayersForAction} for:item="card">
                         <ui-card-display-action 
