@@ -10,5 +10,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
-    border: 2px black solid;
+    border-bottom: 2px black solid;
+    margin-bottom: 15px;
 }
