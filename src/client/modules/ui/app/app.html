@@ -24,10 +24,14 @@
                     <ui-spinner></ui-spinner>
                 </template>
 
+                <template if:true={isPlayGamePhase}>
+                    <h1>Wait for your turn...</h1>
+                    <ui-spinner></ui-spinner>
+                </template>
+
                 <!-- Dealing -->
                 <template if:true={showGame}>
                     <div class="player">
-                        <h1>Ready Stage</h1>
                         <ui-player-display
                             player={player}
                             card-back={gameInfo.herokuCardBack}

@@ -218,12 +218,12 @@ export default class App extends LightningElement {
     }
 
     get showGame() {
-        return ((this.gameInfo.stage === STAGES.READY || this.isPlayGamePhase) && this.player != undefined && this.player != null && !this.showAction);
+        return this.gameInfo.stage === STAGES.READY;
         // return (this.gameInfo.stage === STAGES.READY);
     }
 
     get isPlayGamePhase() {
-        return this.gameInfo.stage === STAGES.GAME_PLAY;
+        return this.gameInfo.stage === STAGES.GAME_PLAY && this.player != undefined && this.player != null && !this.showAction;
     }
 
     get isVotingPhase() {
