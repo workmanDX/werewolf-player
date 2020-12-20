@@ -12,31 +12,47 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .cardimage {
-        max-width: 25%;
+        max-width: 100px;
         padding: 2px;
-        margin:1%;
+        margin:5px;
     }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    .cardimage {max-width: 60px;}
+    .cardimage {
+        max-width: 100px;
+        padding: 2px;
+        margin:5px;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    .cardimage {max-width: 80px;}
+    .cardimage {
+        max-width: 1100px;
+        padding: 2px;
+        margin:5px;
+    }
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    .cardimage {max-width: 80px;}
+    .cardimage {
+        max-width: 110px;
+        padding: 2px;
+        margin:5px;
+    }
 } 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    .cardimage {max-width: 120px;}
-}
+/* @media only screen and (min-width: 1200px) {
+    .cardimage {
+        max-width: 100px;
+        padding: 2px;
+        margin:5px;
+    }
+} */
 
 .selected {
     background-color: blue;
