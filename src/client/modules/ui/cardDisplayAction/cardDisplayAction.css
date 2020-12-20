@@ -30,7 +30,7 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .cardimage {
-        max-width: 100px;
+        max-width: 120px;
         padding: 2px;
         margin:5px;
     }
@@ -39,7 +39,7 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .cardimage {
-        max-width: 100px;
+        max-width: 120px;
         padding: 2px;
         margin:5px;
     }
