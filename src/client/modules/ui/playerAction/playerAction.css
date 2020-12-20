@@ -3,4 +3,5 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
+    border: 2px black solid;
 }
