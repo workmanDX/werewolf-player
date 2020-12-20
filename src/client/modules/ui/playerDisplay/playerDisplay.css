@@ -10,22 +10,18 @@ img {
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
     img {
         max-width: 120px;
-        padding: 2px;
-        margin:5px;
     }
-}
+} */
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
     img {
         max-width: 120px;
-        padding: 2px;
-        margin:5px;
     }
-}
+} */
 
 h2 {
     text-align: center;
