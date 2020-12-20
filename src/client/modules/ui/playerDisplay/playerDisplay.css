@@ -1,11 +1,11 @@
 img {
-    border: 2px black solid;
+    /* border: 2px black solid; */
     border-radius: 5px;
     background-color: white;
     margin:auto;
     padding: 2px;
     display: block;
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
 }
 
