@@ -70,13 +70,15 @@ export default class App extends LightningElement {
             window.location.host;
         // Connect WebSocket
         this.ws = new WebSocketClient(wsUrl);
-        this.ws.connect();
+        let connected = this.ws.connect();
         this.ws.addMessageListener((message) => {
             this.handleWsMessage(message);
         });
 
-        if (playerId) {
-            this.setPlayer(playerId);
+        if(connected){
+            if (playerId) {
+                this.setPlayer(playerId);
+            }
         }
         //add something here to check if the player Id is still valid
     }

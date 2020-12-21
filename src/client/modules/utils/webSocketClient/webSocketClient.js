@@ -10,6 +10,7 @@ export class WebSocketClient {
         this.ws = new WebSocket(this.url);
         this.ws.addEventListener('open', () => {
             console.log('WS open');
+            return true;
             this.heartbeat();
         });
 
