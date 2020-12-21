@@ -93,7 +93,7 @@ export default class CardDisplay extends LightningElement {
 
     get displayClass(){
         let dClass = "cardimage";
-        if(this.isSelected){
+        if(this.isSelected || this.card.showCharacter){
             dClass += " true";
         } else {
             dClass += " false";
