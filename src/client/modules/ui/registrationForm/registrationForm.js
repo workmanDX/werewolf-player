@@ -17,7 +17,7 @@ export default class RegistrationForm extends LightningElement {
     nicknameError;
 
     playerId;
-    _playerId = 'a024x000001WXRtAAO';
+    _playerId;
 
     isLoading = false;
     isRegistering = false;
@@ -37,6 +37,8 @@ export default class RegistrationForm extends LightningElement {
         this.showLogs('connectedCallback');
         if(this.playerId != undefined){
             this._playerId = this.playerId;
+        } else {
+            this._playerId = 'a024x000001WXRtAAO';
         }
     }
 
