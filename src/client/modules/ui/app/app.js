@@ -31,7 +31,7 @@ export default class App extends LightningElement {
     actionName;
     @track player;
     @track showAction = false;
-    @track hideRegistration = true;
+    @track showRegistration = false;
 
     tempCard = "resources/images/characters/werewolf.jpg";
 
@@ -236,7 +236,7 @@ export default class App extends LightningElement {
     // UI expressions
 
     get isAuthenticated() {
-        return this.nickname !== '' && !hideRegistration;
+        return this.nickname !== '';
     }
 
     get isRegistrationStage() {
