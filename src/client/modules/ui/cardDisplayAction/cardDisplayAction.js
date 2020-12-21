@@ -138,6 +138,7 @@ export default class CardDisplay extends LightningElement {
                 this.showLogs('checkAction Werewolf');
                 if(this.card.allowFlip && this.actionCount < this.centerPlayerActionCountMax){
                     this.handleFlipCard();
+                    this.isSelected = true;
                     isValid = true;
                 }
                 break;
@@ -146,6 +147,7 @@ export default class CardDisplay extends LightningElement {
                 let actionCountMax = this.centerPlayerAction ? this.centerPlayerActionCountMax : this.actionCountMax;
                 if(this.card.allowFlip && this.actionCount < actionCountMax){
                     this.handleFlipCard();
+                    this.isSelected = true;
                     isValid = true;
                 }
                 break;
@@ -153,6 +155,7 @@ export default class CardDisplay extends LightningElement {
                 this.showLogs('checkAction Robber');
                 if(this.card.allowFlip && this.actionCount < this.actionCountMax){
                     this.handleFlipCard();
+                    this.isSelected = true;
                     isValid = true;
                 }
                 break;

@@ -7,7 +7,7 @@ import { WebSocketClient } from 'utils/webSocketClient';
 
 // import { PHASES, getCurrentSession } from 'services/session';
 import { STAGES, getGameInfo, cardSwap } from 'services/game';
-// import { getPlayerLeaderboard } from 'services/player';
+import { isPlayerIdValid } from 'services/player';
 import { submitAnswer } from 'services/answer';
 
 const COOKIE_PLAYER_NICKNAME = 'nickname';
@@ -61,8 +61,19 @@ export default class App extends LightningElement {
         }
     }
 
+    @wire(isPlayerIdValid, { playerId: '$playerId' })
+    isPlayerIdValid({ error, data }) {
+        if (data) {
+            const { playerId, isValid } = data;
+            this.isLoading = false;
+            this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+        } else if (error) {
+            this.isLoading = false;
+        }
+    }
+
     connectedCallback() {
-        this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+        let nickname = getCookie(COOKIE_PLAYER_NICKNAME);
         const playerId = getCookie(COOKIE_PLAYER_ID);
 
         if (playerId) {
@@ -85,6 +96,30 @@ export default class App extends LightningElement {
     disconnectedCallback() {
         this.ws.close();
     }
+
+    // isPlayerIdValid(){
+    //     this.isLoading = true;
+    //     this.isRegistering = true;
+    //     const nickname = this.nickname.trim();
+    //     // registerPlayer(nickname, this.email)
+    //     checkPlayer(nickname, playerId)
+    //         .then((result) => {
+    //             this.dispatchEvent(
+    //                 new CustomEvent('registered', {
+    //                     detail: {
+    //                         nickname,
+    //                         playerId: result.id
+    //                     }
+    //                 })
+    //             );
+    //         })
+    //         .catch((error) => {
+    //             this.isLoading = false;
+    //             this.isRegistering = false;
+    //             this.isNicknameValid = false;
+    //             this.formError = getErrorMessage(error);
+    //         });
+    // }
 
     handleWsMessage(message) {
         // this.showLogs('handleWsMessage = '+ JSON.stringify(message));

@@ -18,6 +18,20 @@ export function isNicknameAvailable(config) {
 }
 
 /**
+ * Checks if a given player id is valid
+ * @param {*} config object that contains Id
+ */
+export function isPlayerIdValid(config) {
+    return new Promise((resolve, reject) => {
+        const observer = {
+            next: (data) => resolve(data),
+            error: (error) => reject(error)
+        };
+        getPlayerIdData(config, observer);
+    });
+}
+
+/**
  * Gets a player's leaderboard (score and rank)
  * @param {*} config
  */
@@ -54,13 +68,60 @@ export function getPlayerStats(config) {
 export function registerPlayer(nickname, gameId) {
     const userInfo = { nickname, gameId };
     return fetch(PLAYERS_REST_URL, {
-        method: 'post',
+        method: 'get',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(userInfo)
     }).then(fetchJson);
+}
+
+/**
+ * Registers a player
+ * @param {string} nickname
+ * @param {string} playerId
+ * @returns {Promise<*>} Promise holding the Player record
+ */
+export function checkPlayer(nickname, playerId) {
+    const userInfo = { nickname, playerId };
+    // Call players API to check if playerId exists
+    fetch(`${PLAYERS_REST_URL}/${playerId}/validate`{
+        headers: {
+            pragma: 'no-cache',
+            'Cache-Control': 'no-cache'
+        }
+    })
+        .then(fetchJson)
+        .then((jsonResponse) => {
+            observer.next(jsonResponse);
+        })
+        .catch((error) => {
+            observer.error(error);
+        });
+}
+
+function getPlayerIdData(config, observer) {
+    const playerId = config && config.playerId ? config.playerId : null;
+    if (playerId === null) {
+        // observer.next({ playerId: '', isAvailable: true });
+        return;
+    }
+
+    // Call players API to check if playerId is available (cache disabled)
+    fetch(`${PLAYERS_REST_URL}/validate?playerId=${playerId}`, {
+        headers: {
+            pragma: 'no-cache',
+            'Cache-Control': 'no-cache'
+        }
+    })
+        .then(fetchJson)
+        .then((jsonResponse) => {
+            observer.next(jsonResponse);
+        })
+        .catch((error) => {
+            observer.error(error);
+        });
 }
 
 function getNicknameData(config, observer) {
@@ -124,6 +185,33 @@ function getPlayerStatsData(config, observer) {
             observer.error(error);
         });
 }
+
+register(getNicknameData, (eventTarget) => {
+    let config;
+    eventTarget.dispatchEvent(
+        new ValueChangedEvent({ data: undefined, error: undefined })
+    );
+
+    const observer = {
+        next: (data) =>
+            eventTarget.dispatchEvent(
+                new ValueChangedEvent({ data, error: undefined })
+            ),
+        error: (error) =>
+            eventTarget.dispatchEvent(
+                new ValueChangedEvent({ data: undefined, error })
+            )
+    };
+
+    eventTarget.addEventListener('config', (newConfig) => {
+        config = newConfig;
+        getNicknameData(config, observer);
+    });
+
+    eventTarget.addEventListener('connect', () => {
+        getNicknameData(config, observer);
+    });
+});
 
 register(isNicknameAvailable, (eventTarget) => {
     let config;
