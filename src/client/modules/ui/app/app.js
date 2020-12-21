@@ -31,6 +31,7 @@ export default class App extends LightningElement {
     actionName;
     @track player;
     @track showAction = false;
+    @track showRegistration = false;
 
     tempCard = "resources/images/characters/werewolf.jpg";
 
@@ -79,6 +80,8 @@ export default class App extends LightningElement {
         const playerId = getCookie(COOKIE_PLAYER_ID);
         if(playerId){
             this.playerId = playerId;
+            this.showRegistration = true;
+
         }
     }
 
@@ -233,7 +236,7 @@ export default class App extends LightningElement {
     // UI expressions
 
     get isAuthenticated() {
-        return this.nickname !== '';
+        return this.nickname !== '' && showRegistration;
     }
 
     get isRegistrationStage() {
