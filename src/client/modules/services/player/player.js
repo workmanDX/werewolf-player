@@ -86,7 +86,7 @@ export function registerPlayer(nickname, gameId) {
 export function checkPlayer(nickname, playerId) {
     const userInfo = { nickname, playerId };
     // Call players API to check if playerId exists
-    fetch(`${PLAYERS_REST_URL}/${playerId}/validate`{
+    fetch(`${PLAYERS_REST_URL}/${playerId}/validate`,{
         headers: {
             pragma: 'no-cache',
             'Cache-Control': 'no-cache'
