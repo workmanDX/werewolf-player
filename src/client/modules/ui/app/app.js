@@ -63,17 +63,22 @@ export default class App extends LightningElement {
 
     @wire(isPlayerIdValid, { playerId: '$playerId' })
     isPlayerIdValid({ error, data }) {
+        this.showLogs('isPlayerIdValid');
         if (data) {
+            this.showLogsJson('isPlayerIdValid: data = ', data);
             const { playerId, isValid } = data;
             this.isLoading = false;
-            this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+            if(!isValid){
+                this.nickname = null;
+            }
+            
         } else if (error) {
             this.isLoading = false;
         }
     }
 
     connectedCallback() {
-        let nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+        this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
         const playerId = getCookie(COOKIE_PLAYER_ID);
 
         if (playerId) {
