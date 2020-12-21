@@ -62,7 +62,8 @@ export default class App extends LightningElement {
 
     connectedCallback() {
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
-        const playerId = getCookie(COOKIE_PLAYER_ID);
+        // const playerId = getCookie(COOKIE_PLAYER_ID);
+        const playerId = 'a024x000001WXRtAAO';
 
         // Get WebSocket URL
         const wsUrl =
