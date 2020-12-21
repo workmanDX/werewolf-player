@@ -25,7 +25,16 @@ export default class RegistrationForm extends LightningElement {
 
     validationDelayTimeout;
 
+    showLogs(message){
+        window.console.log('playerApp: ', message);
+    }
+
+    showLogsJson(message, obj){
+        window.console.log('playerApp: ', message, ': ', JSON.stringify(obj));
+    }
+
     connectedCallback() {
+        this.showLogs('connectedCallback');
         if(this.playerId != undefined){
             this._playerId = this.playerId;
         }
