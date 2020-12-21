@@ -77,34 +77,10 @@ export function registerPlayer(nickname, gameId) {
     }).then(fetchJson);
 }
 
-/**
- * Registers a player
- * @param {string} nickname
- * @param {string} playerId
- * @returns {Promise<*>} Promise holding the Player record
- */
-export function checkPlayer(nickname, playerId) {
-    const userInfo = { nickname, playerId };
-    // Call players API to check if playerId exists
-    fetch(`${PLAYERS_REST_URL}/${playerId}/validate`,{
-        headers: {
-            pragma: 'no-cache',
-            'Cache-Control': 'no-cache'
-        }
-    })
-        .then(fetchJson)
-        .then((jsonResponse) => {
-            observer.next(jsonResponse);
-        })
-        .catch((error) => {
-            observer.error(error);
-        });
-}
-
 function getPlayerIdData(config, observer) {
     const playerId = config && config.playerId ? config.playerId : null;
     if (playerId === null) {
-        // observer.next({ playerId: '', isAvailable: true });
+        observer.next({ playerId: '', isValid: false });
         return;
     }
 
