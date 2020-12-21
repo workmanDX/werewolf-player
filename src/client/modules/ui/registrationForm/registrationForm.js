@@ -26,26 +26,10 @@ export default class RegistrationForm extends LightningElement {
     validationDelayTimeout;
 
     connectedCallback() {
-        this.timeDelay();
-    }
-
-    timeDelay(){
-        this.showLogs('start wait');
-        this.wait(100);
-        this.showLogs('end wait');
         if(this.playerId != undefined){
             this._playerId = this.playerId;
         }
     }
-
-    wait(ms){
-        this.showLogs('in wait');
-        var start = new Date().getTime();
-        var end = start;
-        while(end < start + ms) {
-          end = new Date().getTime();
-       }
-     }
 
     @wire(getConfiguration)
     getConfiguration({ error, data }) {

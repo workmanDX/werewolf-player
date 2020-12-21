@@ -61,9 +61,6 @@ export default class App extends LightningElement {
     }
 
     connectedCallback() {
-        this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
-        const playerId = getCookie(COOKIE_PLAYER_ID);
-
         // Get WebSocket URL
         const wsUrl =
             (window.location.protocol === 'http:' ? 'ws://' : 'wss://') +
@@ -74,13 +71,35 @@ export default class App extends LightningElement {
         this.ws.addMessageListener((message) => {
             this.handleWsMessage(message);
         });
-
-        if(connected){
-            if (playerId) {
-                this.setPlayer(playerId);
-            }
-        }
+        this.timeDelay();
+        
         //add something here to check if the player Id is still valid
+    }
+
+
+    timeDelay(){
+        this.showLogs('start wait');
+        this.wait(100);
+        this.showLogs('end wait');
+        this.setPlayerId();
+    }
+
+    wait(ms){
+        this.showLogs('in wait');
+        var start = new Date().getTime();
+        var end = start;
+        while(end < start + ms) {
+          end = new Date().getTime();
+       }
+    }
+
+    setPlayerId(){
+        this.showLogs('setPlayerId');
+        this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+        const playerId = getCookie(COOKIE_PLAYER_ID);
+        if(playerId){
+            this.playerId = playerId;
+        }
     }
 
     disconnectedCallback() {
