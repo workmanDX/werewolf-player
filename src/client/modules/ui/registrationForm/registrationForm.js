@@ -2,7 +2,7 @@ import { LightningElement, wire, api } from 'lwc';
 import { getErrorMessage } from 'utils/error';
 
 import { getConfiguration } from 'services/configuration';
-import { isNicknameAvailable, registerPlayer } from 'services/player';
+import { isNicknameAvailable, registerPlayer, isPlayerIdValid } from 'services/player';
 
 const VALIDATION_DELAY = 500;
 
@@ -15,6 +15,8 @@ export default class RegistrationForm extends LightningElement {
     cleanNickname;
     isNicknameValid;
     nicknameError;
+
+    playerId;
 
     isLoading = false;
     isRegistering = false;
@@ -44,6 +46,24 @@ export default class RegistrationForm extends LightningElement {
             this.isLoading = false;
             this.isNicknameValid = false;
             this.nicknameError = getErrorMessage(error);
+        }
+    }
+
+    @wire(isPlayerIdValid, { playerId: '$playerId' })
+    isPlayerIdValid({ error, data }) {
+        this.showLogs('isPlayerIdValid');
+        if (data) {
+            this.showLogsJson('isPlayerIdValid: data = ', data);
+            const { playerId, isValid } = data;
+            this.isLoading = false;
+            if(!isValid){
+                this.showLogs('notvalid)');
+                this.nickname = null;
+            }
+            
+        } else if (error) {
+            this.isLoading = false;
+            this.showLogs('valid)');
         }
     }
 

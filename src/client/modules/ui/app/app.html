@@ -8,6 +8,7 @@
                 <template if:true={isRegistrationStage}>
                     <ui-registration-form
                         game-id={gameInfo.gameId}
+                        player-id={playerId}
                         onregistered={handleRegistered}
                     ></ui-registration-form>
                 </template>

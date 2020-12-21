@@ -7,7 +7,6 @@ import { WebSocketClient } from 'utils/webSocketClient';
 
 // import { PHASES, getCurrentSession } from 'services/session';
 import { STAGES, getGameInfo, cardSwap } from 'services/game';
-import { isPlayerIdValid } from 'services/player';
 import { submitAnswer } from 'services/answer';
 
 const COOKIE_PLAYER_NICKNAME = 'nickname';
@@ -61,24 +60,8 @@ export default class App extends LightningElement {
         }
     }
 
-    // @wire(isPlayerIdValid, { playerId: '$playerId' })
-    // isPlayerIdValid({ error, data }) {
-    //     this.showLogs('isPlayerIdValid');
-    //     if (data) {
-    //         this.showLogsJson('isPlayerIdValid: data = ', data);
-    //         const { playerId, isValid } = data;
-    //         this.isLoading = false;
-    //         if(!isValid){
-    //             this.nickname = null;
-    //         }
-            
-    //     } else if (error) {
-    //         this.isLoading = false;
-    //     }
-    // }
-
     connectedCallback() {
-        this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+        // this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
         const playerId = getCookie(COOKIE_PLAYER_ID);
 
         // Get WebSocket URL
