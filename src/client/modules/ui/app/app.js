@@ -67,7 +67,7 @@ export default class App extends LightningElement {
             window.location.host;
         // Connect WebSocket
         this.ws = new WebSocketClient(wsUrl);
-        let connected = this.ws.connect();
+        this.ws.connect();
         this.ws.addMessageListener((message) => {
             this.handleWsMessage(message);
         });
@@ -77,14 +77,14 @@ export default class App extends LightningElement {
     }
 
 
-    timeDelay(){
+    async timeDelay(){
         this.showLogs('start wait');
         this.wait(100);
         this.showLogs('end wait');
         this.setPlayerId();
     }
 
-    wait(ms){
+    async wait(ms){
         this.showLogs('in wait');
         var start = new Date().getTime();
         var end = start;
