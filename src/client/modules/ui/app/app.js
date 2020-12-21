@@ -14,7 +14,7 @@ const COOKIE_PLAYER_ID = 'playerId';
 const COOKIE_ANSWER = 'answer';
 
 export default class App extends LightningElement {
-    nickname;
+    nickname = '';
     gameInfo;
     errorMessage;
     playerLeaderboard = { score: '-', rank: '-' };
