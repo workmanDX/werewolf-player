@@ -12,6 +12,9 @@
                         onregistered={handleRegistered}
                     ></ui-registration-form>
                 </template>
+                <button onclick={setPlayerId}>
+                    <div class="label">Set Player Id</div>
+                </button>
                 <template if:false={isRegistrationStage}>
                     <h1>Sorry, registrations are closed.</h1>
                 </template>
