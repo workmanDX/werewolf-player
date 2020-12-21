@@ -62,6 +62,13 @@ export default class App extends LightningElement {
     }
 
     connectedCallback() {
+        this.showLogs('setPlayerId');
+        this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+        const playerId = getCookie(COOKIE_PLAYER_ID);
+        if(playerId){
+            this.setPlayer(playerId);
+        }
+
         // Get WebSocket URL
         const wsUrl =
             (window.location.protocol === 'http:' ? 'ws://' : 'wss://') +
@@ -75,14 +82,7 @@ export default class App extends LightningElement {
     }
 
     setPlayerId(){
-        this.showLogs('setPlayerId');
-        this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
-        const playerId = getCookie(COOKIE_PLAYER_ID);
-        if(playerId){
-            this.playerId = playerId;
-            this.showRegistration = true;
-
-        }
+        this.showRegistration = true;
     }
 
     disconnectedCallback() {
