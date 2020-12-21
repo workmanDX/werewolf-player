@@ -17,12 +17,19 @@ export default class RegistrationForm extends LightningElement {
     nicknameError;
 
     playerId;
+    _playerId = 'a024x000001WXRtAAO';
 
     isLoading = false;
     isRegistering = false;
     formError = '';
 
     validationDelayTimeout;
+
+    connectedCallback() {
+        if(this.playerId != undefined){
+            this._playerId = this.playerId;
+        }
+    }
 
     @wire(getConfiguration)
     getConfiguration({ error, data }) {
@@ -49,7 +56,7 @@ export default class RegistrationForm extends LightningElement {
         }
     }
 
-    @wire(isPlayerIdValid, { playerId: '$playerId' })
+    @wire(isPlayerIdValid, { playerId: '$_playerId' })
     isPlayerIdValid({ error, data }) {
         this.showLogs('isPlayerIdValid');
         if (data) {
