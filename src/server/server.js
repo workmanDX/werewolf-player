@@ -75,7 +75,7 @@ const playerRest = new PlayerRestResource(sfdc);
 app.get('/api/players', (request, response) => {
     playerRest.isNicknameAvailable(request, response);
 });
-app.get('/api/players/validate', (request, response) => {
+app.get('/api/playersValidate', (request, response) => {
     playerRest.isPlayerIdValid(request, response);
 });
 

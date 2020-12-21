@@ -85,7 +85,7 @@ function getPlayerIdData(config, observer) {
     }
 
     // Call players API to check if playerId is available (cache disabled)
-    fetch(`${PLAYERS_REST_URL}/validate?playerId=${playerId}`, {
+    fetch(`${PLAYERS_REST_URL}Validate?playerId=${playerId}`, {
         headers: {
             pragma: 'no-cache',
             'Cache-Control': 'no-cache'
