@@ -236,7 +236,7 @@ export default class App extends LightningElement {
     // UI expressions
 
     get isAuthenticated() {
-        return this.nickname !== '' && hideRegistration;
+        return this.nickname !== '' && !hideRegistration;
     }
 
     get isRegistrationStage() {
