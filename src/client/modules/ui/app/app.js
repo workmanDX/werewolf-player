@@ -81,11 +81,6 @@ export default class App extends LightningElement {
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
         const playerId = getCookie(COOKIE_PLAYER_ID);
 
-        if (playerId) {
-            this.setPlayer(playerId);
-        }
-        //add something here to check if the player Id is still valid
-
         // Get WebSocket URL
         const wsUrl =
             (window.location.protocol === 'http:' ? 'ws://' : 'wss://') +
@@ -96,6 +91,11 @@ export default class App extends LightningElement {
         this.ws.addMessageListener((message) => {
             this.handleWsMessage(message);
         });
+
+        if (playerId) {
+            this.setPlayer(playerId);
+        }
+        //add something here to check if the player Id is still valid
     }
 
     disconnectedCallback() {
