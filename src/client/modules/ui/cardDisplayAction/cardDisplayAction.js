@@ -69,32 +69,34 @@ export default class CardDisplay extends LightningElement {
         return cImage;
     }
 
-    get imageWidth(){
-        let width = 120
-        if(this.formFactor === 'Small'){
-            width = 60;
-        } 
-        else if(this.formFactor === 'Medium'){
-            width = 80;
-        }
-        return width;
-    }
+    // get imageWidth(){
+    //     let width = 120
+    //     if(this.formFactor === 'Small'){
+    //         width = 60;
+    //     } 
+    //     else if(this.formFactor === 'Medium'){
+    //         width = 80;
+    //     }
+    //     return width;
+    // }
 
-    get imageHeight(){
-        let height = 150;
-        if(this.formFactor === 'Small'){
-            height = 75;
-        } 
-        else if(this.formFactor === 'Medium'){
-            height = 100;
-        }
-        return height;       
-    }
+    // get imageHeight(){
+    //     let height = 150;
+    //     if(this.formFactor === 'Small'){
+    //         height = 75;
+    //     } 
+    //     else if(this.formFactor === 'Medium'){
+    //         height = 100;
+    //     }
+    //     return height;       
+    // }
 
     get displayClass(){
         let dClass = "cardimage";
         if(this.isSelected){
-            dClass += " selected";
+            dClass += " true";
+        } else {
+            dClass += " false";
         }
 
         return dClass;
@@ -103,7 +105,6 @@ export default class CardDisplay extends LightningElement {
     handleFlipCard(){
         this.showBackImage = !this.showBackImage;
     }
-
 
     handleCardClick(){
         if(this.cardImage != this.cardBack){
