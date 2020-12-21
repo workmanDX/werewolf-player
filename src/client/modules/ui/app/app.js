@@ -68,8 +68,7 @@ export default class App extends LightningElement {
         if (playerId) {
             this.setPlayer(playerId);
         }
-        // this.lastAnswer = getCookie(COOKIE_ANSWER);
-        // this.answerSaved = false;
+        //add something here to check if the player Id is still valid
 
         // Get WebSocket URL
         const wsUrl =
