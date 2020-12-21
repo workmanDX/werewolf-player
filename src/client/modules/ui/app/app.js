@@ -61,21 +61,21 @@ export default class App extends LightningElement {
         }
     }
 
-    // @wire(isPlayerIdValid, { playerId: '$playerId' })
-    // isPlayerIdValid({ error, data }) {
-    //     this.showLogs('isPlayerIdValid');
-    //     if (data) {
-    //         this.showLogsJson('isPlayerIdValid: data = ', data);
-    //         const { playerId, isValid } = data;
-    //         this.isLoading = false;
-    //         if(!isValid){
-    //             this.nickname = null;
-    //         }
+    @wire(isPlayerIdValid, { playerId: '$playerId' })
+    isPlayerIdValid({ error, data }) {
+        this.showLogs('isPlayerIdValid');
+        if (data) {
+            this.showLogsJson('isPlayerIdValid: data = ', data);
+            const { playerId, isValid } = data;
+            this.isLoading = false;
+            if(!isValid){
+                this.nickname = null;
+            }
             
-    //     } else if (error) {
-    //         this.isLoading = false;
-    //     }
-    // }
+        } else if (error) {
+            this.isLoading = false;
+        }
+    }
 
     connectedCallback() {
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
