@@ -162,6 +162,33 @@ function getPlayerStatsData(config, observer) {
         });
 }
 
+register(isPlayerIdValid, (eventTarget) => {
+    let config;
+    eventTarget.dispatchEvent(
+        new ValueChangedEvent({ data: undefined, error: undefined })
+    );
+
+    const observer = {
+        next: (data) =>
+            eventTarget.dispatchEvent(
+                new ValueChangedEvent({ data, error: undefined })
+            ),
+        error: (error) =>
+            eventTarget.dispatchEvent(
+                new ValueChangedEvent({ data: undefined, error })
+            )
+    };
+
+    eventTarget.addEventListener('config', (newConfig) => {
+        config = newConfig;
+        getPlayerIdData(config, observer);
+    });
+
+    eventTarget.addEventListener('connect', () => {
+        getPlayerIdData(config, observer);
+    });
+});
+
 register(getNicknameData, (eventTarget) => {
     let config;
     eventTarget.dispatchEvent(
