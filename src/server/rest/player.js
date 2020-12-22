@@ -74,21 +74,21 @@ module.exports = class PlayerRestResource {
             return;
         }
 
-        response.json({message: 'we got to here'});
-        return;
+        // response.json({message: 'we got to here'});
+        // return;
 
-        // const soql = `SELECT Id FROM Game_Player__c WHERE Id ='${playerId}'`;
-        // this.sfdc.query(soql, (error, result) => {
-        //     if (error) {
-        //         console.error('isPlayerIdValid', error);
-        //         response.sendStatus(500);
-        //     } else {
-        //         response.json({
-        //             playerId,
-        //             isValid: result.records.length === 1
-        //         });
-        //     }
-        // });
+        const soql = `SELECT Id FROM Game_Player__c WHERE Id ='${playerId}'`;
+        this.sfdc.query(soql, (error, result) => {
+            if (error) {
+                console.error('isPlayerIdValid', error);
+                response.sendStatus(500);
+            } else {
+                response.json({
+                    playerId,
+                    isValid: result.records.length === 1
+                });
+            }
+        });
     }
 
     getPlayerLeaderboard(request, response) {
