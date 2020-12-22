@@ -8,7 +8,6 @@ const PLAYERS_REST_URL = '/api/players';
  * @param {*} config object that contains nickname
  */
 export function isNicknameAvailable(config) {
-    console.log('isNicknameAvailable');
     return new Promise((resolve, reject) => {
         const observer = {
             next: (data) => resolve(data),
@@ -23,13 +22,13 @@ export function isNicknameAvailable(config) {
  * @param {*} config object that contains Id
  */
 export function isPlayerIdValid(config) {
-    // return new Promise((resolve, reject) => {
-    //     const observer = {
-    //         next: (data) => resolve(data),
-    //         error: (error) => reject(error)
-    //     };
-    //     getPlayerIdData(config, observer);
-    // });
+    return new Promise((resolve, reject) => {
+        const observer = {
+            next: (data) => resolve(data),
+            error: (error) => reject(error)
+        };
+        getPlayerIdData(config, observer);
+    });
 }
 
 /**

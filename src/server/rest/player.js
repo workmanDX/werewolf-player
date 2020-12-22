@@ -66,8 +66,8 @@ module.exports = class PlayerRestResource {
     }
 
     isPlayerIdValid(request, response) {
-        const { playerId } = request.query;
-        if (!playerId) {
+        const { playerid } = request.query;
+        if (!playerid) {
             response
                 .status(400)
                 .json({ message: 'Missing playerId parameter.' });
@@ -77,14 +77,14 @@ module.exports = class PlayerRestResource {
         // response.json({message: 'we got to here'});
 
         const ns = Configuration.getSfNamespacePrefix();
-        const soql = `SELECT Id FROM ${ns}Game_Player__c WHERE Id ='${playerId}'`;
+        const soql = `SELECT Id FROM ${ns}Game_Player__c WHERE Id ='${playerid}'`;
         this.sfdc.query(soql, (error, result) => {
             if (error) {
                 console.error('isPlayerIdValid', error);
                 response.sendStatus(500);
             } else {
                 response.json({
-                    playerId,
+                    playerid,
                     isValid: result.records.length === 1
                 });
             }

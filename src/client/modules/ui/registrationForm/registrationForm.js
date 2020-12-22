@@ -67,23 +67,23 @@ export default class RegistrationForm extends LightningElement {
         }
     }
 
-    // @wire(isPlayerIdValid, { playerId: '$_playerId' })
-    // isPlayerIdValid({ error, data }) {
-    //     this.showLogs('isPlayerIdValid');
-    //     if (data) {
-    //         this.showLogsJson('isPlayerIdValid: data = ', data);
-    //         const { playerId, isValid } = data;
-    //         this.isLoading = false;
-    //         if(!isValid){
-    //             this.showLogs('notvalid)');
-    //             this.nickname = null;
-    //         }
+    @wire(isPlayerIdValid, { playerid: this._playerId })
+    isPlayerIdValid({ error, data }) {
+        this.showLogs('isPlayerIdValid');
+        if (data) {
+            this.showLogsJson('isPlayerIdValid: data = ', data);
+            const { playerId, isValid } = data;
+            this.isLoading = false;
+            if(!isValid){
+                this.showLogs('notvalid)');
+                this.nickname = null;
+            }
             
-    //     } else if (error) {
-    //         this.isLoading = false;
-    //         this.showLogs('valid)');
-    //     }
-    // }
+        } else if (error) {
+            this.isLoading = false;
+            this.showLogs('valid)');
+        }
+    }
 
     handleNicknameChange(event) {
         clearTimeout(this.validationDelayTimeout);
