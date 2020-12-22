@@ -22,13 +22,13 @@ export function isNicknameAvailable(config) {
  * @param {*} config object that contains Id
  */
 export function isPlayerIdValid(config) {
-    return new Promise((resolve, reject) => {
-        const observer = {
-            next: (data) => resolve(data),
-            error: (error) => reject(error)
-        };
-        // getPlayerIdData(config, observer);
-    });
+    // return new Promise((resolve, reject) => {
+    //     const observer = {
+    //         next: (data) => resolve(data),
+    //         error: (error) => reject(error)
+    //     };
+    //     getPlayerIdData(config, observer);
+    // });
 }
 
 /**
