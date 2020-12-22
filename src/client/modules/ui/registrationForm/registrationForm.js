@@ -67,7 +67,7 @@ export default class RegistrationForm extends LightningElement {
         }
     }
 
-    @wire(isPlayerIdValid, { playerid: this._playerId })
+    @wire(isPlayerIdValid, { playerid: '$_playerId' })
     isPlayerIdValid({ error, data }) {
         this.showLogs('isPlayerIdValid');
         if (data) {
