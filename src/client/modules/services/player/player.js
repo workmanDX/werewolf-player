@@ -27,7 +27,7 @@ export function isPlayerIdValid(config) {
             next: (data) => resolve(data),
             error: (error) => reject(error)
         };
-        getPlayerIdData(config, observer);
+        // getPlayerIdData(config, observer);
     });
 }
 
