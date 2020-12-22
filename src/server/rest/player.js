@@ -75,9 +75,9 @@ module.exports = class PlayerRestResource {
         }
 
         response.json({message: 'we got to here'});
+        return;
 
-        // const ns = Configuration.getSfNamespacePrefix();
-        // const soql = `SELECT Id FROM ${ns}Game_Player__c WHERE Id ='${playerId}'`;
+        // const soql = `SELECT Id FROM Game_Player__c WHERE Id ='${playerId}'`;
         // this.sfdc.query(soql, (error, result) => {
         //     if (error) {
         //         console.error('isPlayerIdValid', error);
