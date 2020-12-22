@@ -8,6 +8,7 @@ const PLAYERS_REST_URL = '/api/players';
  * @param {*} config object that contains nickname
  */
 export function isNicknameAvailable(config) {
+    console.log('isNicknameAvailable');
     return new Promise((resolve, reject) => {
         const observer = {
             next: (data) => resolve(data),
