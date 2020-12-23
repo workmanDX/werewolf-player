@@ -33,14 +33,14 @@ export default class RegistrationForm extends LightningElement {
         window.console.log('RegistrationForm: ', message, ': ', JSON.stringify(obj));
     }
 
-    connectedCallback() {
-        this.showLogs('connectedCallback');
-        if(this.playerId != undefined){
-            this._playerId = this.playerId;
-        } else {
-            this._playerId = 'a024x000001WXRtAAO';
-        }
-    }
+    // connectedCallback() {
+    //     this.showLogs('connectedCallback');
+    //     if(this.playerId != undefined){
+    //         this._playerId = this.playerId;
+    //     } else {
+    //         this._playerId = 'a024x000001WXRtAAO';
+    //     }
+    // }
 
     @wire(getConfiguration)
     getConfiguration({ error, data }) {
@@ -67,23 +67,23 @@ export default class RegistrationForm extends LightningElement {
         }
     }
 
-    @wire(isPlayerIdValid, { playerId: 'a024x000001WXRtAAO' })
-    isPlayerIdValid({ error, data }) {
-        this.showLogs('isPlayerIdValid');
-        if (data) {
-            this.showLogsJson('isPlayerIdValid: data = ', data);
-            const { playerId, isValid } = data;
-            this.isLoading = false;
-            if(!isValid){
-                this.showLogs('notvalid)');
-                this.nickname = null;
-            }
+    // @wire(isPlayerIdValid, { playerId: 'a024x000001WXRtAAO' })
+    // isPlayerIdValid({ error, data }) {
+    //     this.showLogs('isPlayerIdValid');
+    //     if (data) {
+    //         this.showLogsJson('isPlayerIdValid: data = ', data);
+    //         const { playerId, isValid } = data;
+    //         this.isLoading = false;
+    //         if(!isValid){
+    //             this.showLogs('notvalid)');
+    //             this.nickname = null;
+    //         }
             
-        } else if (error) {
-            this.isLoading = false;
-            this.showLogs('valid)');
-        }
-    }
+    //     } else if (error) {
+    //         this.isLoading = false;
+    //         this.showLogs('valid)');
+    //     }
+    // }
 
     handleNicknameChange(event) {
         clearTimeout(this.validationDelayTimeout);
