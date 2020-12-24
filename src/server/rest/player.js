@@ -83,12 +83,22 @@ module.exports = class PlayerRestResource {
                 console.error('isPlayerIdValid', error);
                 response.sendStatus(500);
             } else {
-                response.json({
-                    playerId,
-                    isValid: result.records.length === 1,
-                    // name: result.records.length > 0 ? result.records[0].Name__c : null,
-                    // activity: result.records.length > 0 ? result.records[0].Game__r.Activity__c
-                });
+                if(result.records.length === 0){
+                    response.json({
+                        playerId,
+                        isValid: false,
+                        name: null,
+                        activity: null
+                    });
+                } else {
+                    let record = result.records[0];
+                    response.json({
+                        playerId,
+                        isValid: true,
+                        name: record.Name__c,
+                        activity: record.Game__r.Activity__c
+                    });
+                }
             }
         });
     }
