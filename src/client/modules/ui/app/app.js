@@ -61,23 +61,25 @@ export default class App extends LightningElement {
         }
     }
 
-    // @wire(isPlayerIdValid, { playerId: '$playerId' })
-    // isPlayerIdValid({ error, data }) {
-    //     this.showLogs('isPlayerIdValid: ' + this.playerId);
-    //     if (data) {
-    //         this.showLogsJson('isPlayerIdValid: data = ', data);
-    //         const { playerId, isValid } = data;
-    //         this.isLoading = false;
-    //         if(!isValid){
-    //             this.showLogs('notvalid');
-    //             this.nickname = null;
-    //         }
+    @wire(isPlayerIdValid, { playerId: '$playerId' })
+    isPlayerIdValid({ error, data }) {
+        this.showLogs('isPlayerIdValid: ' + this.playerId);
+        if (data) {
+            this.showLogsJson('isPlayerIdValid: data = ', data);
+            const { playerId, isValid } = data;
+            this.isLoading = false;
+            if(!isValid){
+                this.showLogs('notvalid');
+                this.nickname = null;
+            } else {
+                this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+            }
             
-    //     } else if (error) {
-    //         this.isLoading = false;
-    //         this.showLogs('valid)');
-    //     }
-    // }
+        } else if (error) {
+            this.isLoading = false;
+            this.showLogs('valid)');
+        }
+    }
 
     connectedCallback() {
         this.showLogs('setPlayerId');
@@ -238,7 +240,7 @@ export default class App extends LightningElement {
     }
 
     get showGame() {
-        return this.gameInfo.stage === STAGES.READY ;
+        return this.gameInfo.stage === STAGES.READY && this.nickname != undefined;
     }
 
     get isPlayGamePhase() {
