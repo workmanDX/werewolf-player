@@ -89,8 +89,8 @@ export default class App extends LightningElement {
     connectedCallback() {
         this.showLogs('setPlayerId');
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
-        this.player = getCookie(COOKIE_PLAYER);
-        this.gameInfo = getCookie(COOKIE_GAME_INFO);
+        this.player = JSON.parse(getCookie(COOKIE_PLAYER));
+        this.gameInfo = JSON.parse(getCookie(COOKIE_GAME_INFO));
         this.showLogs('connectedCallback gameInfo: ' + this.gameInfo);
         this.showLogs('connectedCallback player: ' + this.player);
         const playerId = getCookie(COOKIE_PLAYER_ID);
@@ -127,7 +127,7 @@ export default class App extends LightningElement {
         this.showAction = false;
         if (message.type === 'phaseChangeEvent') {
             this.gameInfo = message.data.body.info;
-            setCookie(COOKIE_GAME_INFO, this.gameInfo);
+            setCookie(COOKIE_GAME_INFO, JSON.stringify(this.gameInfo));
             // eslint-disable-next-line default-case
             switch (this.gameInfo.stage) {
                 case STAGES.REGISTRATION:
