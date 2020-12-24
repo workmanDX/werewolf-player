@@ -89,8 +89,8 @@ export default class App extends LightningElement {
     connectedCallback() {
         this.showLogs('setPlayerId');
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
-        this.player = JSON.parse(getCookie(COOKIE_PLAYER));
-        this.gameInfo = JSON.parse(getCookie(COOKIE_GAME_INFO));
+        this.player = getCookie(COOKIE_PLAYER) != "" ? JSON.parse(getCookie(COOKIE_PLAYER)) : "";
+        this.gameInfo = getCookie(COOKIE_GAME_INFO) != "" ? JSON.parse(getCookie(COOKIE_GAME_INFO)) : "";
         this.showLogs('connectedCallback gameInfo: ' + this.gameInfo);
         this.showLogs('connectedCallback player: ' + this.player);
         const playerId = getCookie(COOKIE_PLAYER_ID);
