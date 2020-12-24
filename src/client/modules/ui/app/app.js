@@ -13,7 +13,8 @@ import { isPlayerIdValid } from 'services/player';
 const COOKIE_PLAYER_NICKNAME = 'nickname';
 const COOKIE_PLAYER_ID = 'playerId';
 const COOKIE_ANSWER = 'answer';
-const COOKIE_PLAYER = 'player'
+const COOKIE_PLAYER = 'player';
+const COOKIE_GAME_INFO = 'gameInfo';
 
 export default class App extends LightningElement {
     nickname;
@@ -88,6 +89,8 @@ export default class App extends LightningElement {
         this.showLogs('setPlayerId');
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
         this.player = getCookie(COOKIE_PLAYER_NICKNAME);
+        this.gameInfo = getCookie(COOKIE_GAME_INFO);
+        this.showLogsJson('connectedCallback gameInfo: ', this.gameInfo);
         this.showLogsJson('connectedCallback player: ', this.player);
         const playerId = getCookie(COOKIE_PLAYER_ID);
         if(playerId){
@@ -123,6 +126,7 @@ export default class App extends LightningElement {
         this.showAction = false;
         if (message.type === 'phaseChangeEvent') {
             this.gameInfo = message.data.body.info;
+            setCookie(COOKIE_GAME_INFO, this.gameInfo);
             // eslint-disable-next-line default-case
             switch (this.gameInfo.stage) {
                 case STAGES.REGISTRATION:
