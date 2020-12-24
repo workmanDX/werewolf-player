@@ -91,8 +91,8 @@ export default class App extends LightningElement {
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
         this.player = getCookie(COOKIE_PLAYER);
         this.gameInfo = getCookie(COOKIE_GAME_INFO);
-        this.showLogsJson('connectedCallback gameInfo: ', this.gameInfo);
-        this.showLogsJson('connectedCallback player: ', this.player);
+        this.showLogs('connectedCallback gameInfo: ' + this.gameInfo);
+        this.showLogs('connectedCallback player: ' + this.player);
         const playerId = getCookie(COOKIE_PLAYER_ID);
         if(playerId){
             this.setPlayer(playerId);
@@ -174,6 +174,7 @@ export default class App extends LightningElement {
         if(this.playerList[this.nickname]){
             this.player = this.playerList[this.nickname];
             setCookie(COOKIE_PLAYER, this.player);
+            this.showLogs('updatePlayer cookie: ' + getCookie(COOKIE_PLAYER));
         }
     }
 
