@@ -173,7 +173,7 @@ export default class App extends LightningElement {
     updatePlayer(){
         if(this.playerList[this.nickname]){
             this.player = this.playerList[this.nickname];
-            setCookie(COOKIE_PLAYER, this.player);
+            setCookie(COOKIE_PLAYER, JSON.stringify(this.player));
             this.showLogs('updatePlayer cookie: ' + getCookie(COOKIE_PLAYER));
         }
     }
