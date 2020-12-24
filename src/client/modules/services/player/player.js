@@ -65,10 +65,10 @@ export function getPlayerStats(config) {
  * @param {string} email
  * @returns {Promise<*>} Promise holding the Player record
  */
-export function registerPlayer(nickname, email) {
-    const userInfo = { nickname, email };
+export function registerPlayer(nickname, gameId) {
+    const userInfo = { nickname, gameId };
     return fetch(PLAYERS_REST_URL, {
-        method: 'post',
+        method: 'get',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'

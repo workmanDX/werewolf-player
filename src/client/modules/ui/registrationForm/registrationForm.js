@@ -2,7 +2,7 @@ import { LightningElement, wire, api } from 'lwc';
 import { getErrorMessage } from 'utils/error';
 
 import { getConfiguration } from 'services/configuration';
-import { isNicknameAvailable, registerPlayer, isPlayerIdValid } from 'services/player';
+import { isNicknameAvailable, registerPlayer } from 'services/player';
 
 const VALIDATION_DELAY = 500;
 
@@ -33,15 +33,6 @@ export default class RegistrationForm extends LightningElement {
         window.console.log('RegistrationForm: ', message, ': ', JSON.stringify(obj));
     }
 
-    // connectedCallback() {
-    //     this.showLogs('connectedCallback');
-    //     if(this.playerId != undefined){
-    //         this._playerId = this.playerId;
-    //     } else {
-    //         this._playerId = 'a024x000001WXRtAAO';
-    //     }
-    // }
-
     @wire(getConfiguration)
     getConfiguration({ error, data }) {
         if (data) {
@@ -66,24 +57,6 @@ export default class RegistrationForm extends LightningElement {
             this.nicknameError = getErrorMessage(error);
         }
     }
-
-    // @wire(isPlayerIdValid, { playerId: 'a024x000001WXRtAAO' })
-    // isPlayerIdValid({ error, data }) {
-    //     this.showLogs('isPlayerIdValid');
-    //     if (data) {
-    //         this.showLogsJson('isPlayerIdValid: data = ', data);
-    //         const { playerId, isValid } = data;
-    //         this.isLoading = false;
-    //         if(!isValid){
-    //             this.showLogs('notvalid)');
-    //             this.nickname = null;
-    //         }
-            
-    //     } else if (error) {
-    //         this.isLoading = false;
-    //         this.showLogs('valid)');
-    //     }
-    // }
 
     handleNicknameChange(event) {
         clearTimeout(this.validationDelayTimeout);
