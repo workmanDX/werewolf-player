@@ -67,13 +67,15 @@ export default class App extends LightningElement {
         this.showLogs('isPlayerIdValid: ' + this.playerId);
         if (data) {
             this.showLogsJson('isPlayerIdValid: data = ', data);
-            const { playerId, isValid } = data;
+            const { playerId, isValid, name, activity } = data;
             this.isLoading = false;
             if(!isValid){
                 this.showLogs('notvalid');
                 this.nickname = null;
             } else {
                 this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+                this.actionName = name;
+                this.player.name = activity;
             }
             
         } else if (error) {

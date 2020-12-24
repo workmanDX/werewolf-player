@@ -77,7 +77,7 @@ module.exports = class PlayerRestResource {
         // response.json({message: 'we got to here'});
         // return;
 
-        const soql = `SELECT Id, Game__r.Stage__c, Game__r.Activity__c FROM Game_Player__c WHERE Id ='${playerId}'`;
+        const soql = `SELECT Id, Game__r.Stage__c, Game__r.Activity__c, Name__c FROM Game_Player__c WHERE Id ='${playerId}'`;
         this.sfdc.query(soql, (error, result) => {
             if (error) {
                 console.error('isPlayerIdValid', error);
@@ -85,7 +85,9 @@ module.exports = class PlayerRestResource {
             } else {
                 response.json({
                     playerId,
-                    isValid: result.records.length === 1
+                    isValid: result.records.length === 1,
+                    name: result.records.length > 0 ? result.records[0].Name__c : null,
+                    activity: result.records.length > 0 ? result.records[0].Game__r.Activity__c
                 });
             }
         });
