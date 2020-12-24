@@ -32,7 +32,7 @@ export default class App extends LightningElement {
     actionName;
     @track player;
     @track showAction = false;
-    @track showRegistration = false;
+    // @track showRegistration = false;
 
     tempCard = "resources/images/characters/werewolf.jpg";
 
@@ -100,9 +100,9 @@ export default class App extends LightningElement {
         });
     }
 
-    setPlayerId(){
-        this.showRegistration = true;
-    }
+    // setPlayerId(){
+    //     this.showRegistration = true;
+    // }
 
     disconnectedCallback() {
         this.ws.close();
