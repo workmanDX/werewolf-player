@@ -49,7 +49,7 @@ export default class App extends LightningElement {
     @wire(getGameInfo)
     getGameInfo({ error, data }) {
         if (data) {
-            this.showLogs('gameInfo = '+ data);
+            this.showLogsJson('gameInfo = ', data);
             this.gameInfo = data;
             if (!(this.isQuestionPhase || this.isQuestionResultsPhase)) {
                 clearCookie(COOKIE_ANSWER);
