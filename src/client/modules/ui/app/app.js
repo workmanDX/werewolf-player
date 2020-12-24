@@ -76,7 +76,6 @@ export default class App extends LightningElement {
             } else {
                 this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
                 this.actionName = activity;
-                this.player = getCookie(COOKIE_PLAYER);
             }
             
         } else if (error) {
@@ -88,6 +87,8 @@ export default class App extends LightningElement {
     connectedCallback() {
         this.showLogs('setPlayerId');
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
+        this.player = getCookie(COOKIE_PLAYER_NICKNAME);
+        this.showLogsJson('connectedCallback player: ', this.player);
         const playerId = getCookie(COOKIE_PLAYER_ID);
         if(playerId){
             this.setPlayer(playerId);
