@@ -74,6 +74,7 @@ export default class App extends LightningElement {
             if(!isValid){
                 this.showLogs('notvalid');
                 this.nickname = null;
+                this.resetGame();
             } else {
                 this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
                 this.actionName = activity;
@@ -88,7 +89,7 @@ export default class App extends LightningElement {
     connectedCallback() {
         this.showLogs('setPlayerId');
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
-        this.player = getCookie(COOKIE_PLAYER_NICKNAME);
+        this.player = getCookie(COOKIE_PLAYER);
         this.gameInfo = getCookie(COOKIE_GAME_INFO);
         this.showLogsJson('connectedCallback gameInfo: ', this.gameInfo);
         this.showLogsJson('connectedCallback player: ', this.player);
@@ -217,6 +218,7 @@ export default class App extends LightningElement {
         clearCookie(COOKIE_PLAYER_ID);
         clearCookie(COOKIE_ANSWER);
         clearCookie(COOKIE_PLAYER);
+        clearCookie(COOKIE_GAME_INFO);
         window.location.reload();
     }
 
