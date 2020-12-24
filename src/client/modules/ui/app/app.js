@@ -238,7 +238,7 @@ export default class App extends LightningElement {
     }
 
     get showGame() {
-        return this.gameInfo.stage === STAGES.READY;
+        return this.gameInfo.stage === STAGES.READY ;
     }
 
     get isPlayGamePhase() {
