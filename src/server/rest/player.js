@@ -86,8 +86,8 @@ module.exports = class PlayerRestResource {
                 response.json({
                     playerId,
                     isValid: result.records.length === 1,
-                    name: result.records.length > 0 ? result.records[0].Name__c : null,
-                    activity: result.records.length > 0 ? result.records[0].Game__r.Activity__c
+                    // name: result.records.length > 0 ? result.records[0].Name__c : null,
+                    // activity: result.records.length > 0 ? result.records[0].Game__r.Activity__c
                 });
             }
         });
