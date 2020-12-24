@@ -65,10 +65,10 @@ export function getPlayerStats(config) {
  * @param {string} email
  * @returns {Promise<*>} Promise holding the Player record
  */
-export function registerPlayer(nickname, gameId) {
-    const userInfo = { nickname, gameId };
+export function registerPlayer(nickname, email) {
+    const userInfo = { nickname, email };
     return fetch(PLAYERS_REST_URL, {
-        method: 'get',
+        method: 'post',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
@@ -186,33 +186,6 @@ register(isPlayerIdValid, (eventTarget) => {
 
     eventTarget.addEventListener('connect', () => {
         getPlayerIdData(config, observer);
-    });
-});
-
-register(getNicknameData, (eventTarget) => {
-    let config;
-    eventTarget.dispatchEvent(
-        new ValueChangedEvent({ data: undefined, error: undefined })
-    );
-
-    const observer = {
-        next: (data) =>
-            eventTarget.dispatchEvent(
-                new ValueChangedEvent({ data, error: undefined })
-            ),
-        error: (error) =>
-            eventTarget.dispatchEvent(
-                new ValueChangedEvent({ data: undefined, error })
-            )
-    };
-
-    eventTarget.addEventListener('config', (newConfig) => {
-        config = newConfig;
-        getNicknameData(config, observer);
-    });
-
-    eventTarget.addEventListener('connect', () => {
-        getNicknameData(config, observer);
     });
 });
 
