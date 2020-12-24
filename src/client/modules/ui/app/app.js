@@ -62,7 +62,7 @@ export default class App extends LightningElement {
         }
     }
 
-    @wire(isPlayerIdValid, { playerId: 'a024x000001WXRtAAO' })
+    @wire(isPlayerIdValid, { playerId: '$playerId' })
     isPlayerIdValid({ error, data }) {
         this.showLogs('isPlayerIdValid: ' + this.playerId);
         if (data) {
