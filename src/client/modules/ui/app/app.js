@@ -74,7 +74,7 @@ export default class App extends LightningElement {
             if(!isValid){
                 this.showLogs('notvalid');
                 this.nickname = null;
-                this.clearCookies();
+                // this.clearCookies();
             } else {
                 this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
                 this.actionName = activity;
@@ -189,7 +189,7 @@ export default class App extends LightningElement {
         }
     }
 
-    handleRegistered(event) {
+    handleRegistered(event) {        
         const { nickname, playerId } = event.detail;
 
         setCookie(COOKIE_PLAYER_NICKNAME, nickname);
