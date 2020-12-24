@@ -62,23 +62,23 @@ export default class App extends LightningElement {
         }
     }
 
-    @wire(isPlayerIdValid, { playerId: '$playerId' })
-    isPlayerIdValid({ error, data }) {
-        this.showLogs('isPlayerIdValid: ' + this.playerId);
-        if (data) {
-            this.showLogsJson('isPlayerIdValid: data = ', data);
-            const { playerId, isValid } = data;
-            this.isLoading = false;
-            if(!isValid){
-                this.showLogs('notvalid)');
-                this.nickname = null;
-            }
+    // @wire(isPlayerIdValid, { playerId: '$playerId' })
+    // isPlayerIdValid({ error, data }) {
+    //     this.showLogs('isPlayerIdValid: ' + this.playerId);
+    //     if (data) {
+    //         this.showLogsJson('isPlayerIdValid: data = ', data);
+    //         const { playerId, isValid } = data;
+    //         this.isLoading = false;
+    //         if(!isValid){
+    //             this.showLogs('notvalid');
+    //             this.nickname = null;
+    //         }
             
-        } else if (error) {
-            this.isLoading = false;
-            this.showLogs('valid)');
-        }
-    }
+    //     } else if (error) {
+    //         this.isLoading = false;
+    //         this.showLogs('valid)');
+    //     }
+    // }
 
     connectedCallback() {
         this.showLogs('setPlayerId');
