@@ -74,7 +74,7 @@ export default class App extends LightningElement {
             if(!isValid){
                 this.showLogs('notvalid');
                 this.nickname = null;
-                this.resetGame();
+                this.clearCookies();
             } else {
                 this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
                 this.actionName = activity;
@@ -213,12 +213,16 @@ export default class App extends LightningElement {
             });
     }
 
-    resetGame() {
+    clearCookies(){
         clearCookie(COOKIE_PLAYER_NICKNAME);
         clearCookie(COOKIE_PLAYER_ID);
         clearCookie(COOKIE_ANSWER);
         clearCookie(COOKIE_PLAYER);
         clearCookie(COOKIE_GAME_INFO);
+    }
+
+    resetGame() {
+        this.clearCookies();
         window.location.reload();
     }
 
