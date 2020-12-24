@@ -8,7 +8,6 @@ import { WebSocketClient } from 'utils/webSocketClient';
 // import { PHASES, getCurrentSession } from 'services/session';
 import { STAGES, getGameInfo, cardSwap } from 'services/game';
 import { submitAnswer } from 'services/answer';
-import { isPlayerIdValid } from 'services/player';
 
 const COOKIE_PLAYER_NICKNAME = 'nickname';
 const COOKIE_PLAYER_ID = 'playerId';
@@ -51,7 +50,7 @@ export default class App extends LightningElement {
         if (data) {
             this.showLogsJson('gameInfo = ', data);
             this.gameInfo = data;
-            if (!(this.isQuestionPhase || this.isQuestionResultsPhase)) {
+            if (!(this.showGame || this.isRegistrationStage)) {
                 clearCookie(COOKIE_ANSWER);
             }
         } else if (error) {
@@ -107,30 +106,6 @@ export default class App extends LightningElement {
     disconnectedCallback() {
         this.ws.close();
     }
-
-    // isPlayerIdValid(){
-    //     this.isLoading = true;
-    //     this.isRegistering = true;
-    //     const nickname = this.nickname.trim();
-    //     // registerPlayer(nickname, this.email)
-    //     checkPlayer(nickname, playerId)
-    //         .then((result) => {
-    //             this.dispatchEvent(
-    //                 new CustomEvent('registered', {
-    //                     detail: {
-    //                         nickname,
-    //                         playerId: result.id
-    //                     }
-    //                 })
-    //             );
-    //         })
-    //         .catch((error) => {
-    //             this.isLoading = false;
-    //             this.isRegistering = false;
-    //             this.isNicknameValid = false;
-    //             this.formError = getErrorMessage(error);
-    //         });
-    // }
 
     handleWsMessage(message) {
         // this.showLogs('handleWsMessage = '+ JSON.stringify(message));
@@ -264,7 +239,6 @@ export default class App extends LightningElement {
 
     get showGame() {
         return this.gameInfo.stage === STAGES.READY;
-        // return (this.gameInfo.stage === STAGES.READY);
     }
 
     get isPlayGamePhase() {
