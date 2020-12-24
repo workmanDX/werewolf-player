@@ -13,6 +13,7 @@ import { isPlayerIdValid } from 'services/player';
 const COOKIE_PLAYER_NICKNAME = 'nickname';
 const COOKIE_PLAYER_ID = 'playerId';
 const COOKIE_ANSWER = 'answer';
+const COOKIE_PLAYER = 'player'
 
 export default class App extends LightningElement {
     nickname;
@@ -74,8 +75,8 @@ export default class App extends LightningElement {
                 this.nickname = null;
             } else {
                 this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
-                this.actionName = name;
-                this.player.name = activity;
+                this.actionName = activity;
+                this.player = getCookie(COOKIE_PLAYER);
             }
             
         } else if (error) {
@@ -166,6 +167,7 @@ export default class App extends LightningElement {
     updatePlayer(){
         if(this.playerList[this.nickname]){
             this.player = this.playerList[this.nickname];
+            setCookie(COOKIE_PLAYER, this.player);
         }
     }
 
@@ -209,6 +211,7 @@ export default class App extends LightningElement {
         clearCookie(COOKIE_PLAYER_NICKNAME);
         clearCookie(COOKIE_PLAYER_ID);
         clearCookie(COOKIE_ANSWER);
+        clearCookie(COOKIE_PLAYER);
         window.location.reload();
     }
 
