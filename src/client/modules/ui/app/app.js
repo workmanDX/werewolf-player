@@ -8,6 +8,7 @@ import { WebSocketClient } from 'utils/webSocketClient';
 // import { PHASES, getCurrentSession } from 'services/session';
 import { STAGES, getGameInfo, cardSwap } from 'services/game';
 import { submitAnswer } from 'services/answer';
+import { isPlayerIdValid } from 'services/player';
 
 const COOKIE_PLAYER_NICKNAME = 'nickname';
 const COOKIE_PLAYER_ID = 'playerId';
