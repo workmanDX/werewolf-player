@@ -68,7 +68,7 @@ export function getPlayerStats(config) {
 export function registerPlayer(nickname, gameId) {
     const userInfo = { nickname, gameId };
     return fetch(PLAYERS_REST_URL, {
-        method: 'get',
+        method: 'post',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
