@@ -36,35 +36,30 @@ h1 {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    /* .example {background: white;} */
     .player {max-width: 90%}
     .action {max-width: 90%}
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    /* .example {background: rgb(96, 146, 96);} */
     .player {max-width: 90%}
     .action {max-width: 90%}
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    /* .example {background: rgb(105, 105, 218);} */
     .player {max-width: 75%}
     .action {max-width: 75%}
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    /* .example {background: orange;} */
     .player {max-width: 75%}
     .action {max-width: 75%}
 } 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    /* .example {background: pink;} */
     .player {max-width: 60%}
     .action {max-width: 60%}
 }

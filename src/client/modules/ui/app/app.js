@@ -19,18 +19,13 @@ export default class App extends LightningElement {
     nickname;
     gameInfo;
     errorMessage;
-    playerLeaderboard = { score: '-', rank: '-' };
-    showFooter = false;
-    lastAnswer;
-    answerSaved;
     playerId;
     pingTimeout;
-    ws;
-    
+    ws;    
     playerList = {};
     actionInfo;
-    messageData = {};
     actionName;
+
     @track player;
     @track showAction = false;
 
@@ -70,7 +65,6 @@ export default class App extends LightningElement {
             if(!isValid){
                 this.showLogs('notvalid');
                 this.nickname = null;
-                // this.clearCookies();
             } else {
                 this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
                 this.actionName = activity;
@@ -106,19 +100,12 @@ export default class App extends LightningElement {
         });
     }
 
-    // setPlayerId(){
-    //     this.showRegistration = true;
-    // }
-
     disconnectedCallback() {
         this.ws.close();
     }
 
     handleWsMessage(message) {
-        // this.showLogs('handleWsMessage = '+ JSON.stringify(message));
         this.showLogs('handleWsMessage message.data.body.info = '+ JSON.stringify(message.data.body.info));
-        // this.showLogs('handleWsMessage data.info = '+ JSON.stringify(message.data.info));        
-        // this.showLogs('handleWsMessage data.info.stage = '+ JSON.stringify(message.data.info.stage));
         this.errorMessage = undefined;
         this.showAction = false;
         if (message.type === 'phaseChangeEvent') {
@@ -138,14 +125,12 @@ export default class App extends LightningElement {
                     this.showLogs('STAGES.GAME_PLAY');
                     this.showLogs('handleWsMessage message.data.body.info.action = '+ JSON.stringify(message.data.body.info.action));
                     this.actionName = message.data.body.info.action;
-                    // this.messageData = message.data;
                     this.checkAction(message.data.body.actionInfo);
                     break;
                 case STAGES.VOTING:
                     this.showLogs('STAGES.VOTING');
                     this.showLogs('handleWsMessage message.data.body.info.action = '+ JSON.stringify(message.data.body.info.action));
                     this.actionName = message.data.body.info.action;
-                    // this.messageData = message.data;
                     this.checkAction(message.data.body.actionInfo);
                     break;
                 default:
@@ -155,7 +140,6 @@ export default class App extends LightningElement {
 
     checkAction(actionInfo){
         this.showLogsJson('checkAction: ', this.player);
-        // this.showLogsJson('checkAction actionInfo: ', actionInfo);
         if(this.actionName === this.player.actionName || this.actionName === STAGES.VOTING){
             this.showLogsJson('checkAction actionInfo for ' + this.nickname, actionInfo[this.nickname]);
             this.actionInfo = actionInfo[this.nickname];
@@ -196,20 +180,6 @@ export default class App extends LightningElement {
         this.setPlayer(playerId);
     }
 
-    handleAnswer(event) {
-        this.errorMessage = undefined;
-        const { answer } = event.detail;
-        setCookie(COOKIE_ANSWER, answer);
-        this.lastAnswer = answer;
-        submitAnswer(answer)
-            .then(() => {
-                this.answerSaved = true;
-            })
-            .catch((error) => {
-                this.errorMessage = getErrorMessage(error);
-            });
-    }
-
     clearCookies(){
         clearCookie(COOKIE_PLAYER_NICKNAME);
         clearCookie(COOKIE_PLAYER_ID);
@@ -225,22 +195,6 @@ export default class App extends LightningElement {
 
     setPlayer(playerId) {
         this.playerId = playerId;
-        // this.updateLeaderboard();
-    }
-
-    updateLeaderboard() {
-        getPlayerLeaderboard({ playerId: this.playerId })
-            .then((data) => {
-                this.playerLeaderboard = data;
-                this.showFooter = true;
-            })
-            .catch((error) => {
-                this.showFooter = false;
-                if (error.status && error.status === 404) {
-                    this.resetGame();
-                }
-                this.errorMessage = getErrorMessage(error);
-            });
     }
 
     // UI expressions
@@ -267,30 +221,5 @@ export default class App extends LightningElement {
 
     get isWerewolfPhase() {
         return this.gameInfo.stage === STAGES.WEREWOLF;
-    }
-
-
-    /*********** Quiz Related - to delete later after all references are removed********/
-
-    get isPreQuestionPhase() {
-        return this.gameInfo.stage === STAGES.PRE_QUESTION;
-    }
-
-    get isQuestionPhase() {
-        return this.gameInfo.stage === STAGES.QUESTION;
-    }
-
-    get isQuestionResultsPhase() {
-        return this.gameInfo.stage === STAGES.QUESTION_RESULTS;
-    }
-
-    get isGameResultsPhase() {
-        return this.gameInfo.stage === STAGES.GAME_RESULTS;
-    }
-
-    get isCorrectAnswer() {
-        return (
-            this.lastAnswer && this.lastAnswer === this.gameInfo.correctAnswer
-        );
     }
 }
