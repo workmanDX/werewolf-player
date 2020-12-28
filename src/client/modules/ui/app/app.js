@@ -5,7 +5,6 @@ import { getErrorMessage } from 'utils/error';
 import { getCookie, setCookie, clearCookie } from 'utils/cookies';
 import { WebSocketClient } from 'utils/webSocketClient';
 
-// import { PHASES, getCurrentSession } from 'services/session';
 import { STAGES, getGameInfo, cardSwap } from 'services/game';
 import { submitAnswer } from 'services/answer';
 import { isPlayerIdValid } from 'services/player';
@@ -34,9 +33,6 @@ export default class App extends LightningElement {
     actionName;
     @track player;
     @track showAction = false;
-    // @track showRegistration = false;
-
-    tempCard = "resources/images/characters/werewolf.jpg";
 
     PLAYER_APP_VERSION = '2.0.0';
 
@@ -91,8 +87,8 @@ export default class App extends LightningElement {
         this.nickname = getCookie(COOKIE_PLAYER_NICKNAME);
         this.player = getCookie(COOKIE_PLAYER) != "" ? JSON.parse(getCookie(COOKIE_PLAYER)) : "";
         this.gameInfo = getCookie(COOKIE_GAME_INFO) != "" ? JSON.parse(getCookie(COOKIE_GAME_INFO)) : "";
-        this.showLogs('connectedCallback gameInfo: ' + this.gameInfo);
-        this.showLogs('connectedCallback player: ' + this.player);
+        this.showLogsJson('connectedCallback gameInfo: ', this.gameInfo);
+        this.showLogsJson('connectedCallback player: ', this.player);
         const playerId = getCookie(COOKIE_PLAYER_ID);
         if(playerId){
             this.setPlayer(playerId);
