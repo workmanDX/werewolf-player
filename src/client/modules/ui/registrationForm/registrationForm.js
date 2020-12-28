@@ -17,7 +17,6 @@ export default class RegistrationForm extends LightningElement {
     nicknameError;
 
     playerId;
-    _playerId;
 
     isLoading = false;
     isRegistering = false;
@@ -93,7 +92,6 @@ export default class RegistrationForm extends LightningElement {
         this.isLoading = true;
         this.isRegistering = true;
         const nickname = this.nickname.trim();
-        // registerPlayer(nickname, this.email)
         registerPlayer(nickname, this.gameId)
             .then((result) => {
                 this.dispatchEvent(
