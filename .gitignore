@@ -4,14 +4,16 @@ logs
 *-debug.log
 *-error.log
 
-# Standard lib folder
-/lib
+# Secret configuration
+.env
 
 # Standard dist folder
 /dist
 
 # Tooling files
 node_modules
+jsconfig.json
+.vscode
 
 # Temp directory
 /tmp

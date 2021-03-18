@@ -1,13 +1,13 @@
 {
     "name": "Quiz Player App",
     "description": "Multiplayer quiz app built on Salesforce technology (player app)",
-    "repository": "https://github.com/workmanDX/werewolf-player-dev",
+    "repository": "https://github.com/pozil/quiz-player-app",
     "logo": "https://github.com/pozil/quiz-player-app/raw/master/src/client/resources/logo.png",
     "keywords": ["lightning", "salesforce", "web-components", "open source"],
     "env": {
         "SF_LOGIN_URL": {
             "description": "Salesforce authentication domain",
-            "value": "https://synk2-dev-ed.my.salesforce.com/",
+            "value": "https://test.salesforce.com/",
             "required": true
         },
         "SF_USERNAME": {
@@ -24,6 +24,10 @@
             "description": "Salesforce security token",
             "value": "",
             "required": true
+        },
+        "SF_NAMESPACE": {
+            "description": "Salesforce package namespace (default: sfqz)",
+            "value": "sfqz"
         },
         "QUIZ_API_KEY": {
             "description": "Quiz API key",

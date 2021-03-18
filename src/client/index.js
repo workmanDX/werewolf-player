@@ -1,6 +1,8 @@
-import { createElement } from 'lwc';
-import MyApp from 'my/app';
+import '@lwc/synthetic-shadow';
+import { buildCustomElementConstructor, register } from 'lwc';
+import { registerWireService } from '@lwc/wire-service';
+import App from 'ui/app';
 
-const app = createElement('my-app', { is: MyApp });
-// eslint-disable-next-line @lwc/lwc/no-document-query
-document.querySelector('#main').appendChild(app);
+registerWireService(register);
+
+customElements.define('ui-app', buildCustomElementConstructor(App));

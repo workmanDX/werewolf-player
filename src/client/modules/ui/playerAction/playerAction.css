@@ -1,0 +1,15 @@
+.playercontainer  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.centerPlayercontainer  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    border-bottom: 2px black solid;
+    margin-bottom: 15px;
+}

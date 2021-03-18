@@ -1,72 +1,53 @@
 {
-    "name": "werewolf-player",
-    "description": "My amazing LWC app",
-    "version": "0.0.1",
-    "author": "sworkman",
-    "bugs": "https://github.com/sworkman/werewolf-player/issues",
+    "name": "quiz-player-app",
+    "description": "Multiplayer quiz app built on Salesforce technology (player app)",
+    "version": "2.0.0",
+    "private": true,
+    "author": "pozil",
+    "bugs": "https://github.com/fostive/quiz-player-app/issues",
     "dependencies": {
-        "compression": "^1.7.4",
+        "@salesforce-ux/design-system": "^2.13.7",
         "dotenv": "^8.2.0",
-        "helmet": "^4.2.0",
-        "jsforce": "^1.10.0",
-        "ws": "^7.4.0"
+        "jsforce": "^1.9.3",
+        "lwc-services": "^1.3.12",
+        "normalize.css": "^8.0.1",
+        "ws": "^7.3.1"
     },
     "devDependencies": {
-        "eslint": "^7.13.0",
-        "husky": "^4.3.0",
-        "lint-staged": "^10.5.1",
-        "lwc-services": "^2.2.3",
-        "npm-run-all": "^4.1.5",
-        "prettier": "^2.1.2"
+        "eslint": "^7.8.0",
+        "husky": "^4.2.5",
+        "lint-staged": "^10.2.13",
+        "prettier": "^2.1.1"
     },
     "engines": {
-        "node": ">=10.13.0",
-        "npm": ">=6.4.1",
-        "yarn": ">=1.9.4"
+        "node": ">=10.0.0"
     },
-    "homepage": "https://github.com/sworkman/werewolf-player",
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
+    "homepage": "https://github.com/fostive/quiz-player-app",
     "keywords": [
         "lwc"
     ],
-    "license": "MIT",
+    "license": "CC0-1.0",
     "lint-staged": {
-        "**/*.{css,html,js,json,md,ts,yaml,yml}": [
+        "**/*.{css,html,js,json,md,yaml,yml}": [
             "prettier --write"
         ],
-        "./src/**/*.js": [
+        "**/modules/**/*.js": [
             "eslint"
         ]
     },
-    "nodemonConfig": {
-        "watch": [
-            "src/server/**/*.js"
-        ],
-        "ext": "js",
-        "ignore": [
-            "src/**/*.spec.js",
-            "src/**/*.test.js"
-        ],
-        "exec": "node ./src/server/api.js"
-    },
-    "repository": "sworkman/werewolf-player",
+    "repository": "pozil/quiz",
     "scripts": {
         "start": "npm run build && node src/server/server.js",
         "build": "lwc-services build -m production",
         "build:development": "lwc-services build",
         "lint": "eslint ./src/**/*.js",
-        "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
-        "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
+        "prettier": "prettier --write '**/*.{css,html,js,json,md,yaml,yml}'",
+        "prettier:verify": "prettier --list-different '**/*.{css,html,js,json,md,yaml,yml}'",
         "test:unit": "lwc-services test:unit",
         "test:unit:coverage": "lwc-services test:unit --coverage",
         "test:unit:debug": "lwc-services test:unit --debug",
         "test:unit:watch": "lwc-services test:unit --watch",
-        "watch": "run-p watch:client watch:server",
-        "watch:client": "lwc-services watch",
-        "watch:server": "nodemon"
+        "preinstall": "rm -fr src/client/resources/dist",
+        "postinstall": "mkdir -p src/client/resources/dist && cp node_modules/normalize.css/normalize.css src/client/resources/dist/."
     }
 }

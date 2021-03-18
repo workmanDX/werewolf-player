@@ -1,0 +1,27 @@
+<template>
+    <div if:true={formError} class="error">{formError}</div>
+    <form onsubmit={handleSubmit} autocomplete="off">
+        <div>
+            <ui-input
+                label="Name"
+                onchange={handleNicknameChange}
+                readonly={isRegistering}
+                is-valid={isNicknameValid}
+                error={nicknameError}
+                max-length="20"
+                autocomplete="nickname"
+            >
+            </ui-input>
+        </div>
+        <div class="form-footer">
+            <template if:true={isLoading}>
+                <ui-spinner></ui-spinner>
+            </template>
+            <template if:false={isLoading}>
+                <button disabled={isRegistrationDisabled}>
+                    Register
+                </button>
+            </template>
+        </div>
+    </form>
+</template>

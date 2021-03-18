@@ -6,7 +6,9 @@ const express = require('express'),
     QuizSessionRestResource = require('./rest/quiz-session.js'),
     PlayerRestResource = require('./rest/player.js'),
     AnswerRestResource = require('./rest/answer.js'),
-    ConfigurationRestResource = require('./rest/configuration.js');
+    ConfigurationRestResource = require('./rest/configuration.js'),
+
+    GameInfoRestResource = require('./rest/game-info.js');
 
 // Load and check config
 require('dotenv').config();
@@ -44,6 +46,21 @@ sfdc.login(
     console.log('Connected to Salesforce');
 });
 
+// Setup Game info REST resources
+const gameInfoRest = new GameInfoRestResource(sfdc, wss);
+app.get('/api/game-info', (request, response) => {
+    gameInfoRest.getGameInfo(request, response);
+});
+app.put('/api/game-info', (request, response) => {
+    gameInfoRest.updateGame(request, response);
+});
+
+// Setup cardSwap REST resources
+app.post('/api/game-info', (request, response) => {
+    gameInfoRest.cardSwap(request, response);
+});
+
+
 // Setup Quiz Session REST resources
 const quizSessionRest = new QuizSessionRestResource(sfdc, wss);
 app.get('/api/quiz-sessions', (request, response) => {
@@ -58,6 +75,10 @@ const playerRest = new PlayerRestResource(sfdc);
 app.get('/api/players', (request, response) => {
     playerRest.isNicknameAvailable(request, response);
 });
+app.get('/api/playersValidate', (request, response) => {
+    playerRest.isPlayerIdValid(request, response);
+});
+
 app.get('/api/players/:playerId/stats', (request, response) => {
     playerRest.getPlayerStats(request, response);
 });

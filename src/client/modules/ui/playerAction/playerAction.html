@@ -1,0 +1,58 @@
+<!--
+  @File Name          : theGame.html
+  @Description        : 
+  @Author             : steven.workman@logmein.com
+  @Group              : 
+  @Last Modified By   : steven.workman@logmein.com
+  @Last Modified On   : 12-19-2020
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    5/20/2020   steven.workman@logmein.com     Initial Version
+-->
+<template>
+    <!-- ********Modal Start*************** -->
+    <template if:true={showAction}>
+        <div>
+            <template if:true={showCenterPlayers}>                                
+                <div class="centerPlayercontainer">
+                    <template for:each={centerPlayersForAction} for:item="card">
+                        <ui-card-display-action 
+                            key={card.name} 
+                            card={card} 
+                            card-back={cardBack}
+                            action-count={actionCount}
+                            action-count-max={actionInfo.actionCountMax}
+                            center-player-action-count-max={actionInfo.centerPlayerActionCountMax}
+                            action-name={actionInfo.actionName}
+                            center-player-action={centerPlayerAction}
+                            oncardselected={handleCardClick}
+                        ></ui-card-display-action>
+                    </template>
+                </div>
+            </template>
+            <template if:true={playersForAction}>    
+                <div class="playercontainer">
+                    <template for:each={playersForAction} for:item="card">
+                        <ui-card-display-action 
+                            key={card.name}
+                            card={card} 
+                            card-back={cardBack}
+                            action-count={actionCount}
+                            action-count-max={actionInfo.actionCountMax}
+                            center-player-action-count-max={actionInfo.centerPlayerActionCountMax}
+                            action-name={actionInfo.actionName}
+                            center-player-action={centerPlayerAction}
+                            oncardselected={handleCardClick}
+                        ></ui-card-display-action>
+                    </template>
+                </div>
+            </template>
+            <!-- <template if:true={actions.showPlayer}>    
+                <div class="playercontainer slds-box slds-align_absolute-center">
+                    <c-card-display-action key={playerInfo.Id} card={playerInfo} is-in-modal=true game-status={gameStatus} actions={actions} action-count={actionCount} player-info={playerInfo} oncardselected={handleCardClick} card-back={cardBack}></c-card-display-action>
+                </div>
+            </template> -->
+        </div>
+        
+    </template>    
+</template>

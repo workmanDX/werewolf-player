@@ -1,0 +1,66 @@
+<template>
+    <ui-header nickname={nickname}></ui-header>
+
+    <div class="body">
+        <template if:true={gameInfo}>
+            <!-- Unauthenticated -->
+            <template if:false={isAuthenticated}>
+                <!-- <template if:true={showRegistration}> -->
+                    <template if:true={isRegistrationStage}>
+                        <ui-registration-form
+                            game-id={gameInfo.gameId}
+                            onregistered={handleRegistered}
+                        ></ui-registration-form>
+                    </template>
+                <!-- </template> -->
+                <template if:false={isRegistrationStage}>
+                    <h1>Sorry, registrations are closed.</h1>
+                </template>
+            </template>
+            <!-- Authenticated -->
+            <template if:true={isAuthenticated}>
+                <!-- Registration -->
+                <template if:true={isRegistrationStage}>
+                    <h1>Wait for card...</h1>
+                    <ui-spinner></ui-spinner>
+                </template>
+
+                <template if:true={isPlayGamePhase}>
+                    <h1>Wait for your turn...</h1>
+                    <ui-spinner></ui-spinner>
+                </template>
+
+                <!-- Dealing -->
+                <template if:true={showGame}>
+                    <div class="player">
+                        <ui-player-display
+                            player={player}
+                            card-back={gameInfo.herokuCardBack}
+                        ></ui-player-display>
+                    </div>
+                </template>
+
+                <!-- showAction -->
+                <template if:true={showAction}>
+                    <div class="action">
+                        <ui-player-action 
+                            action-info={actionInfo}
+                            card-back={gameInfo.herokuCardBack}
+                            oncardswap={handleCardSwap}
+                        ></ui-player-action>
+                    </div>
+                </template>
+            </template>
+        </template>
+
+        <!-- Errors -->
+        <template if:true={errorMessage}>
+            <h1 class="error">{errorMessage}</h1>
+        </template>
+    </div>
+    <!-- End body -->
+    <!-- Credits -->
+    <div class="credits">
+        Workman Werewolf
+    </div>
+</template>
