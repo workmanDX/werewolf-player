@@ -10,7 +10,7 @@ I started with the original source code found [here](https://github.com/fostive/
 
 
 # A view of player registering
-![Werewolves's turn](images/playeregistration.JPG)
+![Werewolves's turn](images/playerRegistration.JPG)
 
 
 # A view of the player looking at their card
