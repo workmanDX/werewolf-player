@@ -10,12 +10,12 @@ I started with the original source code found [here](https://github.com/fostive/
 
 
 # A view of player registering
-![Werewolves's turn](images/playeregistration.jpg)
+![Werewolves's turn](images/playeregistration.JPG)
 
 
 # A view of the player looking at their card
-![Player's card](images/playerCard.jpg)
+![Player's card](images/playerCard.JPG)
 
 
 # A view of the player taking their turn
-![End of game](images/playerTurn.jpg)
+![End of game](images/playerTurn.JPG)
