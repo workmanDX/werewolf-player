@@ -1,11 +1,21 @@
-# werewolf-player
+# One Night Werewolf built with LWC
 
-Here will be some information about the app.
+This is a game based on One Night Werewolf that was built to play remotely with family and friends.
 
-## How to start?
+The game is made up of two LWC apps, this is the second, which is the player app.
 
-Start simple by running `yarn watch` (or `npm run watch`, if you set up the project with `npm`). This will start the project with a local development server.
+The host app can be found [here](https://github.com/workmanDX/werewolf-host).
 
-The source files are located in the [`src`](./src) folder. All web components are within the [`src/client/modules`](./src/modules) folder. The folder hierarchy also represents the naming structure of the web components. The entry file for the custom Express configuration can be found in the ['src/server'](./src/server) folder.
+I started with the original source code found [here](https://github.com/fostive/quiz-host-app) and modified it.
 
-Find more information on the main repo on [GitHub](https://github.com/muenzpraeger/create-lwc-app).
+
+# A view of player registering
+![Werewolves's turn](images/playeregistration.jpg)
+
+
+# A view of the player looking at their card
+![Player's card](images/playerCard.jpg)
+
+
+# A view of the player taking their turn
+![End of game](images/playerTurn.jpg)

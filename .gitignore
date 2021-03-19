@@ -29,3 +29,18 @@ Thumbs.db
 ehthumbs.db
 [Dd]esktop.ini
 $RECYCLE.BIN/
+
+# Other files
+.eslintignore
+.eslintrc.json
+.forceignore
+.prettierignore
+.prettierrc
+app.json
+jest.config.js
+LICENSE
+lwc-services.config.js
+package-lock.json
+package.json
+Procfile
+/test-scripts
